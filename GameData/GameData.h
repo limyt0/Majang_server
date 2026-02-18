@@ -30,5 +30,6 @@ public:
     void RandomDongNamSeoBuk();
     void SetWangPae();
     void Baepae(Jaksadata* jaksa);
+    void SetDoraPae();
 };
 

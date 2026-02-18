@@ -17,7 +17,9 @@ public:
     std::vector<HuroBlock*> hurolist;
     std::vector<AnkanBlock*> ankanList;
     std::vector<int> nukilist;
+    bool isSort;
 
     Jaksadata();
     ~Jaksadata();
+    void SonPeaSort();
 };

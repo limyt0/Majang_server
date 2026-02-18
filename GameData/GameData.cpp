@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <random>
 #include <iostream>
+#include "../Consts.h"
 
 GameData::GameData()
 {
@@ -37,7 +38,11 @@ void GameData::InitGame()
     Suffle();
  
     RandomDongNamSeoBuk();
- 
+    for(int i = 0;i<4;i++)
+    {
+        Baepae(jaksas[i].get());
+    }
+
 }
 
 
@@ -76,10 +81,50 @@ void GameData::RandomDongNamSeoBuk()
 
 void GameData::SetWangPae()
 {
-    
+    int wangstart = PeasanLen - WangPaeLen;
+    int dora_start = wangstart;
+    int dora_end = wangstart + WangDoraLen - 1;
+    int ys_start = wangstart + WangDoraLen;
+    int ys_end = PeasanLen - 1;
+    int count = 0;
+    // for (int i = dora_start; i <= dora_end; i++) {
+    //     if (i % 2 == 0)
+    //     {
+    //         doras_ura[count] = peasan[i];
+    //     }
+    //     else { 
+    //         doras_omote[count] = peasan[i];
+            
+    //         count++;
+    //     }
+    // }
+    count = 0;
+    int wanglast = wangpae.size() - 1;
+    for (int i = ys_start; i <= ys_end; i++) {
+        int tilenum = peasan.back();
+        wangpae[wanglast - count] = tilenum;
+        peasan.pop_back();
+        count++;
+    }
+    //첫번째 도라 열기
+    SetDoraPae();
 }
 
 void GameData::Baepae(Jaksadata* jaksa)
 {
-    
+    for(int i = 0;i<TsumoLen;i++)
+    {
+        int tilenum = peasan.back();
+        jaksa->sonTils.push_back(tilenum);
+        peasan.pop_back();
+    }
+
+}
+
+// 도라 열기
+void GameData::SetDoraPae()
+{
+    int count = doras_omote.size()* 2;
+    doras_omote.push_back(wangpae[count]);
+    doras_omote.push_back(wangpae[count+1]);
 }
