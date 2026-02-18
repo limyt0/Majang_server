@@ -1,4 +1,5 @@
 #include "GameData.h"
+#include "Jaksadata.h"
 #include <algorithm>
 #include <random>
 
@@ -24,11 +25,16 @@ GameData::GameData()
         };
     InitGame();
     //jaksas.insert(new Jaksadata());
+    for(int i = 0;i<4;i++)
+    {
+        jaksas.push_back(std::make_unique<Jaksadata>());
+    }
 }
 
 void GameData::InitGame()
 {
     Suffle();
+    RandomDongNamSeoBuk();
 }
 
 GameData::~GameData()
@@ -44,7 +50,9 @@ void GameData::Suffle()
 
 void GameData::RandomDongNamSeoBuk()
 {
-    
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(jaksas.begin(), jaksas.end(), g);
 }
 
 void GameData::SetWangPae()

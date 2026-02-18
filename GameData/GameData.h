@@ -1,45 +1,14 @@
 #include <string>
 #include <vector>
+#include "Enums.h"
+#include <memory>
 
-enum Baram
-{
-    Dong = 0,
-    Nam = 1,
-    Seo = 2,
-    Buk = 3
-};
-
-//후로 한덩어리
-class HuroBlcck {
-public:
-    float startpos;//배치하는 시작 위치
-    std::vector<int> tiles;
-    int index;//몇번째를 옆으로 꺾을 것인가
-};
-class AnkanBlcok { 
-public:
-    float startpos;
-    std::vector<int> tiles;
-};
-
-class Berims
-{
-public:
-    std::vector<int> berimBeas; //버린패들
-    std::vector<int> behurod;//내가 버린거 남이 후로해간거. 버린패에서 제외필요.
-    int richindex = -1;//리치했을때 위치 없으면 -1
-};
-
-class GameUserData{
-public:
-  int pk_id;
-  std::string name;
-};
+class Jaksadata;
 
 class GameData{
 public:
   int nowTurnJaksaIndex = 0;//현재 누구 차례인지
-  std::vector<Jaksadata*> jaksas; //참가 작사들. 들어간 순서대로 차례임
+  std::vector<std::unique_ptr<Jaksadata>> jaksas; //참가 작사들. 들어간 순서대로 차례임
   int Oyaindex = 0; // 현재 동이 누구인지
   Baram nowTableBaram = Dong;//현재 장풍
   std::vector<int> peasan; //패산 정보
@@ -59,15 +28,4 @@ public:
     void SetWangPae();
     void Baepae(Jaksadata* jaksa);
 };
-
-// class Constants
-// {
-//     public const int TsumoLen = 13;
-//     public const int WangPaeLen = 14;
-//     public const int PeasanLen = 144;
-//     public const int WangDoraLen = 10;
-//     public const int YeongSangLen = 4;
-// }
-
-
 
