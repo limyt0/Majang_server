@@ -6,12 +6,12 @@ class HwaryoInfo;
 class HwaryoChecker
 {
     public:
-    int * sonpae_;
-    int sonpae_len_;
+    int * sonTil;
+    // int sonTil_len_;
     std::vector<int> tsu_blocks;
     std::vector<int> hwaryo_list;
 
-    int * pae_count;
+    int pae_count[38];
     bool guksa = false;
     bool hwapae_exist = false;
     bool japa_keotsu_break = false;
