@@ -16,7 +16,7 @@ enum Baram
 class GameData{
 public:
   int nowTurnJaksaIndex = 0;//현재 누구 차례인지
-  std::vector<Jaksadata> jaksas; //참가 작사들. 들어간 순서대로 차례임
+  std::vector<Jaksadata*> jaksas; //참가 작사들. 들어간 순서대로 차례임
   int Oyaindex = 0; // 현재 동이 누구인지
   Baram nowTableBaram = Dong;//현재 장풍
   std::vector<int> peasan; //패산 정보
