@@ -11,6 +11,8 @@ public:
   std::vector<std::unique_ptr<Jaksadata>> jaksas; //참가 작사들. 들어간 순서대로 차례임
   int Oyaindex = 0; // 현재 동이 누구인지
   Baram nowTableBaram = Dong;//현재 장풍
+  int nowGuk = 0;//몇국
+  int nowBonJang = 0;//본장
   std::vector<int> peasan; //패산 정보
   std::vector<int> wangpae; //도라표시패, 도라표시패아래, 영상패.(고정)
   std::vector<int> doras_omote; //앞 도라들 열릴때마다 추가
@@ -23,6 +25,7 @@ public:
     GameData();
     ~GameData();
     void InitGame();
+    void SetGame(Baram baram,int guk, int bonjang);
     void Suffle();
     void RandomDongNamSeoBuk();
     void SetWangPae();
