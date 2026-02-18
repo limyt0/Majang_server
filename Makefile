@@ -3,6 +3,7 @@ CXX = g++
 CXXFLAGS = -std=c++17 -Wall -I. -IGameData -IGameData/PeaAndBlock
 
 SRCS = test.cpp \
+	   GameManager.cpp \
        $(wildcard GameData/*.cpp) \
        $(wildcard GameData/PeaAndBlock/*.cpp) \
 	   $(wildcard HwaryoChecker/*.cpp)

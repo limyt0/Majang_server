@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <random>
 #include <iostream>
+//#include <crono>
 #include "../Consts.h"
 
 GameData::GameData()
@@ -127,4 +128,16 @@ void GameData::SetDoraPae()
     int count = doras_omote.size()* 2;
     doras_omote.push_back(wangpae[count]);
     doras_omote.push_back(wangpae[count+1]);
+}
+
+void GameData::Update(std::chrono::steady_clock::time_point now) 
+{
+    // if (!this->is_waiting_input) return;
+
+    // // 흐른 시간 계산
+    // auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - this->last_turn_time);
+
+    // if (duration.count() >= 3) {
+    //     this->AutoNextTurn(); // 3초 경과 시 로직 실행
+    // }
 }

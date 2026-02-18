@@ -2,6 +2,7 @@
 #include <vector>
 #include "Enums.h"
 #include <memory>
+#include <chrono>
 
 class Jaksadata;
 
@@ -31,5 +32,6 @@ public:
     void SetWangPae();
     void Baepae(Jaksadata* jaksa);
     void SetDoraPae();
+    void Update(std::chrono::steady_clock::time_point now);
 };
 
