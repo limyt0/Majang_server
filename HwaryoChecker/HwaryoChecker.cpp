@@ -18,6 +18,9 @@ HwaryoChecker::HwaryoChecker(Jaksadata * jaksa, int hwaryopae_type){
     // tsu_blocks = new std::vector<TsuBlock>();
     // hwaryo_list = new std::vector<HwaryoInfo>();
     // pae_count = new int[38];
+    for(int i=0;i<38;i++){
+        pae_count[i] = 0;
+    }
 
     for(int i = 0; i < sonTil_len; i++){
         pae_count_update(sonTil[i]);
@@ -58,7 +61,8 @@ void HwaryoChecker::pae_count_update(int id)
     }
     else
     {
-        pae_count[index] += 1;        
+        pae_count[index] += 1;
+        // printf("(paecount)%d updated!\n", index);
     }
 
 }

@@ -1,10 +1,10 @@
 #pragma once
 #include <vector>
 #include "Yaku/YakuState.h"
-// #include "Consts_hwaryo.h"
+#include "Consts_hwaryo.h"
 
 class TsuBlock;
-struct Daegistate;
+// struct Daegistate;
 
 class HwaryoInfo
 {
@@ -14,7 +14,7 @@ class HwaryoInfo
     bool block_possible = false;
 
     // 쯔모패 대기 상태.
-    Daegistate * daegistate;
+    Daegistate daegistate;
     int last_tile = 0;
     int hwaryo_pae_type = 0;
 

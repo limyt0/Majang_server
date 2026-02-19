@@ -9,11 +9,11 @@ HwaryoInfo::HwaryoInfo(TsuBlock * tsu_blocks_, int * pae_count_)
         pae_count[i] = pae_count_[i];
     }
 
-    daegistate = new Daegistate();
+    // daegistate = new Daegistate();
 }
 
 HwaryoInfo::~HwaryoInfo(){
-    delete daegistate;
+    // delete daegistate;
 }
 
 void HwaryoInfo::print_info()

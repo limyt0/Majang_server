@@ -24,7 +24,8 @@ void YakuChecker::guksa(std::vector<HwaryoInfo> * hwaryo_list,  int * pae_count,
     }
 
     if(sum == 14 && guksa_possible)
-    {           
+    {   
+        // printf("(guksa) sum == 14\n");
         TsuBlock tsuBlock;// = new TsuBlock();
         std::vector<TsuBlock> tsu_blocks;// = new std::vector<TsuBlock>();
         tsuBlock.tsu_type = TsuType::Guksa;
@@ -33,7 +34,7 @@ void YakuChecker::guksa(std::vector<HwaryoInfo> * hwaryo_list,  int * pae_count,
         HwaryoInfo h(tsu_blocks.data(), pae_count);
         if (pae_count[last_tile / 10] == 2)
         {
-            printf("guksa 13 updating...");
+            printf("guksa 13 updating...\n");
             h.yakumansate.guksa_13 = true;
             h.hwaryo_pae_type = hwaryo_pae_type;
             h.last_tile = last_tile;
@@ -45,9 +46,9 @@ void YakuChecker::guksa(std::vector<HwaryoInfo> * hwaryo_list,  int * pae_count,
         }
         else
         {
-            printf("guksa updating...");
+            printf("guksa updating...\n");
             h.yakumansate.guksa = true;
-            h.daegistate->Dangi = true;
+            h.daegistate.Dangi = true;
             h.hwaryo_pae_type = hwaryo_pae_type;
             h.last_tile = last_tile;
             if(hwaryo_pae_type == HwaryoPaeType::CheonHwa)
