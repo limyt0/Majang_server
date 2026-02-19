@@ -1,15 +1,18 @@
 #include <vector>
+#include "HwaryoInfo.h"
+#include "Tsublock.h"
 
 class Jaksadata;
 class HwaryoInfo;
+class TsuBlock;
 
 class HwaryoChecker
 {
     public:
     int * sonTil;
     // int sonTil_len_;
-    std::vector<int> tsu_blocks;
-    std::vector<int> hwaryo_list;
+    std::vector<TsuBlock> tsu_blocks;
+    std::vector<HwaryoInfo> hwaryo_list;
 
     int pae_count[38];
     bool guksa = false;

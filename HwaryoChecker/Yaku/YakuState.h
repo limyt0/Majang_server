@@ -1,6 +1,6 @@
 
 
-struct Yakustate
+struct YakuState
 {
     // 1판 - 도라는 따로 체크
     bool richi = false; // 리치

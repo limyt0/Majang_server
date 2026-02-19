@@ -1,3 +1,4 @@
+#include <vector>
 class HwaryoInfo;
 
 class YakuChecker
@@ -13,7 +14,7 @@ class YakuChecker
     static void wind_info_update(HwaryoInfo * hwaryo_list, int seat_wind, int table_wind);
     
     // 후로 블록수 업데이트. 슌쯔 커쯔 깡쯔를 후로 여부 구분해서 카운트 업데이트
-    static void bcounts_update(HwaryoInfo * hwaryo_list)
+    static void bcounts_update(HwaryoInfo * hwaryo_list);
 
     // 핑후
     static void pinghu_info_update(HwaryoInfo * hwaryo_list, int seat_wind, int table_wind);
@@ -56,4 +57,7 @@ class YakuChecker
 
     // 리치, 더블리치, 일발
     static void rich_ilbal_info_update(HwaryoInfo * hwaryo_list, int richi_ilbal_type);
+
+    // 국사무쌍
+    static void guksa(std::vector<HwaryoInfo> * hwaryo_list,  int * pae_count, int last_tile, int hwaryo_tile_type);
 };

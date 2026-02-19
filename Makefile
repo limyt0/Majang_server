@@ -6,7 +6,8 @@ SRCS = test.cpp \
 	   GameManager.cpp \
        $(wildcard GameData/*.cpp) \
        $(wildcard GameData/PeaAndBlock/*.cpp) \
-	   $(wildcard HwaryoChecker/*.cpp)
+	   $(wildcard HwaryoChecker/*.cpp) \
+	   $(wildcard HwaryoChecker/Yaku/*.cpp)
 
 OBJS = $(SRCS:.cpp=.o)
 TARGET = test

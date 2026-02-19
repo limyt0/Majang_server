@@ -2,6 +2,7 @@
 #include "Jaksadata.h"
 #include <iostream>
 #include "Consts_hwaryo.h"
+#include "Yaku/YakuChecker.h"
 
 HwaryoChecker::HwaryoChecker(Jaksadata * jaksa, int hwaryopae_type){
 
@@ -27,11 +28,11 @@ HwaryoChecker::HwaryoChecker(Jaksadata * jaksa, int hwaryopae_type){
     // 화패가 있는 경우 화료 안됨. 바로 리턴.
     if(hwapae_exist){return;}
 
-    printf("guksa check srart");
+    printf("guksa check srart\n");
     // 국사무쌍 체크 (바로 리턴)
-    // YakuChecker::guksa(hwaryo_list, pae_count, tsumopae, hwaryopae_type);
-    // if(hwaryo_list.Count > 0){guksa = true;return;}
-    // DebugLog.log("guksa check end");
+    YakuChecker::guksa(&hwaryo_list, pae_count, last_tile, hwaryopae_type);
+    if(hwaryo_list.size() > 0){guksa = true;return;}
+    printf("guksa check end\n");
 }
 
 HwaryoChecker::~HwaryoChecker()
