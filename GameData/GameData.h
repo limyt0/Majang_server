@@ -22,6 +22,12 @@ public:
   bool isSunOneturn;//순정 1순인지 체크해서 천화/지화 체크용.+ 더블리치 체크용+사풍연타+구종구패
   bool isFourKangs; //사깡여부 체크S
   int remainTiles; //남은 패산 패 갯수
+  std::chrono::steady_clock::time_point last_tick;
+  double turnTime = 3;
+  double turnTimer = turnTime;
+  double huroTime = 3;
+  double huroTimer = huroTime;
+  GamePhases phases;
 
     GameData();
     ~GameData();
@@ -33,5 +39,6 @@ public:
     void Baepae(Jaksadata* jaksa);
     void SetDoraPae();
     void Update(std::chrono::steady_clock::time_point now);
+    void PassTurn();
 };
 

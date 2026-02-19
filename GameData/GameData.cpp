@@ -132,12 +132,39 @@ void GameData::SetDoraPae()
 
 void GameData::Update(std::chrono::steady_clock::time_point now) 
 {
-    // if (!this->is_waiting_input) return;
+    std::chrono::duration<double> elapsed = now - last_tick;
+    double deltaTime = elapsed.count();
+    
+    if(phases == DrawAfter)
+    {
+        turnTimer -= deltaTime;
+        if(turnTimer <= 0 ) //누군가 버리면 0초로 만들기
+        {   
+            //시간 지나면 자동으로 버리고 버림after로 상태 변환
+            phases = berimAfter;
+            //PassTurn();
+        }
+    }else if(phases == berimAfter)
+    {
+        huroTimer -= deltaTime;
+        if(huroTimer <= 0 )//스킵시 바로 0초로 만들어야 함.
+        {   
+            //시간 지나면 그냥 스킵
+            phases = berimAfter;
+            PassTurn();
+            
+        }
+    }
 
-    // // 흐른 시간 계산
-    // auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - this->last_turn_time);
 
-    // if (duration.count() >= 3) {
-    //     this->AutoNextTurn(); // 3초 경과 시 로직 실행
-    // }
+    last_tick = now;
+}
+
+void GameData::PassTurn()
+{      
+    //호출하면 됨.
+
+    //차례 넘기고
+    turnTimer = turnTime;
+    huroTimer = huroTime;
 }

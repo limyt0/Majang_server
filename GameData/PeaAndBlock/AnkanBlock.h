@@ -1,6 +1,6 @@
 #include <vector>
 
-class AnkanBlcok { 
+class AnkanBlock { 
 public:
     //float startpos;
     std::vector<int> tiles;
