@@ -18,5 +18,26 @@ HwaryoInfo::~HwaryoInfo(){
 
 void HwaryoInfo::print_info()
 {
-    
+    // IEnumerator<TsuBlock> iterator = tsu_blocks.GetEnumerator();
+    for(int i=0;i<tsu_blocks.size();i++)
+    {
+        tsu_blocks[i].print_contents();
+    }
+
+    // while(iterator.MoveNext())
+    // {
+    //     iterator.Current.print_contents();
+    // }
+    printf("last_tile : %d\n", last_tile);
+    printf("-- 쯔모/론 패 : %s %d\n", PaeType::Tostring(last_tile / 100).c_str(), (last_tile / 10) % 10);
+
+    std::string str = "--대기 : ";
+    if(daegistate.Dangi){str += "단기, ";}
+    if(daegistate.Yang){str += "양면, ";}
+    if(daegistate.Gan){str += "간짱, ";}
+    if(daegistate.Byeon){str += "변짱, ";}
+    if(daegistate.Syabo){str += "샤보, ";}
+    printf("%s\n", str.c_str());
+    // YakuChecker.Print_yaku(this);
+    // YakuChecker.print_dora(this);
 }

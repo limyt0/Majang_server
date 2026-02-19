@@ -22,9 +22,11 @@ class HwaryoChecker
 
     HwaryoChecker(Jaksadata * jaksa, int hwaryopae_type);
     ~HwaryoChecker();
-    void print_tsu_blocks(std::vector<int> * b);
-    std::vector<int> * get_supae_meorihubo(int * pae_count_0, int type);
-    void mentsu_check(HwaryoInfo * mentsu_info);
+    
+    // 보조 함수.
+    void print_tsu_blocks(std::vector<TsuBlock> b);
+    std::vector<int> get_supae_meorihubo(int type);
+    void block_check(HwaryoInfo );
     int get_smallest_index(int * pae_count_0);
     int pae_sum(int * pae_count);
     void print_blocks();

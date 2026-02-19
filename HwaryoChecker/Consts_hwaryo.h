@@ -16,12 +16,12 @@ class TsuType
     {
         std::string str = "";
         if(type == TsuType::None){str += "None";}
-        else if(type == TsuType::Syuntsu){str += "Syuntsu";}
-        else if(type == TsuType::Meori){str += "Meori";}
-        else if(type == TsuType::Keotsu){str += "Keotsu";}
-        else if(type == TsuType::Kangtsu){str += "Kangtsu";}
-        else if(type == TsuType::Guksa){str += "Guksa";}
-        else if(type == TsuType::Guryeon){str += "Guryeon";}
+        else if(type == TsuType::Syuntsu){str += "슌쯔";}
+        else if(type == TsuType::Meori){str += "머리";}
+        else if(type == TsuType::Keotsu){str += "커쯔";}
+        else if(type == TsuType::Kangtsu){str += "깡쯔";}
+        else if(type == TsuType::Guksa){str += "국사무쌍";}
+        else if(type == TsuType::Guryeon){str += "구련보등";}
         else {str += "(TsuType error number=" + std::to_string(type)+ ")";}
         return str;
     }
@@ -41,11 +41,11 @@ class PaeType
     {
         std::string str = "";
         if(type == PaeType::None){str = "None";}
-        else if(type == PaeType::Mansu){str = "Mansu";}
-        else if(type == PaeType::Tongsu){str = "Tongsu";}
-        else if(type == PaeType::Saksu){str = "Saksu";}
-        else if(type == PaeType::JaPae){str = "JaPae";}
-        else if(type == PaeType::Hwapae){str = "Hwapae";}
+        else if(type == PaeType::Mansu){str = "만수";}
+        else if(type == PaeType::Tongsu){str = "통수";}
+        else if(type == PaeType::Saksu){str = "삭수";}
+        else if(type == PaeType::JaPae){str = "자패";}
+        else if(type == PaeType::Hwapae){str = "화패";}
         else {str = "(PaeType error number="+ std::to_string(type)+ ")";}
         return str;
     }
