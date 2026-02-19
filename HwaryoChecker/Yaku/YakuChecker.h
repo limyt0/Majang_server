@@ -59,5 +59,9 @@ class YakuChecker
     static void rich_ilbal_info_update(HwaryoInfo * hwaryo_list, int richi_ilbal_type);
 
     // 국사무쌍
-    static void guksa(std::vector<HwaryoInfo> * hwaryo_list,  int * pae_count, int last_tile, int hwaryo_tile_type);
+    static void guksa(std::vector<HwaryoInfo> * ,  int * , int , int );
+
+    // 구련보등
+    static void guryeon(std::vector<HwaryoInfo> * , int* , int , int );
+
 };

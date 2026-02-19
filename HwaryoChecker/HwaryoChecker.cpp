@@ -31,8 +31,15 @@ HwaryoChecker::HwaryoChecker(Jaksadata * jaksa, int hwaryopae_type){
     printf("guksa check srart\n");
     // 국사무쌍 체크 (바로 리턴)
     YakuChecker::guksa(&hwaryo_list, pae_count, last_tile, hwaryopae_type);
-    if(hwaryo_list.size() > 0){guksa = true;return;}
+    if(hwaryo_list.size() > 0){gu = true;return;}
     printf("guksa check end\n");
+
+    printf("guryeon check srart\n");
+    // 구련보등 체크 (바로 리턴) - 청일색의 상위역이지만 로직 편의상 여기서 먼저 체크.
+    YakuChecker::guryeon(&hwaryo_list, pae_count, last_tile, hwaryopae_type);
+    if(hwaryo_list.size() > 0){gu = true;return;}
+    printf("guryeon check end\n");
+
 }
 
 HwaryoChecker::~HwaryoChecker()
@@ -45,7 +52,7 @@ void HwaryoChecker::pae_count_update(int id)
 {
     int pae_type = id/100;
     int index = id / 10;
-    if (pae_type == Hwapae)
+    if (pae_type == PaeType::Hwapae)
     {
         hwapae_exist = true;
     }

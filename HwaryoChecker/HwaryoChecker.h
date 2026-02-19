@@ -15,7 +15,7 @@ class HwaryoChecker
     std::vector<HwaryoInfo> hwaryo_list;
 
     int pae_count[38];
-    bool guksa = false;
+    bool gu = false;// 국사무쌍/구련보등 우선 체크
     bool hwapae_exist = false;
     bool japa_keotsu_break = false;
     bool chitoi = false;
