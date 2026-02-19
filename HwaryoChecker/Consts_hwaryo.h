@@ -52,11 +52,6 @@ class PaeType
 };
 
 
-
-
-
-
-
 class HwaryoPaeType
 {
     public:
@@ -114,4 +109,17 @@ struct Daegistate
     bool Gan = false;
     bool Byeon = false;
     bool Syabo = false;
+};
+
+class BCounts
+{
+    public:
+    int huro = 0;
+    int syun = 0;
+    int keot = 0;
+    int kang = 0;
+    int huro_syun = 0;
+    int huro_keot = 0;
+    int huro_kang = 0;
+
 };

@@ -22,7 +22,7 @@ class HwaryoInfo
     // 삼원패 역 정보
     // public YakuHai yakuHai = new YakuHai();
 
-    // BCounts bCounts = new BCounts();
+    BCounts bCounts;
     // public int huro_count = 0;
 
     // 여러 역 상태.
