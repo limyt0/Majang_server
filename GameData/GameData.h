@@ -23,6 +23,8 @@ public:
   bool isFourKangs; //사깡여부 체크S
   int remainTiles; //남은 패산 패 갯수
   std::chrono::steady_clock::time_point last_tick;
+  double waitingTime = 3;
+  double waitingTimer = waitingTime;
   double turnTime = 3;
   double turnTimer = turnTime;
   double huroTime = 3;

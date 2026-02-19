@@ -11,9 +11,10 @@ private:
     static GameManager* instance;
     static std::mutex mutex_;
     std::map<int, std::unique_ptr<GameData>> games;
-    bool server_running = true;
+    static std::mutex update_mutex;
     GameManager();
 public:
+    bool server_running = true;
     static GameManager* GetInstance(){
         std::lock_guard<std::mutex> lock(mutex_);
         if(instance == nullptr)

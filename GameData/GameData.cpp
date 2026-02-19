@@ -135,7 +135,15 @@ void GameData::Update(std::chrono::steady_clock::time_point now)
     std::chrono::duration<double> elapsed = now - last_tick;
     double deltaTime = elapsed.count();
     
-    if(phases == DrawAfter)
+    //std::cerr << "---DrawAfter 호출!" << std::endl;
+    if(phases == Waiting){
+        waitingTime -= deltaTime;
+        if(waitingTime <= 0)
+        {
+            phases = DrawAfter;
+        }
+    }
+    else if(phases == DrawAfter)
     {
         turnTimer -= deltaTime;
         if(turnTimer <= 0 ) //누군가 버리면 0초로 만들기
@@ -146,6 +154,7 @@ void GameData::Update(std::chrono::steady_clock::time_point now)
         }
     }else if(phases == berimAfter)
     {
+        //std::cerr << "---berimAfter 호출!" << std::endl;
         huroTimer -= deltaTime;
         if(huroTimer <= 0 )//스킵시 바로 0초로 만들어야 함.
         {   
@@ -163,7 +172,7 @@ void GameData::Update(std::chrono::steady_clock::time_point now)
 void GameData::PassTurn()
 {      
     //호출하면 됨.
-
+    std::cerr << "---turn 바뀜! ---" << std::endl;
     //차례 넘기고
     turnTimer = turnTime;
     huroTimer = huroTime;
