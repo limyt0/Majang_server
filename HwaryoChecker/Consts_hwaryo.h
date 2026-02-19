@@ -2,53 +2,57 @@
 #include<string>
 
 // Tsu type
-enum TsuType{
-    NoneTsu,
-    Syuntsu,
-    Meori,
-    Keotsu,
-    Kangtsu,
-    Guksa,
-    Guryeon,
-};
-
-static std::string Tostring(TsuType type)
+class TsuType
 {
-    std::string str = "";
-    if(type == NoneTsu){str += "None";}
-    else if(type == Syuntsu){str += "Syuntsu";}
-    else if(type == Meori){str += "Meori";}
-    else if(type == Keotsu){str += "Keotsu";}
-    else if(type == Kangtsu){str += "Kangtsu";}
-    else if(type == Guksa){str += "Guksa";}
-    else if(type == Guryeon){str += "Guryeon";}
-    else {str += "(TsuType error number=" + std::to_string(type)+ ")";}
-    return str;
-}
-
-enum PaeType
-{
-    NonePae = -1,
-    Mansu = 0,
-    Tongsu = 1,
-    Saksu = 2,
-    JaPae = 3,
-    Hwapae = 4
+    public:
+    static const int None = 0;
+    static const int Syuntsu = 1;
+    static const int Meori = 2;
+    static const int Keotsu = 3;
+    static const int Kangtsu = 4;
+    static const int Guksa = 5;
+    static const int Guryeon = 6;
+    static std::string Tostring(int type)
+    {
+        std::string str = "";
+        if(type == TsuType::None){str += "None";}
+        else if(type == TsuType::Syuntsu){str += "Syuntsu";}
+        else if(type == TsuType::Meori){str += "Meori";}
+        else if(type == TsuType::Keotsu){str += "Keotsu";}
+        else if(type == TsuType::Kangtsu){str += "Kangtsu";}
+        else if(type == TsuType::Guksa){str += "Guksa";}
+        else if(type == TsuType::Guryeon){str += "Guryeon";}
+        else {str += "(TsuType error number=" + std::to_string(type)+ ")";}
+        return str;
+    }
 };
 
 
-static std::string Tostring(PaeType type)
+class PaeType
 {
-    std::string str = "";
-    if(type == NonePae){str = "None";}
-    else if(type == Mansu){str = "Mansu";}
-    else if(type == Tongsu){str = "Tongsu";}
-    else if(type == Saksu){str = "Saksu";}
-    else if(type == JaPae){str = "JaPae";}
-    else if(type == Hwapae){str = "Hwapae";}
-    else {str = "(PaeType error number="+ std::to_string(type)+ ")";}
-    return str;
-}
+    public:
+    static const int None = -1;
+    static const int Mansu = 0;
+    static const int Tongsu = 1;
+    static const int Saksu = 2;
+    static const int JaPae = 3;
+    static const int Hwapae = 4;
+    static std::string Tostring(int type)
+    {
+        std::string str = "";
+        if(type == PaeType::None){str = "None";}
+        else if(type == PaeType::Mansu){str = "Mansu";}
+        else if(type == PaeType::Tongsu){str = "Tongsu";}
+        else if(type == PaeType::Saksu){str = "Saksu";}
+        else if(type == PaeType::JaPae){str = "JaPae";}
+        else if(type == PaeType::Hwapae){str = "Hwapae";}
+        else {str = "(PaeType error number="+ std::to_string(type)+ ")";}
+        return str;
+    }
+};
+
+
+
 
 
 

@@ -27,7 +27,7 @@ void YakuChecker::guksa(std::vector<HwaryoInfo> * hwaryo_list,  int * pae_count,
     {           
         TsuBlock tsuBlock;// = new TsuBlock();
         std::vector<TsuBlock> tsu_blocks;// = new std::vector<TsuBlock>();
-        tsuBlock.tsu_type = Guksa;
+        tsuBlock.tsu_type = TsuType::Guksa;
 
         tsu_blocks.push_back(tsuBlock);
         HwaryoInfo h(tsu_blocks.data(), pae_count);
