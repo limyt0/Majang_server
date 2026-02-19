@@ -31,7 +31,7 @@ void YakuChecker::guksa(std::vector<HwaryoInfo> * hwaryo_list,  int * pae_count,
         tsuBlock.tsu_type = TsuType::Guksa;
 
         tsu_blocks.push_back(tsuBlock);
-        HwaryoInfo h(tsu_blocks.data(), pae_count);
+        HwaryoInfo h(tsu_blocks, pae_count);
         if (pae_count[last_tile / 10] == 2)
         {
             printf("guksa 13 updating...\n");

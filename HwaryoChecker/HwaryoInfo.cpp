@@ -1,7 +1,7 @@
 #include "HwaryoInfo.h"
 #include "Consts_hwaryo.h"
 
-HwaryoInfo::HwaryoInfo(TsuBlock * tsu_blocks_, int * pae_count_)
+HwaryoInfo::HwaryoInfo(std::vector<TsuBlock> tsu_blocks_, int * pae_count_)
 {
     tsu_blocks = tsu_blocks_;
     // pae_count_.CopyTo(pae_count, 0);

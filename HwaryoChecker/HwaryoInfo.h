@@ -2,14 +2,15 @@
 #include <vector>
 #include "Yaku/YakuState.h"
 #include "Consts_hwaryo.h"
+#include "Tsublock.h"
 
-class TsuBlock;
+// class TsuBlock;
 // struct Daegistate;
 
 class HwaryoInfo
 {
     public :
-    TsuBlock * tsu_blocks;
+    std::vector<TsuBlock> tsu_blocks;
     int pae_count[38];
     bool block_possible = false;
 
@@ -35,7 +36,7 @@ class HwaryoInfo
     // n배 역만상태, 판수, 부수, 오야여부
     // ScoreComponent scoreComponent = new ScoreComponent();
 
-    HwaryoInfo(TsuBlock * tsu_blocks_, int * pae_count_);
+    HwaryoInfo(std::vector<TsuBlock> tsu_blocks_, int * pae_count_);
     ~HwaryoInfo();
     void print_info();
     
