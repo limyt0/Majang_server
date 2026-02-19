@@ -43,6 +43,12 @@ HwaryoChecker::HwaryoChecker(Jaksadata * jaksa, int hwaryopae_type){
     if(hwaryo_list.size() > 0){gu = true;return;}
     printf("guryeon check end\n");
 
+    // 치또이쯔 체크 
+    // 량페코로 해석될 수 있는 부분은 뒤에서 체크.
+    // 뒤에 있는 자패 커쯔 체크 로직 때문에 먼저 체크하고 bool chitoi = true로 변경해야함.
+    YakuChecker::chitoitsu_checker(&hwaryo_list, pae_count, &chitoi);
+
+
 }
 
 HwaryoChecker::~HwaryoChecker()

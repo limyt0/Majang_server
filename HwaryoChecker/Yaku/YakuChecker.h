@@ -64,4 +64,6 @@ class YakuChecker
     // 구련보등
     static void guryeon(std::vector<HwaryoInfo> * , int* , int , int );
 
+    // 치또이쯔
+    static void chitoitsu_checker(std::vector<HwaryoInfo> *, int *, bool *);
 };
