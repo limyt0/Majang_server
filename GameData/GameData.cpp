@@ -43,6 +43,8 @@ void GameData::InitGame()
     {
         Baepae(jaksas[i].get());
     }
+    phases = DrawAfter;
+    std::cerr << "-------배패 완료----------"<< std::endl;
 
 }
 
@@ -113,10 +115,12 @@ void GameData::SetWangPae()
 
 void GameData::Baepae(Jaksadata* jaksa)
 {
+
     for(int i = 0;i<TsumoLen;i++)
     {
         int tilenum = peasan.back();
         jaksa->sonTils.push_back(tilenum);
+        //std::cerr <<  tilenum<< ","<< jaksa->sonTils[i] <<std::endl;
         peasan.pop_back();
     }
 
@@ -136,14 +140,9 @@ void GameData::Update(std::chrono::steady_clock::time_point now)
     double deltaTime = elapsed.count();
     
     //std::cerr << "---DrawAfter 호출!" << std::endl;
-    if(phases == Waiting){
-        waitingTime -= deltaTime;
-        if(waitingTime <= 0)
-        {
-            phases = DrawAfter;
-        }
-    }
-    else if(phases == DrawAfter)
+    
+    
+    if(phases == DrawAfter)
     {
         turnTimer -= deltaTime;
         if(turnTimer <= 0 ) //누군가 버리면 0초로 만들기
@@ -160,6 +159,7 @@ void GameData::Update(std::chrono::steady_clock::time_point now)
         {   
             //시간 지나면 그냥 스킵
             phases = berimAfter;
+            nowTurnJaksaIndex = (nowTurnJaksaIndex + 1) % 4;
             PassTurn();
             
         }
@@ -171,8 +171,22 @@ void GameData::Update(std::chrono::steady_clock::time_point now)
 
 void GameData::PassTurn()
 {      
+    int tsumoTile = peasan.back();
+    peasan.pop_back();
+    jaksas[nowTurnJaksaIndex]->Tsumo(tsumoTile);
     //호출하면 됨.
-    std::cerr << "---turn 바뀜! ---" << std::endl;
+    std::string test12 = "";
+    int size = jaksas[nowTurnJaksaIndex]->sonTils.size();
+    for(int i = 0;i<size;i++)
+    {
+        std::string k = std::to_string(jaksas[nowTurnJaksaIndex]->sonTils[i])+" ";
+        //std::cerr << jaksas[nowTurnJaksaIndex]->sonTils[i]<< std::endl;
+        test12.append(k);
+    }
+    test12.append(std::to_string(jaksas[nowTurnJaksaIndex]->lastTile));
+    std::cerr << nowTurnJaksaIndex<< "차례" << test12<< std::endl;
+
+
     //차례 넘기고
     turnTimer = turnTime;
     huroTimer = huroTime;

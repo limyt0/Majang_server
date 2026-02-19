@@ -11,7 +11,7 @@ private:
     static GameManager* instance;
     static std::mutex mutex_;
     std::map<int, std::unique_ptr<GameData>> games;
-    static std::mutex update_mutex;
+    //static std::mutex update_mutex;
     GameManager();
 public:
     bool server_running = true;

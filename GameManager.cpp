@@ -3,7 +3,7 @@
 // 스태틱 변수 초기화
 GameManager* GameManager::instance = nullptr;
 std::mutex GameManager::mutex_;
-std::mutex GameManager::update_mutex;
+//std::mutex GameManager::update_mutex;
 
 GameManager::GameManager() 
 {
