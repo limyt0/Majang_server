@@ -11,11 +11,11 @@ void YakuChecker::yaku_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wi
     // 자풍 장풍
     wind_info_update(hwaryo_list, seat_wind, table_wind);
     
-    // // 후로 블록수 업데이트. 슌쯔 커쯔 깡쯔를 후로 여부 구분해서 카운트 업데이트
-    // bcounts_update(hwaryo_list)
+    // 후로 블록수 업데이트. 슌쯔 커쯔 깡쯔를 후로 여부 구분해서 카운트 업데이트
+    bcounts_update(hwaryo_list);
 
-    // // 핑후
-    // pinghu_info_update(hwaryo_list, seat_wind, table_wind);
+    // 핑후
+    pinghu_info_update(hwaryo_list, seat_wind, table_wind);
 
     // // 탕야오
     // tangyao_info_update(hwaryo_list);
