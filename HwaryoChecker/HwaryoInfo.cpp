@@ -28,17 +28,34 @@ void HwaryoInfo::print_info(bool block, bool hwaryo_tile, bool daegi, bool yaku,
     
     if(hwaryo_tile)
     {
-        printf("-- 마지막 화료 패 : %s %d\n", PaeType::Tostring(last_tile / 100).c_str(), (last_tile / 10) % 10);
+        int paetype = last_tile / 100;
+        int num = (last_tile / 10) % 10;
+        printf("-- 마지막 화료 패 : ("); 
+        if(paetype == PaeType::JaPae){
+            if (num == 1){printf(" 東 ");}
+            if (num == 2){printf(" 南 ");}
+            if (num == 3){printf(" 西 ");}
+            if (num == 4){printf(" 北 ");}
+            if (num == 5){printf(" 白 ");}
+            if (num == 6){printf(" 發 ");}
+            if (num == 7){printf(" 中 ");}
+        }
+        else{
+            printf(PaeType::Tostring(paetype).c_str());
+            printf(" %d", num);
+        }
+        printf(")\n");
+        
     }
     
     if(daegi)
     {
-        std::string str = "--대기 : ";
-        if(daegistate.Dangi){str += "단기, ";}
-        if(daegistate.Yang){str += "양면, ";}
-        if(daegistate.Gan){str += "간짱, ";}
-        if(daegistate.Byeon){str += "변짱, ";}
-        if(daegistate.Syabo){str += "샤보, ";}
+        std::string str = "대기 : ";
+        if(daegistate.Dangi){str += "단기 ";}
+        if(daegistate.Yang){str += "양면 ";}
+        if(daegistate.Gan){str += "간짱 ";}
+        if(daegistate.Byeon){str += "변짱 ";}
+        if(daegistate.Syabo){str += "샤보 ";}
         printf("%s\n", str.c_str());
     }
 
