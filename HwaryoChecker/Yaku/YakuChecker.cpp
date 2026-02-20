@@ -17,8 +17,8 @@ void YakuChecker::yaku_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wi
     // 핑후
     pinghu_info_update(hwaryo_list, seat_wind, table_wind);
 
-    // // 탕야오
-    // tangyao_info_update(hwaryo_list);
+    // 탕야오
+    tangyao_info_update(hwaryo_list);
 
     // // 이페코, 량페코.
     // peko_info_update(hwaryo_list);
@@ -117,7 +117,7 @@ void YakuChecker::yaku_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wi
                 // if(h->doraCount.ura_dora > 0){i++;  printf("{i}. 뒷도라        {mentsuInfo.doraCount.ura_dora} pan\n");}
                 // if(h->doraCount.aka_dora > 0){i++;  printf("{i}. 적도라        {mentsuInfo.doraCount.aka_dora} pan\n");}
                 if(h->yakustate.pinghu){i++;        printf("%d. 핑후      1 판\n",i);}
-                if(h->yakustate.tangyao){i++;       printf("%d. 탕야오    1 판n\n",i);}
+                if(h->yakustate.tangyao){i++;       printf("%d. 탕야오    1 판\n",i);}
                 if(h->yakustate.White){i++;         printf("%d. 백        1 판\n",i);}
                 if(h->yakustate.Green){i++;         printf("%d. 발        1 판\n",i);}
                 if(h->yakustate.Red){i++;           printf("%d. 중        1 판\n",i);}
