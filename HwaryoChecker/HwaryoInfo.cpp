@@ -1,5 +1,6 @@
 #include "HwaryoInfo.h"
 #include "Consts_hwaryo.h"
+#include "Yaku/YakuChecker.h"
 
 HwaryoInfo::HwaryoInfo(std::vector<TsuBlock> tsu_blocks_, int * pae_count_)
 {
@@ -63,7 +64,7 @@ void HwaryoInfo::print_info(bool block, bool hwaryo_tile, bool daegi, bool yaku,
         if(daegistate.Syabo){str += "샤보, ";}
         printf("%s\n", str.c_str());
     }
-    // YakuChecker.Print_yaku(this);
+    YakuChecker::Print_yaku(this);
     // YakuChecker.print_dora(this);
 }
 

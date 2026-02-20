@@ -19,9 +19,6 @@ class HwaryoInfo
     int last_tile = 0;
     int hwaryo_pae_type = 0;
 
-    // 삼원패 역 정보
-    // public YakuHai yakuHai = new YakuHai();
-
     BCounts bCounts;
     // public int huro_count = 0;
 

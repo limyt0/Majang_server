@@ -15,7 +15,7 @@ class YakuChecker
     // 쯔모/론 패, 대기 정보, 론 쯔모 여부 업데이트
     static void info_update(std::vector<HwaryoInfo> * hwaryo_list, int LastTile, int type);
 
-    static void Print_Yaku();
+    static void Print_yaku(HwaryoInfo *);
 
      // 다양한 역을 체크해서 정보 업데이트
     static void yaku_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wind, int table_wind, int richi_ilbal_type);
