@@ -9,7 +9,7 @@ void YakuChecker::yaku_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wi
     dragon_info_update(hwaryo_list);
     
     // // 자풍 장풍
-    // wind_info_update(hwaryo_list, seat_wind, table_wind);
+    wind_info_update(hwaryo_list, seat_wind, table_wind);
     
     // // 후로 블록수 업데이트. 슌쯔 커쯔 깡쯔를 후로 여부 구분해서 카운트 업데이트
     // bcounts_update(hwaryo_list)
@@ -116,40 +116,40 @@ void YakuChecker::yaku_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wi
                 // if(h->doraCount.dora > 0){i++;      printf("{i}. 도라          {mentsuInfo.doraCount.dora} pan\n");}
                 // if(h->doraCount.ura_dora > 0){i++;  printf("{i}. 뒷도라        {mentsuInfo.doraCount.ura_dora} pan\n");}
                 // if(h->doraCount.aka_dora > 0){i++;  printf("{i}. 적도라        {mentsuInfo.doraCount.aka_dora} pan\n");}
-                if(h->yakustate.pinghu){i++;        printf("%d. 핑후     1 판\n",i);}
+                if(h->yakustate.pinghu){i++;        printf("%d. 핑후      1 판\n",i);}
                 if(h->yakustate.tangyao){i++;       printf("%d. 탕야오    1 판n\n",i);}
-                if(h->yakustate.White){i++;         printf("%d. 백       1 판\n",i);}
-                if(h->yakustate.Green){i++;         printf("%d. 발       1 판\n",i);}
-                if(h->yakustate.Red){i++;           printf("%d. 중       1 판\n",i);}
+                if(h->yakustate.White){i++;         printf("%d. 백        1 판\n",i);}
+                if(h->yakustate.Green){i++;         printf("%d. 발        1 판\n",i);}
+                if(h->yakustate.Red){i++;           printf("%d. 중        1 판\n",i);}
                 if(h->yakustate.seat){i++;          printf("%d. 자풍      1 판\n",i);}
                 if(h->yakustate.table){i++;         printf("%d. 장풍      1 판\n",i);}
                 if(h->yakustate.ipeko){i++;         printf("%d. 이페코    1 판\n",i);}
-                if(h->yakustate.menzen_tsumo){i++;  printf("%d. 멘젠쯔모   1 판\n",i);}
-                if(h->yakustate.yeongsang){i++;     printf("%d. 영상개화   1 판\n",i);}
-                if(h->yakustate.haejeo){i++;        printf("%d. 해저로월   1 판\n",i);}
-                if(h->yakustate.hajeo){i++;         printf("%d. 하저로어   1 판\n",i);}
+                if(h->yakustate.menzen_tsumo){i++;  printf("%d. 멘젠쯔모  1 판\n",i);}
+                if(h->yakustate.yeongsang){i++;     printf("%d. 영상개화  1 판\n",i);}
+                if(h->yakustate.haejeo){i++;        printf("%d. 해저로월  1 판\n",i);}
+                if(h->yakustate.hajeo){i++;         printf("%d. 하저로어  1 판\n",i);}
                 if(h->yakustate.changkang){i++;     printf("%d. 창깡      1 판\n",i);}
                 
                 // 2판역
-                if(h->yakustate.chitoitsu){i++;     printf("%d. 치또이쯔    2 판\n,i");}
-                if(h->yakustate.double_richi){i++;  printf("%d. 더블리치    2 판\n",i);}
-                if(h->yakustate.ilgitonggwan){i++;  printf("%d. 일기통관    %d 판\n",i, 2-p);}
-                if(h->yakustate.samdongsun){i++;    printf("%d. 삼색동순    %d 판\n",i, 2-p);}
-                if(h->yakustate.samdonggak){i++;    printf("%d. 삼색동각    2 판\n",i);}
-                if(h->yakustate.chanta){i++;        printf("%d. 찬타       %d 판\n",i, 2-p);}
-                if(h->yakustate.honnodu){i++;       printf("%d. 혼노두      2 판\n",i);}
-                if(h->yakustate.sosamwon){i++;      printf("%d. 소삼원      2 판\n",i);}
-                if(h->yakustate.toitoi){i++;        printf("%d. 또이또이    2 판\n",i);}
-                if(h->yakustate.san_ankeo){i++;     printf("%d. 산안커      2 판\n",i);}
-                if(h->yakustate.san_kangz){i++;     printf("%d. 산깡쯔      2 판\n",i);}
+                if(h->yakustate.chitoitsu){i++;     printf("%d. 치또이쯔  2 판\n,i");}
+                if(h->yakustate.double_richi){i++;  printf("%d. 더블리치  2 판\n",i);}
+                if(h->yakustate.ilgitonggwan){i++;  printf("%d. 일기통관  %d 판\n",i, 2-p);}
+                if(h->yakustate.samdongsun){i++;    printf("%d. 삼색동순  %d 판\n",i, 2-p);}
+                if(h->yakustate.samdonggak){i++;    printf("%d. 삼색동각  2 판\n",i);}
+                if(h->yakustate.chanta){i++;        printf("%d. 찬타      %d 판\n",i, 2-p);}
+                if(h->yakustate.honnodu){i++;       printf("%d. 혼노두    2 판\n",i);}
+                if(h->yakustate.sosamwon){i++;      printf("%d. 소삼원    2 판\n",i);}
+                if(h->yakustate.toitoi){i++;        printf("%d. 또이또이  2 판\n",i);}
+                if(h->yakustate.san_ankeo){i++;     printf("%d. 산안커    2 판\n",i);}
+                if(h->yakustate.san_kangz){i++;     printf("%d. 산깡쯔    2 판\n",i);}
 
                 // 3판역
-                if(h->yakustate.hon_il){i++;        printf("%d. 혼일색      %d 판\n",i, 3-p);}
-                if(h->yakustate.junchanta){i++;     printf("%d. 준찬타      %d 판\n",i, 3-p);}
-                if(h->yakustate.ryangpeko){i++;     printf("%d. 량페코      3 판\n",i);}
+                if(h->yakustate.hon_il){i++;        printf("%d. 혼일색    %d 판\n",i, 3-p);}
+                if(h->yakustate.junchanta){i++;     printf("%d. 준찬타    %d 판\n",i, 3-p);}
+                if(h->yakustate.ryangpeko){i++;     printf("%d. 량페코    3 판\n",i);}
 
                 // 6판역
-                if(h->yakustate.cheong_il){i++;     printf("%d. 청일색      %d 판\n",i, 6-p);}
+                if(h->yakustate.cheong_il){i++;     printf("%d. 청일색    %d 판\n",i, 6-p);}
                 // int total_pansu = mentsuInfo.scoreComponent.pansu + mentsuInfo.scoreComponent.dora_pansu;
                 // printf("총 %d 판\n", total_pansu);
             }

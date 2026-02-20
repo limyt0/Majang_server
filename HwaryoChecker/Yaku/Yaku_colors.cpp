@@ -6,6 +6,8 @@
 // 혼일색 청일색 자일색. 구련보등 순정구련보등, 녹일색
 
 
+// 구련보등 순정구련보등
+// 청일색의 상위역이지만, 로직 편의상 따로 체크
 void YakuChecker::guryeon(std::vector<HwaryoInfo> * hwaryo_list, int* pae_count_, int hwaryo_pae, int hwaryo_pae_type)
 {
     // // 자패가 있는 경우 불가.

@@ -37,7 +37,7 @@ void YakuChecker::dragon_info_update(std::vector<HwaryoInfo> * hwaryo_list)
                     else if(b.number == 7){dragon_meori[2] = true;}
                 }
             }
-        }//end of while
+        }//end of loop
 
         // 소삼원 대삼원 체크
         if(h->yakustate.White && h->yakustate.Green && h->yakustate.Red){ h->yakumansate.daesamwon = true;}
@@ -46,5 +46,5 @@ void YakuChecker::dragon_info_update(std::vector<HwaryoInfo> * hwaryo_list)
         else if(dragon_meori[0] && h->yakustate.Green && h->yakustate.Red ){ h->yakustate.sosamwon = true;}
 
 
-    }//end of while
+    }//end of loop
 }//end of function
