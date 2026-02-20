@@ -7,11 +7,8 @@
 void YakuChecker::dragon_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 {
     // (350 백)(360 발)(370 중)
-    // IEnumerator<HwaryoInfo> hwaryo_iterator = hwaryo_list.GetEnumerator();
-    // while (hwaryo_iterator.MoveNext())
     for(int i=0;i<hwaryo_list->size();i++)
     {
-
         // 삼원패 머리
         bool dragon_meori[3] = {false, false, false};
 
