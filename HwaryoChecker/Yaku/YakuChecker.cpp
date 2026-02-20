@@ -47,8 +47,8 @@ void YakuChecker::yaku_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wi
     // 녹일색
     nok_info_update(hwaryo_list);
 
-    // // 소사희 대사희
-    // sushi_info_update(hwaryo_list);
+    // 소사희 대사희
+    sushi_info_update(hwaryo_list);
 
     // 멘젠 쯔모
     menzen_tsumo_info_update(hwaryo_list);
