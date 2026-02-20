@@ -20,8 +20,8 @@ void YakuChecker::yaku_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wi
     // 탕야오
     tangyao_info_update(hwaryo_list);
 
-    // // 이페코, 량페코.
-    // peko_info_update(hwaryo_list);
+    // 이페코, 량페코.
+    peko_info_update(hwaryo_list);
 
     // // 일기통관
     // ilgitonggwan_info_update(hwaryo_list);
@@ -131,7 +131,7 @@ void YakuChecker::yaku_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wi
                 if(h->yakustate.changkang){i++;     printf("%d. 창깡      1 판\n",i);}
                 
                 // 2판역
-                if(h->yakustate.chitoitsu){i++;     printf("%d. 치또이쯔  2 판\n,i");}
+                if(h->yakustate.chitoitsu){i++;     printf("%d. 치또이쯔  2 판\n",i);}
                 if(h->yakustate.double_richi){i++;  printf("%d. 더블리치  2 판\n",i);}
                 if(h->yakustate.ilgitonggwan){i++;  printf("%d. 일기통관  %d 판\n",i, 2-p);}
                 if(h->yakustate.samdongsun){i++;    printf("%d. 삼색동순  %d 판\n",i, 2-p);}
