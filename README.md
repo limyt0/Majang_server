@@ -7,8 +7,7 @@
 * **OS**: `Linux` (Ubuntu 추천)
 * **Dependency**: `Protocol Buffers (protoc)`
 
-### 📦 설치 방법
-터미널에서 아래 명령어를 입력하여 설치하세요.
+### Dependency 설치
 ```bash
 sudo apt install protobuf-compiler
 ```
