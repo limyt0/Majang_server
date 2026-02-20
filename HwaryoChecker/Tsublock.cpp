@@ -27,10 +27,10 @@ void TsuBlock::print_contents()
         else if(number == 7){n += "中";}
         else{n +="?(" + std::to_string(number) +")";}
 
-        if(tsu_type == TsuType::Meori){str += "(자패) ("+n+n+") - 머리";}
+        if(tsu_type == TsuType::Meori){str += "(자패)  ("+n+n+")  - 머리";}
         else if(tsu_type == TsuType::Keotsu){str += "(자패) ("+n+n+n+") - 커쯔";}
-        else if(tsu_type == TsuType::Kangtsu){str += "(자패) ("+n+n+n+n+") - 깡쯔";}
-        else if(tsu_type == TsuType::Syuntsu){str += "(자패) - 슌쯔 (error)";}
+        else if(tsu_type == TsuType::Kangtsu){str += "(자패)("+n+n+n+n+")- 깡쯔";}
+        else if(tsu_type == TsuType::Syuntsu){str += "(자패) (error) - 슌쯔 ";}
         else if(tsu_type == TsuType::None){str += "(자패) - tsutype None error";}
         else {str += "(자패) - error, tsu_type value is " + tsu_type;}
     }
@@ -39,10 +39,10 @@ void TsuBlock::print_contents()
         std::string n = std::to_string(number);
         std::string pae_type_str = PaeType::Tostring(pae_type);
 
-        if(tsu_type == TsuType::Meori){str += "("+pae_type_str+") ("+n+n+") - 머리";}
-        else if(tsu_type == TsuType::Keotsu){str += "("+pae_type_str+") ("+n+n+n+") - 커쯔";}
-        else if(tsu_type == TsuType::Kangtsu){str += "("+pae_type_str+") ("+n+n+n+n+") - 깡쯔";}
-        else if(tsu_type == TsuType::Syuntsu){str += "("+pae_type_str+") ("+n+std::to_string(number+1)+std::to_string(number+2)+") - 슌쯔";}
+        if(tsu_type == TsuType::Meori){str += "("+pae_type_str+")  ("+n+" "+n+")  - 머리";}
+        else if(tsu_type == TsuType::Keotsu){str += "("+pae_type_str+")  ("+n+n+n+")   - 커쯔";}
+        else if(tsu_type == TsuType::Kangtsu){str += "("+pae_type_str+") ("+n+n+n+n+")  - 깡쯔";}
+        else if(tsu_type == TsuType::Syuntsu){str += "("+pae_type_str+") ("+n+std::to_string(number+1)+std::to_string(number+2)+")   - 슌쯔";}
         else if(tsu_type == TsuType::Guksa){str += "(국사무쌍)";}
         else if(tsu_type == TsuType::Guryeon){str += "(구련보등)";}
         else if(tsu_type == TsuType::None){str += "("+pae_type_str+") - Tsutype None error";}

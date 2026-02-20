@@ -145,13 +145,13 @@ void YakuChecker::nok_info_update(std::vector<HwaryoInfo> * hwaryo_list)
                 // 자패가 발이 아닌 경우 녹일색 불가능
                 if(b.number != 6)
                 {
-                    printf("(녹일색체크) 자패가 '發'이 아님.");
+                    printf("(녹일색체크) 자패가 '發'이 아님.\n");
                     return;
                 }
             }
             else if(b.pae_type == PaeType::Saksu)
             {   // 수패는 삭수만 가능
-                printf("(녹일색체크) - 삭수 블록 -- ");
+                printf("(녹일색체크) - 삭수 블록 -- \n");
                 printf(TsuType::Tostring(b.tsu_type).c_str());
                 printf(" %d\n", b.number);
                 if(b.tsu_type == TsuType::Syuntsu)
@@ -160,7 +160,7 @@ void YakuChecker::nok_info_update(std::vector<HwaryoInfo> * hwaryo_list)
                     // 슌쯔는 2/3/4만 가능
                     if(b.number != 2)
                     {
-                        printf("(녹일색체크) - 슌쯔가 234가 아님.");
+                        printf("(녹일색체크) - 슌쯔가 234가 아님.\n");
                         // return이 아닌 break으로 처리.
                         // 화료 해석이 2가지 이상 있을수 있음.
                         // (예 222/333/444 == 234/234/234)
