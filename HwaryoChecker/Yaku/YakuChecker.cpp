@@ -5,10 +5,10 @@
 void YakuChecker::yaku_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wind, int table_wind, int richi_ilbal_type)
 {
     printf("Yaku update\n");
-    // // 삼원패 소삼원 대삼원
+    // 삼원패 소삼원 대삼원
     dragon_info_update(hwaryo_list);
     
-    // // 자풍 장풍
+    // 자풍 장풍
     wind_info_update(hwaryo_list, seat_wind, table_wind);
     
     // // 후로 블록수 업데이트. 슌쯔 커쯔 깡쯔를 후로 여부 구분해서 카운트 업데이트
