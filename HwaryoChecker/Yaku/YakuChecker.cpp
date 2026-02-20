@@ -26,11 +26,11 @@ void YakuChecker::yaku_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wi
     // 일기통관
     ilgitonggwan_info_update(hwaryo_list);
 
-    // // 삼색 동순
-    // samdongsun_info_update(hwaryo_list);
+    // 삼색 동순
+    samdongsun_info_update(hwaryo_list);
 
-    // // 삼색 동각
-    // samdonggak_info_update(hwaryo_list);
+    // 삼색 동각
+    samdonggak_info_update(hwaryo_list);
 
     // // 찬타, 준찬타, 혼노두, 청노두
     // chantanodu_info_update(hwaryo_list);
