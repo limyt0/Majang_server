@@ -4,29 +4,22 @@
 // 주의 : 영상개화는 일발 동시적용 안됨
 // (창깡은 일발 동시적용 됨.)
 
-//           |  Normal | ilbal
-// -----------------------------
-// not richi |    0    |   3
-// -----------------------------
-//  riched   |    1    |   4
-// -----------------------------
-//  double   |    2    |   5
 
-void YakuChecker::rich_ilbal_info_update(std::vector<HwaryoInfo> * hwaryo_list, int richi_ilbal_type)
+void YakuChecker::rich_ilbal_info_update(std::vector<HwaryoInfo> * hwaryo_list, int richi_type, bool is_ilbal)
 {
     for(int i_=0;i_<hwaryo_list->size();i_++)
     {
         HwaryoInfo * h = &(*hwaryo_list)[i_];
-        if (richi_ilbal_type % 3 == 1)
+        if(richi_type == RichiType::Richied)
         {
             h->yakustate.richi = true;
         }
-        else if (richi_ilbal_type % 3 == 2)
+        else if(richi_type == RichiType::Double_Richied)
         {
             h->yakustate.double_richi = true;
         }
 
-        if (richi_ilbal_type / 3 == 1)
+        if (is_ilbal)
         {
             h->yakustate.ilbal = true;
         }

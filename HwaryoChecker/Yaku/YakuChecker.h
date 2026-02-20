@@ -1,5 +1,7 @@
 #include <vector>
 class HwaryoInfo;
+class GameData;
+class Jaksadata;
 
 class YakuChecker
 {
@@ -17,8 +19,8 @@ class YakuChecker
 
     static void Print_yaku(HwaryoInfo *);
 
-     // 다양한 역을 체크해서 정보 업데이트
-    static void yaku_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wind, int table_wind, int richi_ilbal_type);
+    // 다양한 역을 체크해서 정보 업데이트
+    static void yaku_update(std::vector<HwaryoInfo> * hwaryo_list, Jaksadata * jaksa, GameData * game_data);
 
     // 삼원패 소삼원 대삼원
     static void dragon_info_update(std::vector<HwaryoInfo> * hwaryo_list);
@@ -69,7 +71,7 @@ class YakuChecker
     static void menzen_tsumo_info_update(std::vector<HwaryoInfo> * hwaryo_list);
 
     // 리치, 더블리치, 일발
-    static void rich_ilbal_info_update(std::vector<HwaryoInfo> * hwaryo_list, int richi_ilbal_type);
+    static void rich_ilbal_info_update(std::vector<HwaryoInfo> * hwaryo_list, int richi_type, bool is_ilbal);
 
     // 국사무쌍
     static void guksa(std::vector<HwaryoInfo> * ,  int * , int , int );

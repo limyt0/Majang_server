@@ -125,21 +125,11 @@ class BCounts
 };
 
 
-class Richi_IlbalType
+class RichiType
 {
     public:
     static const int Not_Riched = 0;
     static const int Richied = 1;
     static const int Double_Richied = 2;
-    static const int Ilbal = 3;
-    static const int Richi_Ilbal = 4;
-    static const int DoubleRichi_Ilbal = 5;
 
-    //           |  Normal | ilbal
-    // -----------------------------
-    // not richi |    0    |   3
-    // -----------------------------
-    //  riched   |    1    |   4
-    // -----------------------------
-    //  double   |    2    |   5
 };

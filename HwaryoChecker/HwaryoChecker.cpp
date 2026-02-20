@@ -3,8 +3,10 @@
 #include <iostream>
 #include "Consts_hwaryo.h"
 #include "Yaku/YakuChecker.h"
+#include "GameData.h"
+#include "Enums.h"
 
-HwaryoChecker::HwaryoChecker(Jaksadata * jaksa, int hwaryopae_type){
+HwaryoChecker::HwaryoChecker(GameData * game_data, Jaksadata * jaksa, int hwaryopae_type){
 
     printf("화료체크 시작\n");
 
@@ -27,8 +29,8 @@ HwaryoChecker::HwaryoChecker(Jaksadata * jaksa, int hwaryopae_type){
         // 후로 정보 추가,  (빼기, 안깡 정보도 추가해야함)
         // YakuChecker::huroToTsuBlock(ref hwaryoChecker.hwaryo_list, jaksa.hurolist);
 
-        // 다양한 역 정보 업데이트 - 일발 정보도 받아야 함.
-        YakuChecker::yaku_update(&hwaryo_list, 1, 2, jaksa->isRich);
+        // 다양한 역 정보 업데이트
+        YakuChecker::yaku_update(&hwaryo_list, jaksa, game_data);
 
         // // 손패 도라 정보 업데이트
         // DoraCount d_sonpae = YakuChecker.dora_count_from(jaksa.sonpea, jaksa.sunsusonpaelength, jaksa.dora, jaksa.ura_dora);

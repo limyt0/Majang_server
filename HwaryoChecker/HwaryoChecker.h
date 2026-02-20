@@ -5,6 +5,7 @@
 class Jaksadata;
 class HwaryoInfo;
 class TsuBlock;
+class GameData;
 
 class HwaryoChecker
 {
@@ -20,7 +21,7 @@ class HwaryoChecker
     bool japa_keotsu_break = false;
     bool chitoi = false;
 
-    HwaryoChecker(Jaksadata * jaksa, int hwaryopae_type);
+    HwaryoChecker(GameData * game_data, Jaksadata * jaksa, int hwaryopae_type);
     ~HwaryoChecker();
 
     // 손패에서 화료형태가 나오는지 체크
