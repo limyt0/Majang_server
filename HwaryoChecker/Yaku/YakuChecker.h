@@ -6,16 +6,16 @@ class YakuChecker
     private:
     static void Yaku_update(HwaryoInfo * hwaryo_list, int seat_wind, int table_wind, int richi_ilbal_type);
     
-    static void LastTile_update(std::vector<HwaryoInfo> hwaryo_list, int LastTile);
-    static void Daegi_info_update(std::vector<HwaryoInfo> hwaryo_list, int LastTile);
-    static void hwaryopae_type_update(std::vector<HwaryoInfo> hwaryo_list, int type);
+    static void LastTile_update(std::vector<HwaryoInfo> * hwaryo_list, int LastTile);
+    static void Daegi_info_update(std::vector<HwaryoInfo> * hwaryo_list, int LastTile);
+    static void hwaryopae_type_update(std::vector<HwaryoInfo> * hwaryo_list, int type);
 
-    static void bcounts_update(std::vector<HwaryoInfo> hwaryo_list);
+    static void bcounts_update(std::vector<HwaryoInfo> * hwaryo_list);
 
 
     public:
     // 쯔모/론 패, 대기 정보, 론 쯔모 여부 업데이트
-    static void info_update(std::vector<HwaryoInfo> hwaryo_list, int LastTile, int type);
+    static void info_update(std::vector<HwaryoInfo> * hwaryo_list, int LastTile, int type);
     
     static void Print_Yaku();
 
