@@ -142,9 +142,9 @@ HwaryoChecker::HwaryoChecker(Jaksadata * jaksa, int hwaryopae_type){
         
     }
 
-    printf("update tsumopae ------ %d", last_tile);
+    printf("last tile ------ %d\n", last_tile);
     // // 쯔모패, 대기 정보 업데이트
-    // YakuChecker.info_update(tsumopae, hwaryopae_type, ref hwaryo_list);
+    YakuChecker::info_update(hwaryo_list, last_tile, hwaryopae_type);
 
 }
 
