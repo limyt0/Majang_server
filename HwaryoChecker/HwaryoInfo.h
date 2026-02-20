@@ -38,6 +38,6 @@ class HwaryoInfo
 
     HwaryoInfo(std::vector<TsuBlock> tsu_blocks_, int * pae_count_);
     ~HwaryoInfo();
-    void print_info();
+    void print_info(bool block, bool hwaryo_tile, bool daegi, bool yaku, bool dora);
     
 };

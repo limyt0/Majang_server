@@ -168,7 +168,7 @@ void HwaryoChecker::block_check(HwaryoInfo hwaryo_info)
         {
             hwaryo_info.block_possible = true;
             hwaryo_list.push_back(hwaryo_info);
-            hwaryo_info.print_info();
+            hwaryo_info.print_info(true, false, false, false, false);
             return;
         }    
         
@@ -217,7 +217,7 @@ void HwaryoChecker::block_check(HwaryoInfo hwaryo_info)
         {
             k_hwaryo_info.block_possible = true;
             hwaryo_list.push_back(k_hwaryo_info);
-            k_hwaryo_info.print_info();
+            k_hwaryo_info.print_info(true, false, false, false, false);
             return ;
         }
 
@@ -244,7 +244,7 @@ void HwaryoChecker::block_check(HwaryoInfo hwaryo_info)
         {
             s_hwaryo_info.block_possible = true;
             hwaryo_list.push_back(s_hwaryo_info);
-            s_hwaryo_info.print_info();
+            s_hwaryo_info.print_info(true, false, false, false, false);
             return ;
         }
 

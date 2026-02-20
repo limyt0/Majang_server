@@ -78,6 +78,7 @@ void HwaryoChecker::Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type){
             block_check(hwaryoInfo);
 
         }
+        printf("손패 블록 체크 완료.\n");
 
     }
     else if(meori_type == PaeType::Mansu || 
@@ -141,10 +142,11 @@ void HwaryoChecker::Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type){
                 HwaryoInfo hwaryoInfo(su_tsuBlocks, pae_count_su);
                 block_check(hwaryoInfo);
             }
+            printf("손패 블록 체크 완료.\n");
         }
         
     }
 
-    printf("last tile ------ %d\n", last_tile);
+    // printf("last tile ------ %d\n", last_tile);
 
 }
