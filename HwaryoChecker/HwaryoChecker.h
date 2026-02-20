@@ -22,6 +22,9 @@ class HwaryoChecker
 
     HwaryoChecker(Jaksadata * jaksa, int hwaryopae_type);
     ~HwaryoChecker();
+
+    // 손패에서 화료형태가 나오는지 체크
+    void Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type);
     
     // 보조 함수.
     void print_tsu_blocks(std::vector<TsuBlock> b);
