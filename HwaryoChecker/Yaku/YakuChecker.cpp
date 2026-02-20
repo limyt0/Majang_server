@@ -53,8 +53,8 @@ void YakuChecker::yaku_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wi
     // 멘젠 쯔모
     menzen_tsumo_info_update(hwaryo_list);
 
-    // // 리치, 더블리치, 일발
-    // rich_ilbal_info_update(hwaryo_list, int richi_ilbal_type);
+    // 리치, 더블리치, 일발
+    rich_ilbal_info_update(hwaryo_list, richi_ilbal_type);
 
 }
 

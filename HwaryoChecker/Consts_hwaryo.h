@@ -60,15 +60,15 @@ class HwaryoPaeType
     // 론 - 계산 편의를 위해 홀수로.
     static const int NormalRon = 1;
     static const int Chankang = 3;
-    static const int Hajeo = 5;
+    static const int Hajeo = 5;// last turn에서 처리
     static const int Ankang = 7; // 국사무쌍 전용 안깡 론
     
     // 쯔모 - 계산 편의를 위해 짝수로.
     static const int PaesanTsumo = 2;
     static const int Yeongsang = 4;
-    static const int Haejeo = 6;
-    static const int CheonHwa = 8;
-    static const int JiHwa = 10;
+    static const int Haejeo = 6;// last turn에서 처리
+    static const int CheonHwa = 8; // 순정 1로 처리
+    static const int JiHwa = 10; // 순정 1로 처리
 
     static bool is_ron(int type)
     {
@@ -122,4 +122,24 @@ class BCounts
     int huro_keot = 0;
     int huro_kang = 0;
 
+};
+
+
+class Richi_IlbalType
+{
+    public:
+    static const int Not_Riched = 0;
+    static const int Richied = 1;
+    static const int Double_Richied = 2;
+    static const int Ilbal = 3;
+    static const int Richi_Ilbal = 4;
+    static const int DoubleRichi_Ilbal = 5;
+
+    //           |  Normal | ilbal
+    // -----------------------------
+    // not richi |    0    |   3
+    // -----------------------------
+    //  riched   |    1    |   4
+    // -----------------------------
+    //  double   |    2    |   5
 };
