@@ -5,6 +5,41 @@
 #include "../Consts_hwaryo.h"
 // 혼일색 청일색 자일색. 구련보등 순정구련보등, 녹일색
 
+// 혼일색 청일색 자일색.
+void YakuChecker::color_info_update(std::vector<HwaryoInfo> * hwaryo_list)
+{
+    for(int i_=0;i_<hwaryo_list->size();i_++)
+    {
+        HwaryoInfo * h = &(*hwaryo_list)[i_];
+        bool type_exist[4] = {false, false, false, false};// 만통삭/자패
+
+        for(int j_=0;j_<h->tsu_blocks.size();j_++)
+        {
+            TsuBlock b = h->tsu_blocks[j_];
+            type_exist[b.pae_type] = true;
+        }
+
+        if (!type_exist[0] && !type_exist[1] && !type_exist[2])
+        {
+            h->yakumansate.ja_il = true;
+        }
+        else if(type_exist[0] && !type_exist[1] && !type_exist[2])
+        {
+            if(type_exist[PaeType::JaPae]){h->yakustate.hon_il = true;}
+            else{h->yakustate.cheong_il = true;}
+        }
+        else if(!type_exist[0] && type_exist[1] && !type_exist[2])
+        {
+            if(type_exist[PaeType::JaPae]){h->yakustate.hon_il = true;}
+            else{h->yakustate.cheong_il = true;}
+        }
+        else if(!type_exist[0] && !type_exist[1] && type_exist[2])
+        {
+            if(type_exist[PaeType::JaPae]){h->yakustate.hon_il = true;}
+            else{h->yakustate.cheong_il = true;}
+        }
+    }
+}
 
 // 구련보등 순정구련보등
 // 청일색의 상위역이지만, 로직 편의상 따로 체크
@@ -83,4 +118,72 @@ void YakuChecker::guryeon(std::vector<HwaryoInfo> * hwaryo_list, int* pae_count_
 
     hwaryo_list->push_back(h);
 
+}
+
+// 녹일색 - 청일색/혼일색 체크를 먼저 했다고 가정.
+void YakuChecker::nok_info_update(std::vector<HwaryoInfo> * hwaryo_list)
+{
+
+    for(int i_=0;i_<hwaryo_list->size();i_++)
+    {
+        HwaryoInfo * h = &(*hwaryo_list)[i_];
+
+        // 청일색이나 혼일색 체크된게 아니면 녹일색 불가능.
+        if (!h->yakustate.cheong_il && !h->yakustate.hon_il)
+        {return;}
+
+        bool nok_possible = true;
+        
+        for(int j_=0;j_<h->tsu_blocks.size();j_++)
+        {
+
+            TsuBlock b = h->tsu_blocks[j_];
+            if(b.pae_type == PaeType::JaPae)
+            {
+                printf("(녹일색 체크) - 자패 확인..\n");
+
+                // 자패가 발이 아닌 경우 녹일색 불가능
+                if(b.number != 6)
+                {
+                    printf("(녹일색체크) 자패가 '發'이 아님.");
+                    return;
+                }
+            }
+            else if(b.pae_type == PaeType::Saksu)
+            {   // 수패는 삭수만 가능
+                printf("(녹일색체크) - 삭수 블록 -- ");
+                printf(TsuType::Tostring(b.tsu_type).c_str());
+                printf(" %d\n", b.number);
+                if(b.tsu_type == TsuType::Syuntsu)
+                {   
+                    printf("(녹일색체크) - 슌쯔 확인 중\n");
+                    // 슌쯔는 2/3/4만 가능
+                    if(b.number != 2)
+                    {
+                        printf("(녹일색체크) - 슌쯔가 234가 아님.");
+                        // return이 아닌 break으로 처리.
+                        // 화료 해석이 2가지 이상 있을수 있음.
+                        // (예 222/333/444 == 234/234/234)
+                        nok_possible = false;
+                        break;
+                    }
+
+                }
+                else
+                {   // 머리 커쯔 깡쯔 23468만 가능, 1579는 불가능.
+                    if(b.number == 1 || b.number == 5 || b.number == 7 || b.number == 9)
+                    {
+                        return;
+                    }
+                }
+            }
+            else{
+                // 다른 종류 패가 있으면 녹일색 불가능.
+                return;
+            }
+            
+        }//end of loop
+        if(nok_possible){h->yakumansate.nok_il = true;}
+
+    }//end of loop
 }
