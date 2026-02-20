@@ -5,6 +5,7 @@
 #include <iostream>
 //#include <crono>
 #include "../Consts.h"
+#include "Peas.pb.h"
 
 GameData::GameData()
 {
@@ -123,7 +124,8 @@ void GameData::Baepae(Jaksadata* jaksa)
         //std::cerr <<  tilenum<< ","<< jaksa->sonTils[i] <<std::endl;
         peasan.pop_back();
     }
-
+    peas::GamePacket packet;
+    peas::BeaPea* beapea = packet.mutable_bea_pea(); 
 }
 
 // 도라 열기

@@ -1,0 +1,83 @@
+syntax = "proto3";
+package peas;
+//protoc --cpp_out=. Peas.proto
+//protoc --csharp_out=. Peas.proto
+message BeaPea
+{
+    int32 roomid = 1;
+    int32 jaksaindex = 2;
+    repeated int32 sonpeas = 3;
+}
+
+message TsumoPea
+{
+    int32 roomid = 1;
+    int32 jaksaindex = 2;
+    int32 tileId = 3;
+}
+
+message BerimPea
+{
+    int32 roomid = 1;
+    int32 jaksaindex = 2;
+    int32 tileId = 3;
+}
+
+message ChiPea
+{
+    int32 roomid = 1;
+    int32 jaksaindex = 2;
+    repeated int32 huropea = 3;
+}
+
+message PongPea
+{
+    int32 roomid = 1;
+    int32 jaksaindex = 2;
+    repeated int32 huropea = 3;
+    int32 index = 4; //몇번째를 꺾을 건지
+}
+
+message MingKangPea
+{
+    int32 roomid = 1;
+    int32 jaksaindex = 2;
+    repeated int32 huropea = 3;
+    int32 index = 4; //몇번째를 꺾을 건지
+}
+
+message GaKangPea
+{
+    int32 roomid = 1;
+    int32 jaksaindex = 2;
+    int32 gaKangTile = 3;
+    int32 index = 4; //가깡할 것이 후로 몇번째 index에 있는 건지
+}
+
+message AnKangPea
+{
+    int32 roomid = 1;
+    int32 jaksaindex = 2;
+    repeated int32 huropea = 3;
+}
+
+message FrontDoraOpen
+{
+    int32 roomid = 1;
+    int32 tileId = 2;//
+}
+
+// 모든 메시지를 아우르는 통합 패킷
+message GamePacket {
+    oneof payload {
+        BeaPea bea_pea = 1;
+        TsumoPea tsumo_pea = 2;
+        BerimPea berim_pea = 3;
+        ChiPea chi_pea = 4;
+        PongPea pong_pea = 5;
+        MingKangPea ming_kang_pea = 6;
+        GaKangPea ga_kang_pea = 7;
+        AnKangPea an_kang_pea = 8;
+        FrontDoraOpen front_dora_open = 9;
+    }
+}
