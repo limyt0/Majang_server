@@ -28,4 +28,7 @@ public:
     void CreateGame(int roomId);
 
     void UpdateAll();
+
+    void AddUser(int id);
+    void RemoveUser(int id);
 };

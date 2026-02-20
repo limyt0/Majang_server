@@ -27,16 +27,17 @@ GameData::GameData()
                 310, 320, 330, 340, 350, 360, 370,
                 410, 420, 430, 440, 450, 460, 470, 480
         };
-    for(int i = 0;i<4;i++)
-    {
-        jaksas.push_back(std::make_unique<Jaksadata>());
-    }
-    InitGame();
+  
+    //InitGame();
     //jaksas.insert(new Jaksadata());
 }
 
 void GameData::InitGame()
 {
+    for(int i = 0;i<4;i++)
+    {
+        jaksas.push_back(std::make_unique<Jaksadata>());
+    }
     Suffle();
  
     RandomDongNamSeoBuk();
