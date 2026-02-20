@@ -38,7 +38,7 @@ public:
     void Suffle();
     void RandomDongNamSeoBuk();
     void SetWangPae();
-    void Baepae(Jaksadata* jaksa);
+    void Baepae(Jaksadata* jaksa, int index);
     void SetDoraPae();
     void Update(std::chrono::steady_clock::time_point now);
     void PassTurn();

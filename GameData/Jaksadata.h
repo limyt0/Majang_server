@@ -15,6 +15,7 @@ public:
     int lastTile = -1;//쯔모 혹은 론 한 마지막 패
     std::unique_ptr<Berims> berims;
     int isRich = 0;//0: 리치아님, 1: 일반리치, 2; 더블리치
+    bool isIlbal = false; // 일발여부
     Baram baram;// = Dong;
     std::vector<std::unique_ptr<HuroBlock>> hurolist;
     std::vector<std::unique_ptr<AnkanBlock>> ankanList;

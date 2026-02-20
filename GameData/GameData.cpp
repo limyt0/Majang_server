@@ -42,7 +42,10 @@ void GameData::InitGame()
     RandomDongNamSeoBuk();
     for(int i = 0;i<4;i++)
     {
-        Baepae(jaksas[i].get());
+        Baepae(jaksas[i].get(), i);
+
+       
+
     }
     phases = DrawAfter;
     std::cerr << "-------배패 완료----------"<< std::endl;
@@ -114,7 +117,7 @@ void GameData::SetWangPae()
     SetDoraPae();
 }
 
-void GameData::Baepae(Jaksadata* jaksa)
+void GameData::Baepae(Jaksadata* jaksa, int index)
 {
 
     for(int i = 0;i<TsumoLen;i++)
@@ -124,8 +127,18 @@ void GameData::Baepae(Jaksadata* jaksa)
         //std::cerr <<  tilenum<< ","<< jaksa->sonTils[i] <<std::endl;
         peasan.pop_back();
     }
-    peas::GamePacket packet;
-    peas::BeaPea* beapea = packet.mutable_bea_pea(); 
+
+     peas::GamePacket packet;
+        peas::BeaPea* beapea = packet.mutable_bea_pea();
+        beapea->set_roomid(1);
+        beapea->set_jaksaindex(index);
+        for(int tile : jaksa->sonTils) {
+            beapea->add_sonpeas(tile);
+        }
+        std::string sendBuffer;
+        packet.SerializeToString(&sendBuffer);
+        // send(socket, sendBuffer.data(), sendBuffer.size(), 0);
+    
 }
 
 // 도라 열기
