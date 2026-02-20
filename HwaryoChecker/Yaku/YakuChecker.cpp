@@ -35,8 +35,8 @@ void YakuChecker::yaku_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wi
     // 찬타, 준찬타, 혼노두, 청노두
     chantanodu_info_update(hwaryo_list);
 
-    // // 영상 창깡 해저 하저 천화 지화.
-    // tsumo_ron_type_depended_info_update(hwaryo_list);
+    // 영상 창깡 해저 하저 천화 지화.
+    tsumo_ron_type_depended_info_update(hwaryo_list);
     
     // // 또이또이 산안커 스안커 스안커단기 산깡즈 스깡즈
     // toi_info_update(hwaryo_list);
@@ -50,8 +50,8 @@ void YakuChecker::yaku_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wi
     // // 소사희 대사희
     // sushi_info_update(hwaryo_list);
 
-    // // 멘젠 쯔모
-    // menzen_tsumo_info_update(hwaryo_list);
+    // 멘젠 쯔모
+    menzen_tsumo_info_update(hwaryo_list);
 
     // // 리치, 더블리치, 일발
     // rich_ilbal_info_update(hwaryo_list, int richi_ilbal_type);
