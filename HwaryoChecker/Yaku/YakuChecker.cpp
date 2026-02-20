@@ -23,8 +23,8 @@ void YakuChecker::yaku_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wi
     // 이페코, 량페코.
     peko_info_update(hwaryo_list);
 
-    // // 일기통관
-    // ilgitonggwan_info_update(hwaryo_list);
+    // 일기통관
+    ilgitonggwan_info_update(hwaryo_list);
 
     // // 삼색 동순
     // samdongsun_info_update(hwaryo_list);
