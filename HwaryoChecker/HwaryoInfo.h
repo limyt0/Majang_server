@@ -3,6 +3,7 @@
 #include "Yaku/YakuState.h"
 #include "Consts_hwaryo.h"
 #include "Tsublock.h"
+#include "ScoreComponent.h"
 
 // class TsuBlock;
 // struct Daegistate;
@@ -30,7 +31,7 @@ class HwaryoInfo
     DoraCount doraCount;
 
     // n배 역만상태, 판수, 부수, 오야여부
-    // ScoreComponent scoreComponent = new ScoreComponent();
+    ScoreComponent scoreComponent;
 
     HwaryoInfo(std::vector<TsuBlock> tsu_blocks_, int * pae_count_);
     ~HwaryoInfo();

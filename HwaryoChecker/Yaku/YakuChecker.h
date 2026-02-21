@@ -82,4 +82,7 @@ class YakuChecker
 
     // 도라
     static void dora_info_update(std::vector<HwaryoInfo> *, Jaksadata *, GameData *);
+
+    // 판수 계산
+    static void yaku_su_update(std::vector<HwaryoInfo> *hwaryo_list);
 };

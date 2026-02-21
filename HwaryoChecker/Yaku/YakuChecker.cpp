@@ -69,7 +69,7 @@ void YakuChecker::yaku_update(std::vector<HwaryoInfo> * hwaryo_list, Jaksadata *
 void YakuChecker::Print_yaku(HwaryoInfo * h)
 {
 
-    // if(h->scoreComponent.yakuman_su > 0)
+    if(h->scoreComponent.yakuman_su > 0)
     {
         int i = 0;
         printf("- 역만 리스트\n");
@@ -95,23 +95,23 @@ void YakuChecker::Print_yaku(HwaryoInfo * h)
         if(h->yakumansate.so_sushi){i++;printf("%d. 소사희\n", i);}
         if(h->yakumansate.dae_sushi){i++;printf("%d. 대사희\n", i);}
         
-        // int yakuman_su = h->scoreComponent.yakuman_su;
-        // if(yakuman_su == 1){printf("역만\n");}
-        // else if(yakuman_su == 2){printf("더블(2배) 역만\n");}
-        // else if(yakuman_su == 3){printf("트리플(3배) 역만\n");}
-        // else if(yakuman_su == 4){printf("4배 역만\n");}
-        // else if(yakuman_su == 5){printf("5배 역만\n");}
-        // else if(yakuman_su == 6){printf("6배 역만\n");}
-        // else if{printf("역만 오류, (yakuman_su = %d)\n", yakuman_su);}
+        int yakuman_su = h->scoreComponent.yakuman_su;
+        if(yakuman_su == 1){printf("역만\n");}
+        else if(yakuman_su == 2){printf("더블(2배) 역만\n");}
+        else if(yakuman_su == 3){printf("트리플(3배) 역만\n");}
+        else if(yakuman_su == 4){printf("4배 역만\n");}
+        else if(yakuman_su == 5){printf("5배 역만\n");}
+        else if(yakuman_su == 6){printf("6배 역만\n");}
+        else {printf("역만 오류, (yakuman_su = %d)\n", yakuman_su);}
     }
-    // else
+    else
     {
 
-        // // if(h->scoreComponent.pansu == 0)
-        // {
-        //     printf("역없음!\n");
-        // }
-        // else
+        if(h->scoreComponent.pansu == 0)
+        {
+            printf("역없음!\n");
+        }
+        else
         {
             int i = 0;
             printf("- 역 목록\n");
@@ -158,8 +158,8 @@ void YakuChecker::Print_yaku(HwaryoInfo * h)
 
             // 6판역
             if(h->yakustate.cheong_il){i++;     printf("%d. 청일색    %d 판\n",i, 6-p);}
-            // int total_pansu = mentsuInfo.scoreComponent.pansu + mentsuInfo.scoreComponent.dora_pansu;
-            // printf("총 %d 판\n", total_pansu);
+            int total_pansu = h->scoreComponent.pansu + h->scoreComponent.dora_pansu;
+            printf("총 %d 판\n", total_pansu);
         }
     }
 }//end of function

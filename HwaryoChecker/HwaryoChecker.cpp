@@ -37,7 +37,7 @@ HwaryoChecker::HwaryoChecker(GameData * game_data, Jaksadata * jaksa, int hwaryo
     }
 
     // 역만 및 판수 업데이트 - 국사무쌍, 구련보등 포함.
-    // YakuChecker.yaku_su_update(ref hwaryoChecker.hwaryo_list);
+    YakuChecker::yaku_su_update(&hwaryo_list);
 
     int count = 0;
     if (hwaryo_list.size() > 0)
