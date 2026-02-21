@@ -26,8 +26,8 @@ HwaryoChecker::HwaryoChecker(GameData * game_data, Jaksadata * jaksa, int hwaryo
 
     if(!gu) // 국사무쌍, 구련보등이 아닌경우에만 추가적인 역체크
     {
-        // 후로 정보 추가,  (빼기, 안깡 정보도 추가해야함)
-        // YakuChecker::huroToTsuBlock(ref hwaryoChecker.hwaryo_list, jaksa.hurolist);
+        // 후로 안깡 정보 추가, (빼기 정보도 추가해야함)
+        HuroAnkan_To_TsuBlock(jaksa);
 
         // 다양한 역 정보 업데이트
         YakuChecker::yaku_update(&hwaryo_list, jaksa, game_data);

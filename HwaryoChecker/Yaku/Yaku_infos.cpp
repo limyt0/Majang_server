@@ -7,17 +7,18 @@
 // 쯔모/론 패, 대기 정보, 론 쯔모 여부 업데이트
 void YakuChecker::info_update(std::vector<HwaryoInfo> * hwaryo_list, int LastTile, int type)
 {
+    printf("YakuChecker::info_update()\n");
     // 쯔모/론 패 업데이트.
     LastTile_update(hwaryo_list, LastTile);
-    // printf("a)hwaryo_list[0].last_tile = %d\n", (*hwaryo_list)[0].last_tile);
+    printf("a)hwaryo_list[0].last_tile = %d\n", (*hwaryo_list)[0].last_tile);
 
     // 쯔모/론 패가 있는 블록을 찾아서 대기 타입 정보 업데이트.
     Daegi_info_update(hwaryo_list, LastTile);
-    // printf("b)hwaryo_list[0].last_tile = %d\n", (*hwaryo_list)[0].last_tile);
+    printf("b)hwaryo_list[0].last_tile = %d\n", (*hwaryo_list)[0].last_tile);
 
     // 론,쯔모 여부 및 타입 - 창깡, 영상개화, 해저로월, 하저로어 포함.
     hwaryopae_type_update(hwaryo_list, type);
-    // printf("c)hwaryo_list[0].last_tile = %d\n", (*hwaryo_list)[0].last_tile);
+    printf("c)hwaryo_list[0].last_tile = %d\n", (*hwaryo_list)[0].last_tile);
 
 }//end of function
 
@@ -25,11 +26,12 @@ void YakuChecker::info_update(std::vector<HwaryoInfo> * hwaryo_list, int LastTil
 // 쯔모/론 패 업데이트.
 void YakuChecker::LastTile_update(std::vector<HwaryoInfo> * hwaryo_list, int LastTile)
 {
+    printf("LastTile_update()\n");
     for(int i=0;i<hwaryo_list->size();i++)
     {
-        // printf("LastTile = %d\n", LastTile);
+        printf("LastTile = %d, hwaryo_list->size() = %d\n", LastTile, hwaryo_list->size());
         (*hwaryo_list)[i].last_tile = LastTile;
-        // printf("hwaryo_list[%d].last_tile = %d\n", i, (*hwaryo_list)[i].last_tile);
+        printf("hwaryo_list[%d].last_tile = %d\n", i, (*hwaryo_list)[i].last_tile);
     }
 }
 

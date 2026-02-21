@@ -26,6 +26,9 @@ class HwaryoChecker
 
     // 손패에서 화료형태가 나오는지 체크
     void Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type);
+
+    // 손패 화료 형태 체크 이후 후로/안깡 블록을 추가
+    void HuroAnkan_To_TsuBlock(Jaksadata * jaksa);
     
     // 보조 함수.
     void print_tsu_blocks(std::vector<TsuBlock> b);

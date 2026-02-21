@@ -34,16 +34,20 @@ void YakuChecker::dora_info_update(std::vector<HwaryoInfo> * hwaryo_list, Jaksad
     // 후로블록 체크
     for(int i=0;i<jaksa->hurolist.size();i++)
     {
-        auto v = jaksa->hurolist[i].get();
+        auto v = std::move(jaksa->hurolist[i]);//.get();
         dora_count_from_vector(&doraCount, game_data, v->tiles);
+        // auto v = jaksa->hurolist[i];
+        // dora_count_from_vector(&doraCount, game_data, v.tiles);
     }
     
     printf("4");DoraCount_print(&doraCount);
     // 안깡블록 체크
     for(int i=0;i<jaksa->ankanList.size();i++)
     {
-        auto v = jaksa->ankanList[i].get();
+        auto v = std::move(jaksa->ankanList[i]);//.get();
         dora_count_from_vector(&doraCount, game_data, v->tiles);
+        // auto v = jaksa->ankanList[i];
+        // dora_count_from_vector(&doraCount, game_data, v.tiles);
     }
 
     printf("5");DoraCount_print(&doraCount);
