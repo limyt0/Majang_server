@@ -9,7 +9,7 @@
 // #include "Yaku/YakuChecker.h"
 // #include "GameData.h"
 // #include "Enums.h"
-void To_TsuBlock(std::vector<HwaryoInfo> * hwaryo_list, std::vector<int> block);
+void To_TsuBlock(std::vector<HwaryoInfo> * hwaryo_list, std::vector<int> block, bool huro);
 
 // HuroBlock 및 AnkanBlock을 TsuBlock으로 변환.
 void HwaryoChecker::HuroAnkan_To_TsuBlock(Jaksadata * jaksa)
@@ -31,7 +31,7 @@ void HwaryoChecker::HuroAnkan_To_TsuBlock(Jaksadata * jaksa)
         printf("b%d\n",i);
         
 
-        To_TsuBlock(&hwaryo_list, v->tiles);
+        To_TsuBlock(&hwaryo_list, v->tiles, true);
         // auto v = jaksa->hurolist[i];
         // To_TsuBlock(&hwaryo_list, v.tiles);
     
@@ -44,7 +44,7 @@ void HwaryoChecker::HuroAnkan_To_TsuBlock(Jaksadata * jaksa)
     for(int i=0;i<jaksa->ankanList.size();i++)
     {
         auto v = std::move(jaksa->ankanList[i]).get();
-        To_TsuBlock(&hwaryo_list, v->tiles);
+        To_TsuBlock(&hwaryo_list, v->tiles, false);
         // auto v = jaksa->ankanList[i];
         // To_TsuBlock(&hwaryo_list, v.tiles);
     }
@@ -52,7 +52,7 @@ void HwaryoChecker::HuroAnkan_To_TsuBlock(Jaksadata * jaksa)
     printf("후로 안깡 완료.\n");
 }
 
-void To_TsuBlock(std::vector<HwaryoInfo> * hwaryo_list, std::vector<int> block)
+void To_TsuBlock(std::vector<HwaryoInfo> * hwaryo_list, std::vector<int> block, bool huro)
 {
     printf("To_TsuBlock1\n");
     TsuBlock tsuBlock;
@@ -93,7 +93,7 @@ void To_TsuBlock(std::vector<HwaryoInfo> * hwaryo_list, std::vector<int> block)
         if(block_len == 4)
         {
             tsuBlock.tsu_type = TsuType::Kangtsu;
-            tsuBlock.huro = true;
+            tsuBlock.huro = huro;
         }
         else if (block_len == 3)
         {

@@ -104,17 +104,22 @@ void YakuChecker::bcounts_update(std::vector<HwaryoInfo> * hwaryo_list)
             if(b.tsu_type == TsuType::Syuntsu)
             {
                 h->bCounts.syun += 1;
+                // printf("슌쯔 %d, 후로 슌쯔 \n", h->bCounts.syun, h->bCounts.huro_syun);
                 if (b.huro){
                     h->bCounts.huro += 1;
                     h->bCounts.huro_syun += 1;
-                }   
+                    // printf("(후로)슌쯔 %d, 후로 슌쯔 \n", h->bCounts.syun, h->bCounts.huro_syun);
+                }
+                // printf("-> 슌쯔 %d, 후로 슌쯔 \n", h->bCounts.syun, h->bCounts.huro_syun);
             }
             else if(b.tsu_type == TsuType::Keotsu)
             {
                 h->bCounts.keot += 1;
+                // printf("커쯔 %d, 후로 커쯔 \n", h->bCounts.syun, h->bCounts.huro_syun);
+
                 if (b.huro){
                     h->bCounts.huro += 1;
-                    h->bCounts.keot += 1;
+                    h->bCounts.huro_keot += 1;
                 }   
             }
             else if(b.tsu_type == TsuType::Kangtsu)
@@ -122,7 +127,7 @@ void YakuChecker::bcounts_update(std::vector<HwaryoInfo> * hwaryo_list)
                 h->bCounts.kang += 1;
                 if (b.huro){
                     h->bCounts.huro += 1;
-                    h->bCounts.kang += 1;
+                    h->bCounts.huro_kang += 1;
                 }   
             }
 

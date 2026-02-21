@@ -13,12 +13,12 @@ void YakuChecker::toi_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 
         int toi_count = h->bCounts.keot + h->bCounts.kang;
         int ankeo = h->bCounts.keot - h->bCounts.huro_keot;
+        int ankang = h->bCounts.kang - h->bCounts.huro_kang;
+        ankeo += ankang;
 
-        // printf("커쯔 수 : %d \n", h->bCounts.keot);
-        // printf("후로 커쯔 수 : %d \n", h->bCounts.huro_keot);
-        // printf("안커 수 : %d \n", ankeo);
-       
-        // int ankang = h.bCounts.kang - h.bCounts.huro_kang;
+        printf("커쯔 : %d, 깡쯔 %d \n", h->bCounts.keot, h->bCounts.kang);
+        printf("후로 커쯔 : %d, 후로 깡쯔 %d\n", h->bCounts.huro_keot, h->bCounts.huro_kang);
+        printf("안커 수 : %d \n", ankeo);
         
         if(ankeo >= 3)
         {
