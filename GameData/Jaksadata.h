@@ -10,7 +10,7 @@ class GameData;
 
 class Jaksadata{
 public:
-    GameUserData* gameuserdata;
+    std::shared_ptr<GameUserData> gameuserdata;
     std::vector<int> sonTils;
     int lastTile = -1;//쯔모 혹은 론 한 마지막 패
     std::unique_ptr<Berims> berims;

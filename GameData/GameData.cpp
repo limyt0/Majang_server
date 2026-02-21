@@ -6,8 +6,18 @@
 //#include <crono>
 #include "../Consts.h"
 #include "Peas.pb.h"
+#include "GameUserData.h"
+#include <sys/socket.h>
 
 GameData::GameData()
+{
+    
+  
+    //InitGame();
+    //jaksas.insert(new Jaksadata());
+}
+
+void GameData::InitGame()
 {
     peasan = {10, 20, 30, 40, 50, 60, 70, 80, 90,
                 10, 20, 30, 40, 50, 60, 70, 80, 90,
@@ -27,26 +37,16 @@ GameData::GameData()
                 310, 320, 330, 340, 350, 360, 370,
                 410, 420, 430, 440, 450, 460, 470, 480
         };
-  
-    //InitGame();
-    //jaksas.insert(new Jaksadata());
-}
+    std::cerr << "InitGame!"<< std::endl;
 
-void GameData::InitGame()
-{
-    for(int i = 0;i<4;i++)
-    {
-        jaksas.push_back(std::make_unique<Jaksadata>());
-    }
+    //방 들어왔다는 메시지 여기 뿌려야 할 듯.
     Suffle();
- 
     RandomDongNamSeoBuk();
     for(int i = 0;i<4;i++)
     {
+        std::cerr << "Baepae1"<< std::endl;
         Baepae(jaksas[i].get(), i);
-
-       
-
+        
     }
     phases = DrawAfter;
     std::cerr << "-------배패 완료----------"<< std::endl;
@@ -76,10 +76,10 @@ void GameData::Suffle()
 void GameData::RandomDongNamSeoBuk()
 {
     //printf("test1\n");
-    std::vector<int> indices = {0, 1, 2, 3};
-    std::random_device rd;
-    std::mt19937 g(rd());
-    std::shuffle(indices.begin(), indices.end(), g);
+    //std::vector<int> indices = {0, 1, 2, 3};
+    //std::random_device rd;
+    //std::mt19937 g(rd());
+    //std::shuffle(indices.begin(), indices.end(), g);
 
     jaksas[0]->baram = Dong;
     jaksas[1]->baram = Nam;
@@ -120,25 +120,43 @@ void GameData::SetWangPae()
 
 void GameData::Baepae(Jaksadata* jaksa, int index)
 {
-
+    if (jaksa == nullptr) {
+        std::cerr << "Fatal Error: jaksa pointer is NULL at index " << index << std::endl;       
+        return;
+    }
+     std::cerr << "Baepae!"<< peasan.size() <<std::endl;
     for(int i = 0;i<TsumoLen;i++)
     {
+        std::cerr << "Baepae1"<< std::endl;
         int tilenum = peasan.back();
+        std::cerr << "Baepae2"<< std::endl;
+        int a =  jaksa->sonTils.size();
+        std::cerr << "size: "<< a<<std::endl;    
+
         jaksa->sonTils.push_back(tilenum);
-        //std::cerr <<  tilenum<< ","<< jaksa->sonTils[i] <<std::endl;
+        
+        std::cerr << "Baepae3"<< std::endl;
         peasan.pop_back();
     }
-
+     std::cerr << "packet!"<< std::endl;
      peas::GamePacket packet;
+      std::cerr << "packet!"<< std::endl;
         peas::BeaPea* beapea = packet.mutable_bea_pea();
+         std::cerr << "packet2"<< std::endl;
         beapea->set_roomid(1);
+         std::cerr << "packet3"<< std::endl;
         beapea->set_jaksaindex(index);
+         std::cerr << "packet4"<< std::endl;
         for(int tile : jaksa->sonTils) {
             beapea->add_sonpeas(tile);
         }
+        std::cerr << "packet5"<< std::endl;
         std::string sendBuffer;
+        std::cerr << "packet6"<< std::endl;
         packet.SerializeToString(&sendBuffer);
-        // send(socket, sendBuffer.data(), sendBuffer.size(), 0);
+        std::cerr << "packet7"<< std::endl;
+        send(jaksa->gameuserdata->pk_id, sendBuffer.data(), sendBuffer.size(), 0);
+        std::cerr << "packet8"<< std::endl;
     
 }
 
@@ -200,7 +218,8 @@ void GameData::PassTurn()
         test12.append(k);
     }
     test12.append(std::to_string(jaksas[nowTurnJaksaIndex]->lastTile));
-    std::cerr << nowTurnJaksaIndex<< "차례" << test12<< std::endl;
+    
+    //std::cerr << nowTurnJaksaIndex<< "차례" << test12<< std::endl;
 
 
     //차례 넘기고

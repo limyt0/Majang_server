@@ -3,6 +3,7 @@ package peas;
 // protoc --cpp_out=. Peas.proto (GameData 폴더 안에서)
 // protoc --cpp_out=. GameData/Peas.proto (GameData 폴더 밖에서)
 // protoc --csharp_out=. Peas.proto (C#에서)
+
 message BeaPea
 {
     int32 roomid = 1;

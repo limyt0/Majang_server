@@ -9,17 +9,33 @@
 GameManager* GameManager::instance = nullptr;
 std::mutex GameManager::mutex_;
 //std::mutex GameManager::update_mutex;
+#include "GameData/Jaksadata.h"
+#include <iostream>
+
 
 
 
 void GameManager::ServerSoketInit()
 {
     server_fd = socket(AF_INET, SOCK_STREAM, 0);
+    if(server_fd == -1)
+    {
+         std::cerr << "소켓 생성 실패" << std::endl;
+         return;
+    }else{
+        std::cerr << "소켓 생성 성공!" << std::endl;
+    }
     sockaddr_in addr;
     addr.sin_family = AF_INET;
     addr.sin_port = htons(serverPort);
     addr.sin_addr.s_addr = INADDR_ANY;
-    bind(server_fd, (struct sockaddr*)&addr, sizeof(addr));
+    if(bind(server_fd, (struct sockaddr*)&addr, sizeof(addr)))
+    {
+        std::cerr << "바인드 실패" << std::endl;
+        return;
+    }else{
+         std::cerr << "바인드 성공!" << std::endl;
+    }
     listen(server_fd, SOMAXCONN);
 }
 
@@ -31,7 +47,14 @@ void GameManager::AcceptClientUpdate()
 
         if(client_fd>0)
         {
+            std::cerr << "user 입장!: " << client_fd << std::endl;
+
             AddUser(client_fd);
+        }
+        if(usersqueue.size() >= 4)
+        {
+            int index = games.size();
+            CreateGame(index);
         }
     }
 }
@@ -54,8 +77,18 @@ void GameManager::HandleUser(int client_fd) {
 
 void GameManager::CreateGame(int roomId)
 {
+    std::cerr << "4명 모였다! 방만들기 시작!: " << std::endl;
         games[roomId] = std::make_unique<GameData>();
+        for(int i = 0;i<4;i++)
+        {
+
+            auto jaksa = std::make_unique<Jaksadata>();
+            jaksa->gameuserdata = usersqueue.front();
+            usersqueue.pop();
+            games[roomId]->jaksas.push_back(std::move(jaksa));
+        }
         games[roomId]->InitGame();
+        server_running = true;
         //games[roomId]->;
 }
 
@@ -86,7 +119,7 @@ void GameManager::AddUser(int id)
     std::lock_guard<std::mutex> lock(mutex_);
     std::string str = std::to_string(id)+"사람";
     auto newUser = std::make_shared<GameUserData>(id, str);
-    users.push_back(newUser);
+    usersqueue.push(newUser);
 
 }
 

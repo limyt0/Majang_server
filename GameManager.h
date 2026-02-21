@@ -4,6 +4,7 @@
 #include <memory>
 #include <thread>
 #include <vector>
+#include <queue>
 #include "GameData/GameData.h"
 #include "GameData/GameUserData.h"
 
@@ -20,7 +21,7 @@ private:
 
     std::map<int, std::unique_ptr<GameData>> games;
     //static std::mutex update_mutex;
-    std::vector<std::shared_ptr<GameUserData>> users;
+    std::queue<std::shared_ptr<GameUserData>> usersqueue;
     GameManager(){};
     ~GameManager(){};
 
