@@ -66,7 +66,7 @@ void YakuChecker::yaku_update(std::vector<HwaryoInfo> * hwaryo_list, Jaksadata *
 
 }
 
- void YakuChecker::Print_yaku(HwaryoInfo * h)
+void YakuChecker::Print_yaku(HwaryoInfo * h)
 {
 
     // if(h->scoreComponent.yakuman_su > 0)
@@ -121,9 +121,9 @@ void YakuChecker::yaku_update(std::vector<HwaryoInfo> * hwaryo_list, Jaksadata *
             // 1판역
             if(h->yakustate.richi){i++;         printf("%d. 리치      1 판\n",i);}
             if(h->yakustate.ilbal){i++;         printf("%d. 일발      1 판\n",i);}
-            // if(h->doraCount.dora > 0){i++;      printf("{i}. 도라          {mentsuInfo.doraCount.dora} pan\n");}
-            // if(h->doraCount.ura_dora > 0){i++;  printf("{i}. 뒷도라        {mentsuInfo.doraCount.ura_dora} pan\n");}
-            // if(h->doraCount.aka_dora > 0){i++;  printf("{i}. 적도라        {mentsuInfo.doraCount.aka_dora} pan\n");}
+            if(h->doraCount.omote_dora > 0){i++;printf("%d. 도라      %d 판\n",i,h->doraCount.omote_dora);}
+            if(h->doraCount.ura_dora > 0){i++;  printf("%d. 뒷도라    %d 판\n",i,h->doraCount.ura_dora);}
+            if(h->doraCount.aka_dora > 0){i++;  printf("%d. 적도라    %d 판\n",i,h->doraCount.aka_dora);}
             if(h->yakustate.pinghu){i++;        printf("%d. 핑후      1 판\n",i);}
             if(h->yakustate.tangyao){i++;       printf("%d. 탕야오    1 판\n",i);}
             if(h->yakustate.White){i++;         printf("%d. 백        1 판\n",i);}

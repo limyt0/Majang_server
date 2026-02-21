@@ -20,15 +20,14 @@ class HwaryoInfo
     int hwaryo_pae_type = 0;
 
     BCounts bCounts;
-    // public int huro_count = 0;
 
     // 여러 역 상태.
-    YakuState yakustate;// = new Yakustate();
+    YakuState yakustate;
     // 역만 상태.
-    YakumanState yakumansate;// = new Yakumansate();
+    YakumanState yakumansate;
 
     // 도라 정보 (도라, 뒷도라, 적도라)
-    // DoraCount doraCount = new DoraCount();
+    DoraCount doraCount;
 
     // n배 역만상태, 판수, 부수, 오야여부
     // ScoreComponent scoreComponent = new ScoreComponent();

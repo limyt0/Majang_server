@@ -32,13 +32,8 @@ HwaryoChecker::HwaryoChecker(GameData * game_data, Jaksadata * jaksa, int hwaryo
         // 다양한 역 정보 업데이트
         YakuChecker::yaku_update(&hwaryo_list, jaksa, game_data);
 
-        // // 손패 도라 정보 업데이트
-        // DoraCount d_sonpae = YakuChecker.dora_count_from(jaksa.sonpea, jaksa.sunsusonpaelength, jaksa.dora, jaksa.ura_dora);
-        // YakuChecker.dora_info_add(ref hwaryoChecker.hwaryo_list, d_sonpae);
-
-        // // 후로 도라 정보 업데이트 (안깡도 도라체크해야함.)
-        // DoraCount d_huro = YakuChecker.dora_count_from_huro(jaksa.hurolist, jaksa.dora, jaksa.ura_dora);
-        // YakuChecker.dora_info_add(ref hwaryoChecker.hwaryo_list, d_huro);
+        // 도라, 뒷도라, 적도라 정보를 화료 리스트에 업데이트.
+        YakuChecker::dora_info_update(&hwaryo_list, jaksa, game_data);
     }
 
     // 역만 및 판수 업데이트 - 국사무쌍, 구련보등 포함.

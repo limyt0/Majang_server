@@ -133,3 +133,11 @@ class RichiType
     static const int Double_Richied = 2;
 
 };
+
+class DoraCount{
+    public :
+    int omote_dora = 0;
+    int ura_dora = 0;
+    int aka_dora = 0;
+
+};

@@ -11,8 +11,6 @@ class YakuChecker
     static void Daegi_info_update(std::vector<HwaryoInfo> * hwaryo_list, int LastTile);
     static void hwaryopae_type_update(std::vector<HwaryoInfo> * hwaryo_list, int type);
 
-
-
     public:
     // 쯔모/론 패, 대기 정보, 론 쯔모 여부 업데이트
     static void info_update(std::vector<HwaryoInfo> * hwaryo_list, int LastTile, int type);
@@ -81,4 +79,7 @@ class YakuChecker
 
     // 치또이쯔
     static void chitoitsu_checker(std::vector<HwaryoInfo> *, int *, bool *);
+
+    // 도라
+    static void dora_info_update(std::vector<HwaryoInfo> *, Jaksadata *, GameData *);
 };
