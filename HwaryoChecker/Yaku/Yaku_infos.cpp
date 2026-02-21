@@ -10,15 +10,16 @@ void YakuChecker::info_update(std::vector<HwaryoInfo> * hwaryo_list, int LastTil
     printf("YakuChecker::info_update()\n");
     // 쯔모/론 패 업데이트.
     LastTile_update(hwaryo_list, LastTile);
-    printf("a)hwaryo_list[0].last_tile = %d\n", (*hwaryo_list)[0].last_tile);
+    // printf("aa\n");
+    // printf("a)hwaryo_list[0].last_tile = %d\n", (*hwaryo_list)[0].last_tile); // 화료 아니면 (*hwaryo_list)[0]이 없어서 오류남
 
     // 쯔모/론 패가 있는 블록을 찾아서 대기 타입 정보 업데이트.
     Daegi_info_update(hwaryo_list, LastTile);
-    printf("b)hwaryo_list[0].last_tile = %d\n", (*hwaryo_list)[0].last_tile);
+    // printf("b)hwaryo_list[0].last_tile = %d\n", (*hwaryo_list)[0].last_tile);
 
     // 론,쯔모 여부 및 타입 - 창깡, 영상개화, 해저로월, 하저로어 포함.
     hwaryopae_type_update(hwaryo_list, type);
-    printf("c)hwaryo_list[0].last_tile = %d\n", (*hwaryo_list)[0].last_tile);
+    // printf("c)hwaryo_list[0].last_tile = %d\n", (*hwaryo_list)[0].last_tile);
 
 }//end of function
 
@@ -27,12 +28,15 @@ void YakuChecker::info_update(std::vector<HwaryoInfo> * hwaryo_list, int LastTil
 void YakuChecker::LastTile_update(std::vector<HwaryoInfo> * hwaryo_list, int LastTile)
 {
     printf("LastTile_update()\n");
-    for(int i=0;i<hwaryo_list->size();i++)
+    printf("hwaryo_list->size() = %d\n", hwaryo_list->size());
+    printf("LastTile = %d", LastTile);
+    for(int i=0;i < hwaryo_list->size();i++)
     {
         printf("LastTile = %d, hwaryo_list->size() = %d\n", LastTile, hwaryo_list->size());
         (*hwaryo_list)[i].last_tile = LastTile;
         printf("hwaryo_list[%d].last_tile = %d\n", i, (*hwaryo_list)[i].last_tile);
     }
+    printf("LastTile_update() end\n");
 }
 
 // 론,쯔모 여부 및 타입 업데이트 - 창깡, 영상개화, 해저로월, 하저로어 포함.

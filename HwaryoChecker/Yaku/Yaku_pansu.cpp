@@ -13,7 +13,7 @@ void YakuChecker::yaku_su_update(std::vector<HwaryoInfo> *hwaryo_list)
     {
         HwaryoInfo * h = &(*hwaryo_list)[i];
         // h->scoreComponent.yakuman_su = 0;
-        // DebugLog.log("(yaku_su_update) yakuman---");
+        printf("(yaku_su_update) yakuman---\n");
         // 역만
         if (h->yakumansate.guksa){h->scoreComponent.yakuman_su +=1;}
         if (h->yakumansate.cheonhwa){h->scoreComponent.yakuman_su +=1;}
@@ -33,9 +33,9 @@ void YakuChecker::yaku_su_update(std::vector<HwaryoInfo> *hwaryo_list)
         if (h->yakumansate.su_ankeo_dangi){h->scoreComponent.yakuman_su +=2;}
         
         // 역만이 있는 경우 판수계산 안함.
-        // if(h->scoreComponent.yakuman_su > 0){continue;}
+        if(h->scoreComponent.yakuman_su > 0){continue;}
 
-        // DebugLog.log("(yaku_su_update) yaku---");
+        printf("(yaku_su_update) yaku---\n");
     
         // 1판역
         if (h->yakustate.richi){h->scoreComponent.pansu +=1;}  //리치
