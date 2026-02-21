@@ -8,8 +8,8 @@
 #include "GameData/GameData.h"
 #include "GameData/GameUserData.h"
 
-//class GameData;
-//class GameUserData;
+class GameData;
+class GameUserData;
 
 class GameManager
 {

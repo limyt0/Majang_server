@@ -8,6 +8,7 @@
 #include "Peas.pb.h"
 #include "GameUserData.h"
 #include <sys/socket.h>
+#include <arpa/inet.h>
 
 GameData::GameData()
 {
@@ -124,40 +125,44 @@ void GameData::Baepae(Jaksadata* jaksa, int index)
         std::cerr << "Fatal Error: jaksa pointer is NULL at index " << index << std::endl;       
         return;
     }
-     std::cerr << "Baepae!"<< peasan.size() <<std::endl;
     for(int i = 0;i<TsumoLen;i++)
     {
-        std::cerr << "Baepae1"<< std::endl;
         int tilenum = peasan.back();
-        std::cerr << "Baepae2"<< std::endl;
         int a =  jaksa->sonTils.size();
-        std::cerr << "size: "<< a<<std::endl;    
 
         jaksa->sonTils.push_back(tilenum);
         
-        std::cerr << "Baepae3"<< std::endl;
         peasan.pop_back();
     }
-     std::cerr << "packet!"<< std::endl;
-     peas::GamePacket packet;
-      std::cerr << "packet!"<< std::endl;
+        peas::GamePacket packet;
         peas::BeaPea* beapea = packet.mutable_bea_pea();
-         std::cerr << "packet2"<< std::endl;
         beapea->set_roomid(1);
-         std::cerr << "packet3"<< std::endl;
         beapea->set_jaksaindex(index);
-         std::cerr << "packet4"<< std::endl;
         for(int tile : jaksa->sonTils) {
             beapea->add_sonpeas(tile);
         }
-        std::cerr << "packet5"<< std::endl;
         std::string sendBuffer;
-        std::cerr << "packet6"<< std::endl;
         packet.SerializeToString(&sendBuffer);
-        std::cerr << "packet7"<< std::endl;
-        send(jaksa->gameuserdata->pk_id, sendBuffer.data(), sendBuffer.size(), 0);
-        std::cerr << "packet8"<< std::endl;
-    
+
+        // [중요] 1. 헤더 생성 (데이터 크기)
+        uint32_t dataSize = static_cast<uint32_t>(sendBuffer.size());
+        uint32_t networkSize = htonl(dataSize); // 네트워크 바이트 순서로 변환
+
+        // [중요] 2. 헤더 먼저 전송
+        send(jaksa->gameuserdata->pk_id, reinterpret_cast<char*>(&networkSize), sizeof(networkSize), 0);
+        
+        std::cerr << "sendBuffer.size(): " << sendBuffer.size() << std::endl;
+        ssize_t bytes_sent = send(jaksa->gameuserdata->pk_id, sendBuffer.data(), sendBuffer.size(), 0);
+        if (bytes_sent == -1) {
+            if (errno == EAGAIN || errno == EWOULDBLOCK) {
+                // 논블로킹 소켓에서 버퍼가 가득 참. 잠시 대기 후 재시도 또는 오류 처리
+                // 여기서는 간단하게 다시 시도하지 않고 오류 메시지 출력
+                std::cerr << "Warning: Send buffer full, message might not have been sent immediately." << std::endl;
+            } else {
+                std::cerr << "Error sending data (errno: " << errno << ")." << std::endl;
+                return; // 전송 오류 시 루프 종료
+            }
+        }
 }
 
 // 도라 열기

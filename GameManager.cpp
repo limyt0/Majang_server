@@ -3,21 +3,26 @@
 //#include "GameData/GameData.h"
 #include <string.h>
 #include <sys/socket.h>
+//#include <netinet/tcp.h>
 #include <netinet/in.h>
 #include <unistd.h>
-// 스태틱 변수 초기화
-GameManager* GameManager::instance = nullptr;
-std::mutex GameManager::mutex_;
-//std::mutex GameManager::update_mutex;
 #include "GameData/Jaksadata.h"
+#include "GameData/PeaAndBlock/Berims.h"
+#include "GameData/PeaAndBlock/HuroBlock.h"
+#include "GameData/PeaAndBlock/AnkanBlock.h"
 #include <iostream>
 
 
+GameManager* GameManager::instance = nullptr;
+std::mutex GameManager::mutex_;
 
 
 void GameManager::ServerSoketInit()
 {
     server_fd = socket(AF_INET, SOCK_STREAM, 0);
+    //int opt = 1;
+    //setsockopt(server_fd, IPPROTO_TCP, TCP_NODELAY, (const char*)&opt, sizeof(opt));
+    
     if(server_fd == -1)
     {
          std::cerr << "소켓 생성 실패" << std::endl;
