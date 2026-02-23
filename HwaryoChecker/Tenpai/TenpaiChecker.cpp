@@ -36,8 +36,8 @@ TenpaiChecker::TenpaiChecker(GameData * gameData, Jaksadata * jaksa, int hwaryop
 
         int max_pansu = 0;
         int max_yakuman_su = 0;
-        int y_i = 0;
-        int ym_i = 0;
+        int y_j = 0;
+        int ym_j = 0;
         
         for(int j=0;j<hwaryoChecekr.hwaryo_list.size();j++)
         {
@@ -46,12 +46,12 @@ TenpaiChecker::TenpaiChecker(GameData * gameData, Jaksadata * jaksa, int hwaryop
             if(yakuman_su > max_yakuman_su)
             {
                 max_yakuman_su = yakuman_su;
-                ym_i = i;
+                ym_j = j;
             }
             else if(pansu > max_pansu)
             {
                 max_pansu = pansu;
-                y_i = i;
+                y_j = j;
             }
         }
 
@@ -63,7 +63,8 @@ TenpaiChecker::TenpaiChecker(GameData * gameData, Jaksadata * jaksa, int hwaryop
         else if(max_yakuman_su > 0)
         {
             //역만
-            TenpaiInfo tenpai_info(&hwaryoChecekr.hwaryo_list[ym_i]);
+            DEBUG_LOG("역만 텐파이 수[%d] = %d\n", ym_j, max_yakuman_su);
+            TenpaiInfo tenpai_info(&hwaryoChecekr.hwaryo_list[ym_j]);
             TenpaiList.push_back(tenpai_info);
             DEBUG_LOG("역만 텐파이 업데이트\n");
 
@@ -71,7 +72,8 @@ TenpaiChecker::TenpaiChecker(GameData * gameData, Jaksadata * jaksa, int hwaryop
         else
         {
             if(max_pansu > 0){
-                TenpaiInfo tenpai_info(&hwaryoChecekr.hwaryo_list[y_i]);
+                DEBUG_LOG("텐파이[%d]= %d판\n",y_j, max_pansu);
+                TenpaiInfo tenpai_info(&hwaryoChecekr.hwaryo_list[y_j]);
                 TenpaiList.push_back(tenpai_info);
                 DEBUG_LOG("텐파이 업데이트\n");
             }
@@ -80,6 +82,7 @@ TenpaiChecker::TenpaiChecker(GameData * gameData, Jaksadata * jaksa, int hwaryop
                 TenpaiInfo tenpai_info;
                 TenpaiList.push_back(tenpai_info);
                 tenpai_info.NoYaku = true;
+                tenpai_info.last_tile = daegi_hubo[i];
                 DEBUG_LOG("역없음 텐파이 업데이트\n");
             }
         }
@@ -87,6 +90,7 @@ TenpaiChecker::TenpaiChecker(GameData * gameData, Jaksadata * jaksa, int hwaryop
     }
 
     jaksa->lastTile = last_tile_saved;
+    print_daegi_list();
 
 }//end of Constructor
 

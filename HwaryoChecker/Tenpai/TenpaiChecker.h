@@ -23,6 +23,7 @@ class TenpaiChecker
     
     // 대기패 마다 텐파이 정보 리스트 - 화료를 만들수 있는 경우만 포함.
     std::vector<TenpaiInfo> TenpaiList;
+    void print_daegi_list();
 
     TenpaiChecker(GameData * gameData, Jaksadata * jaksa, int hwaryopae_type);
     ~TenpaiChecker();
