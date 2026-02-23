@@ -1,5 +1,11 @@
 #include "YakuChecker.h"
 #include "../HwaryoInfo.h"
+#include "../hwaryo_config.h"
+#ifdef YAKU_TSUMO_RON_DEP_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
 // 영상 창깡 해저 하저 천화 지화. + 멘젠 쯔모
 
 

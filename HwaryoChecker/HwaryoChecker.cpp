@@ -5,20 +5,28 @@
 #include "Yaku/YakuChecker.h"
 #include "GameData.h"
 #include "Enums.h"
+#include "hwaryo_config.h"
+
+#ifdef HWARYO_CHECKER_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
+
 
 HwaryoChecker::HwaryoChecker(GameData * game_data, Jaksadata * jaksa, int hwaryopae_type){
 
-    printf("화료체크 시작\n");
+    // DEBUG_LOG("화료체크 시작\n");
 
     // 손패에서 화료 형태를 체크.
     Hwaryo_check_sonpae(jaksa, hwaryopae_type);
 
-    printf("손패 화료 형태 체크 완료\n");
+    // DEBUG_LOG("손패 화료 형태 체크 완료\n");
  
     // 쯔모패, 대기 정보 업데이트
     YakuChecker::info_update(&hwaryo_list, jaksa->lastTile, hwaryopae_type);
 
-    printf("쯔모패, 대기 정보 업데이트 완료\n");
+    // DEBUG_LOG("쯔모패, 대기 정보 업데이트 완료\n");
     // for(int i=0;i<hwaryo_list.size();i++)
     // {
     //     hwaryo_list[i].print_info();
@@ -43,20 +51,20 @@ HwaryoChecker::HwaryoChecker(GameData * game_data, Jaksadata * jaksa, int hwaryo
     if (hwaryo_list.size() > 0)
     {   
         
-        printf("화료성공.!!\n");
+        DEBUG_LOG("화료성공.!!\n");
         for(int i=0;i<hwaryo_list.size();i++)
         {
             count++;
-            printf("화료 %d ----------------- start\n", count);
+            DEBUG_LOG("화료 %d ----------------- start\n", count);
             // printf("hwaryo pae : {HwaryoPaeType.int_to_str(hwaryoInfo.hwaryo_pae_type)}");
             hwaryo_list[i].print_info(true, true, true, true, true);
-            printf("화료 %d ----------------- end\n", count);
+            DEBUG_LOG("화료 %d ----------------- end\n", count);
         }
 
     }
     else
     {
-        printf("화료 실패.\n");
+        DEBUG_LOG("화료 실패.\n");
     }
 
 }

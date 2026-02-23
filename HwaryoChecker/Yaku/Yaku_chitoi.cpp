@@ -2,7 +2,12 @@
 #include "../Consts_hwaryo.h"
 #include "../Tsublock.h"
 #include "../HwaryoInfo.h"
-
+#include "../hwaryo_config.h"
+#ifdef YAKU_CHITOI_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
 //치또이쯔
 
 void YakuChecker::chitoitsu_checker(std::vector<HwaryoInfo> * hwaryo_list, int * pae_count, bool * chitoi)

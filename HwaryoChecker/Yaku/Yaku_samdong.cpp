@@ -1,6 +1,11 @@
 #include "YakuChecker.h"
 #include "../HwaryoInfo.h"
-
+#include "../hwaryo_config.h"
+#ifdef YAKU_SAMDONG_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
 
  // 삼색 동순
 void YakuChecker::samdongsun_info_update(std::vector<HwaryoInfo> * hwaryo_list)
@@ -28,7 +33,7 @@ void YakuChecker::samdongsun_info_update(std::vector<HwaryoInfo> * hwaryo_list)
             if(b.tsu_type == TsuType::Syuntsu)
             {
                 syuns[index] = b.pae_type*10 + b.number;
-                printf("(samdong checking)syuns[%d]=%d\n",index,syuns[index]);
+                DEBUG_LOG("(samdong checking)syuns[%d]=%d\n",index,syuns[index]);
                 index++;
             }
         }
@@ -40,7 +45,7 @@ void YakuChecker::samdongsun_info_update(std::vector<HwaryoInfo> * hwaryo_list)
         {
             for(int j = i+1; j < index; j++)
             {
-                printf("(samdong checking)(%d,%d)=(%d,%d)",i,j,syuns[i],syuns[j]);
+                DEBUG_LOG("(samdong checking)(%d,%d)=(%d,%d)",i,j,syuns[i],syuns[j]);
                 if(syuns[i] % 10 == syuns[j] % 10)
                 {
                     two_same_num = true;
@@ -110,7 +115,7 @@ void YakuChecker::samdonggak_info_update(std::vector<HwaryoInfo> * hwaryo_list)
             if(b.tsu_type == TsuType::Keotsu || b.tsu_type == TsuType::Kangtsu)
             {
                 k[index] = b.pae_type*10 + b.number;
-                printf("(samdong_K checking) k[%d]=%d\n", index, k[index]);
+                DEBUG_LOG("(samdong_K checking) k[%d]=%d\n", index, k[index]);
                 index++;
             }
         }

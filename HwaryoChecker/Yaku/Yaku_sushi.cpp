@@ -1,6 +1,11 @@
 #include "YakuChecker.h"
 #include "../HwaryoInfo.h"
-
+#include "../hwaryo_config.h"
+#ifdef YAKU_SUSHI_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
 // 소사희 대사희
 void YakuChecker::sushi_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 {

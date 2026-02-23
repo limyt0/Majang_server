@@ -1,5 +1,11 @@
 #include "YakuChecker.h"
 #include "../HwaryoInfo.h"
+#include "../hwaryo_config.h"
+#ifdef YAKU_PEKO_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
 
 // 이페코 량페코
 void YakuChecker::peko_info_update(std::vector<HwaryoInfo> * hwaryo_list)
@@ -31,7 +37,7 @@ void YakuChecker::peko_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 
                 // 수패 id 리스트를 업데이트.
                 syuns[index] = b.pae_type*10 + b.number;
-                printf("(peko_checking)syuns[%d] = %d\n",index, syuns[index] );
+                DEBUG_LOG("(peko_checking)syuns[%d] = %d\n",index, syuns[index] );
                 index++;
             }
             else {continue;}
@@ -44,12 +50,12 @@ void YakuChecker::peko_info_update(std::vector<HwaryoInfo> * hwaryo_list)
                 if(syuns[j] == syuns[k])
                 {
                     pekko_count++;
-                    printf("(%d,%d)pekko count = %d\n", j, k, pekko_count);
+                    DEBUG_LOG("(%d,%d)pekko count = %d\n", j, k, pekko_count);
                 }
             }
         }
 
-        printf("pekko count = %d\n", pekko_count);
+        DEBUG_LOG("pekko count = %d\n", pekko_count);
 
         if(pekko_count == 0)
         {

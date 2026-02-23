@@ -1,5 +1,12 @@
 #include "TenpaiChecker.h"
 #include <iostream>
+#include "../hwaryo_config.h"
+#ifdef TENPAI_CHITOI_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
+
 // 또이쯔 갯수가 6개면 치또이쯔 텐파이.
 // 겹칠 수 있는 량페코 텐파이 여부는 이미 체크되었다고 가정.
 void TenpaiChecker::chitoi_check()

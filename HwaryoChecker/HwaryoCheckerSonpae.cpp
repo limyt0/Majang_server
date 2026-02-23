@@ -3,6 +3,13 @@
 #include <iostream>
 #include "Consts_hwaryo.h"
 #include "Yaku/YakuChecker.h"
+#include "hwaryo_config.h"
+
+#ifdef HWARYO_CHECK_SONPAE_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)   
+#endif
 
 // 순수 손패만으로 화료 형태를 체크하기 위한 함수.
 // 남은 머리하나와 몸통으로 구성되었는지(3 3 3 3 2형태)
@@ -34,17 +41,17 @@ void HwaryoChecker::Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type){
     // 화패가 있는 경우 화료 안됨. 바로 리턴.
     if(hwapae_exist){return;}
 
-    printf("국사무쌍 체크 시작\n");
+    DEBUG_LOG("국사무쌍 체크 시작\n");
     // 국사무쌍 체크 (바로 리턴)
     YakuChecker::guksa(&hwaryo_list, pae_count, last_tile, hwaryopae_type);
     if(hwaryo_list.size() > 0){gu = true;return;}
-    printf("국사무쌍 체크 끝\n");
+    DEBUG_LOG("국사무쌍 체크 끝\n");
 
-    printf("구련보등 체크 시작\n");
+    DEBUG_LOG("구련보등 체크 시작\n");
     // 구련보등 체크 (바로 리턴) - 청일색의 상위역이지만 로직 편의상 여기서 먼저 체크.
     YakuChecker::guryeon(&hwaryo_list, pae_count, last_tile, hwaryopae_type);
     if(hwaryo_list.size() > 0){gu = true;return;}
-    printf("구련보등 체크 끝\n");
+    DEBUG_LOG("구련보등 체크 끝\n");
 
     // 치또이쯔 체크 
     // 량페코로 해석될 수 있는 부분은 뒤에서 체크.
@@ -60,16 +67,16 @@ void HwaryoChecker::Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type){
     else if(meori_type == PaeType::JaPae)
     { // 자패 머리인 경우. 머리 후보가 1개만 있는 것이 보장됨
         japae_meori_update(meori_type);
-        printf("자패 머리 업데이트됨.\n");
+        DEBUG_LOG("자패 머리 업데이트됨.\n");
         print_blocks();
 
         japae_keotsu_update();
-        printf("자패 커쯔 업데이트됨.\n");
+        DEBUG_LOG("자패 커쯔 업데이트됨.\n");
         print_blocks();
 
         // 커쯔가 안되는 경우가 치또이쯔일 수도 있음.
         // 자패 커쯔 체크 중에 화료 불가능한 경우
-        if (japa_keotsu_break){printf("(자패 커쯔 체크 도중 화료불가 확인됨.)\n");}
+        if (japa_keotsu_break){DEBUG_LOG("(자패 커쯔 체크 도중 화료불가 확인됨.)\n");}
         else
         {
             int ja_pae_count[38];
@@ -78,17 +85,17 @@ void HwaryoChecker::Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type){
             block_check(hwaryoInfo);
 
         }
-        printf("손패 블록 체크 완료.\n");
+        DEBUG_LOG("손패 블록 체크 완료.\n");
 
     }
     else if(meori_type == PaeType::Mansu || 
         meori_type == PaeType::Tongsu || meori_type == PaeType::Saksu)
     {   // 수패 머리인 경우.
-        printf("수패 머리\n");
+        DEBUG_LOG("수패 머리\n");
         
         // 자패 머리를 'tsu_blocks'에 업데이트(나중에 머리 별로 따로 복사해줘야함.)
         japae_keotsu_update();
-        printf("자패 커쯔 업데이트됨.\n");
+        DEBUG_LOG("자패 커쯔 업데이트됨.\n");
         print_blocks();
 
         // // 머리후보의 숫자 후보들를 반환.
@@ -98,7 +105,7 @@ void HwaryoChecker::Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type){
             
             int meori_hubo_su = meori_hubo[i];
 
-            printf("수패 머리 ----- 후보 %d\n", meori_hubo_su);
+            DEBUG_LOG("수패 머리 ----- 후보 %d\n", meori_hubo_su);
 
             // tsu_block에 머리 업데이트.
             std::vector<TsuBlock> su_tsuBlocks;
@@ -114,35 +121,35 @@ void HwaryoChecker::Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type){
                 su_tsuBlocks.push_back(tsu_blocks[i]);
             }
             
-            printf("su_tsuBlocks------------------start\n");
+            DEBUG_LOG("su_tsuBlocks------------------start\n");
             print_tsu_blocks(su_tsuBlocks);
-            printf("su_tsuBlocks------------------end\n");
+            DEBUG_LOG("su_tsuBlocks------------------end\n");
 
             // pae_count에 머리 업데이트 
             int pae_count_su[38];
             for(int i=0;i<38;i++){pae_count_su[i] = pae_count[i];}
             pae_count_su[meori_type*10 + meori_hubo_su] -= 2;
-            printf("머리 후보 업데이트!! - type = %d, num = %d.", meori_type, meori_hubo_su);
-            printf("Count %d", pae_count_su[meori_type*10 + meori_hubo_su]+2);
-            printf("->%d\n", pae_count_su[meori_type*10 + meori_hubo_su]);
+            DEBUG_LOG("머리 후보 업데이트!! - type = %d, num = %d.", meori_type, meori_hubo_su);
+            DEBUG_LOG("Count %d", pae_count_su[meori_type*10 + meori_hubo_su]+2);
+            DEBUG_LOG("->%d\n", pae_count_su[meori_type*10 + meori_hubo_su]);
 
-            printf("수패 머리 업데이트됨.");
+            DEBUG_LOG("수패 머리 업데이트됨.");
             tsuBlock_su.print_contents();
 
             japae_keotsu_update();
-            printf("자패 커쯔 업데이트됨\n");
+            DEBUG_LOG("자패 커쯔 업데이트됨\n");
             tsuBlock_su.print_contents();
 
 
             // 커쯔가 안되는 경우가 치또이쯔일 수도 있음.
             // 자패 커쯔 체크 중에 화료 불가능한 경우
-            if (japa_keotsu_break){printf("자패 커쯔 체크 도중 화료 불가 확인되었음.\n");}
+            if (japa_keotsu_break){DEBUG_LOG("자패 커쯔 체크 도중 화료 불가 확인되었음.\n");}
             else
             {
                 HwaryoInfo hwaryoInfo(su_tsuBlocks, pae_count_su);
                 block_check(hwaryoInfo);
             }
-            printf("손패 블록 체크 완료.\n");
+            DEBUG_LOG("손패 블록 체크 완료.\n");
         }
         
     }

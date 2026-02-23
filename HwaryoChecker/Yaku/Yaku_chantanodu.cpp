@@ -1,5 +1,11 @@
 #include "YakuChecker.h"
 #include "../HwaryoInfo.h"
+#include "../hwaryo_config.h"
+#ifdef YAKU_CHANTANODU_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf("[DEBUG] %s", fmt , ##__VA_ARGS__)    
+#endif
 
 // 찬타 준찬타 혼노두 청노두
 void YakuChecker::chantanodu_info_update(std::vector<HwaryoInfo> * hwaryo_list)

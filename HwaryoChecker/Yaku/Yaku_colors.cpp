@@ -3,27 +3,33 @@
 #include "../Tsublock.h"
 #include <vector>
 #include "../Consts_hwaryo.h"
+#include "../hwaryo_config.h"
+#ifdef YAKU_COLORS_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
 // 혼일색 청일색 자일색. 구련보등 순정구련보등, 녹일색
 
 // 혼일색 청일색 자일색.
 void YakuChecker::color_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 {
-    printf("color_info_update()\n");
+    DEBUG_LOG("color_info_update()\n");
     for(int i_=0;i_<hwaryo_list->size();i_++)
     {
-        printf("(i=%d)\n",  i_);
+        DEBUG_LOG("(i=%d)\n",  i_);
 
         HwaryoInfo * h = &(*hwaryo_list)[i_];
         bool type_exist[4] = {false, false, false, false};// 만통삭/자패
 
         for(int j_=0;j_<h->tsu_blocks.size();j_++)
         {
-            printf("(--) (i=%d, j=%d)\n",i_,  j_);
+            DEBUG_LOG("(--) (i=%d, j=%d)\n",i_,  j_);
             TsuBlock b = h->tsu_blocks[j_];
             type_exist[b.pae_type] = true;
         }
 
-        printf("(i=%d) if condition...\n",  i_);
+        DEBUG_LOG("(i=%d) if condition...\n",  i_);
 
         if (!type_exist[0] && !type_exist[1] && !type_exist[2])
         {
@@ -45,10 +51,10 @@ void YakuChecker::color_info_update(std::vector<HwaryoInfo> * hwaryo_list)
             else{h->yakustate.cheong_il = true;}
         }
 
-        printf("(i=%d) if condition...end\n",  i_);
+        DEBUG_LOG("(i=%d) if condition...end\n",  i_);
 
     }
-    printf("color_info_update() function end\n");
+    DEBUG_LOG("color_info_update() function end\n");
 
 }
 
@@ -151,27 +157,27 @@ void YakuChecker::nok_info_update(std::vector<HwaryoInfo> * hwaryo_list)
             TsuBlock b = h->tsu_blocks[j_];
             if(b.pae_type == PaeType::JaPae)
             {
-                printf("(녹일색 체크) - 자패 확인..\n");
+                DEBUG_LOG("(녹일색 체크) - 자패 확인..\n");
 
                 // 자패가 발이 아닌 경우 녹일색 불가능
                 if(b.number != 6)
                 {
-                    printf("(녹일색체크) 자패가 '發'이 아님.\n");
+                    DEBUG_LOG("(녹일색체크) 자패가 '發'이 아님.\n");
                     return;
                 }
             }
             else if(b.pae_type == PaeType::Saksu)
             {   // 수패는 삭수만 가능
-                printf("(녹일색체크) - 삭수 블록 -- \n");
-                printf(TsuType::Tostring(b.tsu_type).c_str());
-                printf(" %d\n", b.number);
+                DEBUG_LOG("(녹일색체크) - 삭수 블록 -- \n");
+                DEBUG_LOG(TsuType::Tostring(b.tsu_type).c_str());
+                DEBUG_LOG(" %d\n", b.number);
                 if(b.tsu_type == TsuType::Syuntsu)
                 {   
-                    printf("(녹일색체크) - 슌쯔 확인 중\n");
+                    DEBUG_LOG("(녹일색체크) - 슌쯔 확인 중\n");
                     // 슌쯔는 2/3/4만 가능
                     if(b.number != 2)
                     {
-                        printf("(녹일색체크) - 슌쯔가 234가 아님.\n");
+                        DEBUG_LOG("(녹일색체크) - 슌쯔가 234가 아님.\n");
                         // return이 아닌 break으로 처리.
                         // 화료 해석이 2가지 이상 있을수 있음.
                         // (예 222/333/444 == 234/234/234)

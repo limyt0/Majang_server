@@ -3,23 +3,29 @@
 #include "../Tsublock.h"
 #include <vector>
 #include "../Consts_hwaryo.h"
+#include "../hwaryo_config.h"
+#ifdef YAKU_INFO_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
 
 // 쯔모/론 패, 대기 정보, 론 쯔모 여부 업데이트
 void YakuChecker::info_update(std::vector<HwaryoInfo> * hwaryo_list, int LastTile, int type)
 {
-    printf("YakuChecker::info_update()\n");
+    DEBUG_LOG("YakuChecker::info_update()\n");
     // 쯔모/론 패 업데이트.
     LastTile_update(hwaryo_list, LastTile);
-    // printf("aa\n");
-    // printf("a)hwaryo_list[0].last_tile = %d\n", (*hwaryo_list)[0].last_tile); // 화료 아니면 (*hwaryo_list)[0]이 없어서 오류남
+    // DEBUG_LOG("aa\n");
+    // DEBUG_LOG("a)hwaryo_list[0].last_tile = %d\n", (*hwaryo_list)[0].last_tile); // 화료 아니면 (*hwaryo_list)[0]이 없어서 오류남
 
     // 쯔모/론 패가 있는 블록을 찾아서 대기 타입 정보 업데이트.
     Daegi_info_update(hwaryo_list, LastTile);
-    // printf("b)hwaryo_list[0].last_tile = %d\n", (*hwaryo_list)[0].last_tile);
+    // DEBUG_LOG("b)hwaryo_list[0].last_tile = %d\n", (*hwaryo_list)[0].last_tile);
 
     // 론,쯔모 여부 및 타입 - 창깡, 영상개화, 해저로월, 하저로어 포함.
     hwaryopae_type_update(hwaryo_list, type);
-    // printf("c)hwaryo_list[0].last_tile = %d\n", (*hwaryo_list)[0].last_tile);
+    // DEBUG_LOG("c)hwaryo_list[0].last_tile = %d\n", (*hwaryo_list)[0].last_tile);
 
 }//end of function
 
@@ -27,16 +33,16 @@ void YakuChecker::info_update(std::vector<HwaryoInfo> * hwaryo_list, int LastTil
 // 쯔모/론 패 업데이트.
 void YakuChecker::LastTile_update(std::vector<HwaryoInfo> * hwaryo_list, int LastTile)
 {
-    printf("LastTile_update()\n");
-    printf("hwaryo_list->size() = %d\n", hwaryo_list->size());
-    printf("LastTile = %d", LastTile);
+    DEBUG_LOG("LastTile_update()\n");
+    DEBUG_LOG("hwaryo_list->size() = %d\n", hwaryo_list->size());
+    DEBUG_LOG("LastTile = %d", LastTile);
     for(int i=0;i < hwaryo_list->size();i++)
     {
-        printf("LastTile = %d, hwaryo_list->size() = %d\n", LastTile, hwaryo_list->size());
+        DEBUG_LOG("LastTile = %d, hwaryo_list->size() = %d\n", LastTile, hwaryo_list->size());
         (*hwaryo_list)[i].last_tile = LastTile;
-        printf("hwaryo_list[%d].last_tile = %d\n", i, (*hwaryo_list)[i].last_tile);
+        DEBUG_LOG("hwaryo_list[%d].last_tile = %d\n", i, (*hwaryo_list)[i].last_tile);
     }
-    printf("LastTile_update() end\n");
+    DEBUG_LOG("LastTile_update() end\n");
 }
 
 // 론,쯔모 여부 및 타입 업데이트 - 창깡, 영상개화, 해저로월, 하저로어 포함.
@@ -108,18 +114,18 @@ void YakuChecker::bcounts_update(std::vector<HwaryoInfo> * hwaryo_list)
             if(b.tsu_type == TsuType::Syuntsu)
             {
                 h->bCounts.syun += 1;
-                // printf("슌쯔 %d, 후로 슌쯔 \n", h->bCounts.syun, h->bCounts.huro_syun);
+                // DEBUG_LOG("슌쯔 %d, 후로 슌쯔 \n", h->bCounts.syun, h->bCounts.huro_syun);
                 if (b.huro){
                     h->bCounts.huro += 1;
                     h->bCounts.huro_syun += 1;
-                    // printf("(후로)슌쯔 %d, 후로 슌쯔 \n", h->bCounts.syun, h->bCounts.huro_syun);
+                    // DEBUG_LOG("(후로)슌쯔 %d, 후로 슌쯔 \n", h->bCounts.syun, h->bCounts.huro_syun);
                 }
-                // printf("-> 슌쯔 %d, 후로 슌쯔 \n", h->bCounts.syun, h->bCounts.huro_syun);
+                // DEBUG_LOG("-> 슌쯔 %d, 후로 슌쯔 \n", h->bCounts.syun, h->bCounts.huro_syun);
             }
             else if(b.tsu_type == TsuType::Keotsu)
             {
                 h->bCounts.keot += 1;
-                // printf("커쯔 %d, 후로 커쯔 \n", h->bCounts.syun, h->bCounts.huro_syun);
+                // DEBUG_LOG("커쯔 %d, 후로 커쯔 \n", h->bCounts.syun, h->bCounts.huro_syun);
 
                 if (b.huro){
                     h->bCounts.huro += 1;

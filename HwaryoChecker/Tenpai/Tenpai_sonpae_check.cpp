@@ -2,6 +2,12 @@
 #include "TenpaiChecker.h"
 #include "GameData/Jaksadata.h"
 #include <iostream>
+#include "../hwaryo_config.h"
+#ifdef TENPAI_SONPAE_CHECK_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
 // 텐파이 유형
 // 1. 국사 무쌍 머리 대기
 // 2. 국사 무쌍 13면 대기
@@ -48,21 +54,21 @@ void TenpaiChecker::Tenpai_sonpae_daegihubo_check(Jaksadata * jaksa)
         type_wise_count[pae_type] += 1;
     }
 
-    printf("type_wise count ");
-    printf("%d ", type_wise_count[0]);
-    printf("%d ", type_wise_count[1]);
-    printf("%d ", type_wise_count[2]);
-    printf("%d\n", type_wise_count[3]);
+    DEBUG_LOG("type_wise count ");
+    DEBUG_LOG("%d ", type_wise_count[0]);
+    DEBUG_LOG("%d ", type_wise_count[1]);
+    DEBUG_LOG("%d ", type_wise_count[2]);
+    DEBUG_LOG("%d\n", type_wise_count[3]);
     
     int mod3_count[3] = {0,0,0};
     // 3으로 나눈 나머지가 몇개씩 있는지 확인.
     for(int i = 0; i < 4; i++)
     {
         mod3_count[type_wise_count[i] % 3] += 1;
-        printf("mod3_count[%d] += 1\n", type_wise_count[i] % 3);
-        printf("(checking)mod 3 count %d %d %d\n", mod3_count[0], mod3_count[1], mod3_count[2]);
+        DEBUG_LOG("mod3_count[%d] += 1\n", type_wise_count[i] % 3);
+        DEBUG_LOG("(checking)mod 3 count %d %d %d\n", mod3_count[0], mod3_count[1], mod3_count[2]);
     }
-    printf("mod 3 count %d %d %d\n", mod3_count[0], mod3_count[1], mod3_count[2]);
+    DEBUG_LOG("mod 3 count %d %d %d\n", mod3_count[0], mod3_count[1], mod3_count[2]);
 
     if(mod3_count[1] == 1 && mod3_count[0] == 3)
     {
@@ -77,7 +83,7 @@ void TenpaiChecker::Tenpai_sonpae_daegihubo_check(Jaksadata * jaksa)
         {
             if(type_wise_count[i] % 3 == 1){
                 // i == 대기패 유형(만.통.삭.자.)
-                printf("-----------daegi_pae type --- = {%d}(1 mod 3)\n", i);
+                DEBUG_LOG("-----------daegi_pae type --- = %d(1 mod 3)\n", i);
                 daegihubo_update(i);
             }
         }
@@ -92,7 +98,7 @@ void TenpaiChecker::Tenpai_sonpae_daegihubo_check(Jaksadata * jaksa)
         {
             if(type_wise_count[i] % 3 == 2){
                 // i == 대기패 유형(만.통.삭.자.)
-                printf("-----------daegi_pae type --- = {%d}(2 mod 3)", i);
+                DEBUG_LOG("-----------daegi_pae type --- = %d(2 mod 3)\n", i);
                 daegihubo_update(i);
             }
         }
@@ -103,11 +109,11 @@ void TenpaiChecker::Tenpai_sonpae_daegihubo_check(Jaksadata * jaksa)
 
     // std::string hubo_string = "";
     // foreach(int d in daegi_hubo)
-    printf("대기 후보 - ");
+    DEBUG_LOG("대기 후보 - ");
     for(int i=0;i< daegi_hubo.size();i++)
     {
         // hubo_string += $" {d}";
-        printf(" %d", daegi_hubo[i]);
+        DEBUG_LOG(" %d", daegi_hubo[i]);
     }
-    printf("\n");
+    DEBUG_LOG("\n");
 }

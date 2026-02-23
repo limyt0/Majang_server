@@ -1,6 +1,12 @@
 #include "YakuChecker.h"
 #include "../HwaryoInfo.h"
 // #include <iostream>
+#include "../hwaryo_config.h"
+#ifdef YAKU_WIND_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
 
 
 // 자풍 장풍 체크 // 동 남 서 북 1 2 3 4로 가정.

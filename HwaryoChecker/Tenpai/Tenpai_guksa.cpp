@@ -1,4 +1,10 @@
 #include "TenpaiChecker.h"
+#include "../hwaryo_config.h"
+#ifdef TENPAI_GUKSA_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
 
 // 국사 텐파이 체크
 void TenpaiChecker::guksa_check()

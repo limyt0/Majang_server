@@ -1,6 +1,15 @@
 #include "Tsublock.h"
 #include <string>
 #include <iostream>
+#include "hwaryo_config.h"
+
+#ifdef TSU_BLOCK_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)
+#endif
+
+
 
 TsuBlock::TsuBlock()
 {
@@ -50,5 +59,5 @@ void TsuBlock::print_contents()
     }
     if(huro){ str += " - 후로\n";}
     else{ str += " - 멘젠\n";}
-    printf(str.c_str());
+    DEBUG_LOG(str.c_str());
 }

@@ -1,6 +1,12 @@
 #include "YakuChecker.h"
 #include "../HwaryoInfo.h"
 #include <iostream>
+#include "../hwaryo_config.h"
+#ifdef YAKU_DRAGON_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
 
 // 백발중 관련 역.
 // 삼원패 체크 - 각 1판. 소삼원 대삼원도 여기서 체크.

@@ -1,5 +1,11 @@
 #include "YakuChecker.h"
 #include "../HwaryoInfo.h"
+#include "../hwaryo_config.h"
+#ifdef YAKU_RICHI_ILBAL_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
 // 리치, 더블 리치, 일발
 // 주의 : 영상개화는 일발 동시적용 안됨
 // (창깡은 일발 동시적용 됨.)

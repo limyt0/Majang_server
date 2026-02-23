@@ -1,5 +1,11 @@
 #include "YakuChecker.h"
 #include "../HwaryoInfo.h"
+#include "../hwaryo_config.h"
+#ifdef YAKU_PINGHU_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
 
 // 핑후
 void YakuChecker::pinghu_info_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wind, int table_wind)

@@ -1,6 +1,12 @@
 #include "HwaryoInfo.h"
 #include "Consts_hwaryo.h"
 #include "Yaku/YakuChecker.h"
+#include "hwaryo_config.h"
+#ifdef HWARYO_INFO_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)   
+#endif
 
 HwaryoInfo::HwaryoInfo(std::vector<TsuBlock> tsu_blocks_, int * pae_count_)
 {
@@ -30,21 +36,21 @@ void HwaryoInfo::print_info(bool block, bool hwaryo_tile, bool daegi, bool yaku,
     {
         int paetype = last_tile / 100;
         int num = (last_tile / 10) % 10;
-        printf("-- 마지막 화료 패 : ("); 
+        DEBUG_LOG("-- 마지막 화료 패 : ("); 
         if(paetype == PaeType::JaPae){
-            if (num == 1){printf(" 東 ");}
-            if (num == 2){printf(" 南 ");}
-            if (num == 3){printf(" 西 ");}
-            if (num == 4){printf(" 北 ");}
-            if (num == 5){printf(" 白 ");}
-            if (num == 6){printf(" 發 ");}
-            if (num == 7){printf(" 中 ");}
+            if (num == 1){DEBUG_LOG(" 東 ");}
+            if (num == 2){DEBUG_LOG(" 南 ");}
+            if (num == 3){DEBUG_LOG(" 西 ");}
+            if (num == 4){DEBUG_LOG(" 北 ");}
+            if (num == 5){DEBUG_LOG(" 白 ");}
+            if (num == 6){DEBUG_LOG(" 發 ");}
+            if (num == 7){DEBUG_LOG(" 中 ");}
         }
         else{
-            printf(PaeType::Tostring(paetype).c_str());
-            printf(" %d", num);
+            DEBUG_LOG(PaeType::Tostring(paetype).c_str());
+            DEBUG_LOG(" %d", num);
         }
-        printf(")\n");
+        DEBUG_LOG(")\n");
         
     }
     
@@ -56,7 +62,7 @@ void HwaryoInfo::print_info(bool block, bool hwaryo_tile, bool daegi, bool yaku,
         if(daegistate.Gan){str += "간짱 ";}
         if(daegistate.Byeon){str += "변짱 ";}
         if(daegistate.Syabo){str += "샤보 ";}
-        printf("%s\n", str.c_str());
+        DEBUG_LOG("%s\n", str.c_str());
     }
 
     if(yaku)

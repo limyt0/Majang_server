@@ -2,7 +2,14 @@
 #include "HwaryoChecker.h"
 #include <string>
 #include <iostream>
+#include "hwaryo_config.h"
+
 // 화료 체커 보조 함수 모음.
+#ifdef HWARYO_CHECK_SONPAE_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)      
+#endif
 
 void HwaryoChecker::pae_count_update(int id)
 {
@@ -79,7 +86,7 @@ void HwaryoChecker::japae_meori_update(int pae_type)
     tsuBlock.pae_type = pae_type;
     tsuBlock.tsu_type = TsuType::Meori;
 
-    printf("머리 update - pae_type : %d, index : %d\n",pae_type,index);
+    DEBUG_LOG("머리 update - pae_type : %d, index : %d\n",pae_type,index);
 
     tsu_blocks.push_back(tsuBlock);
 }
@@ -124,7 +131,7 @@ void HwaryoChecker::japae_keotsu_update()
         else
         {   
             // 머리를 제외한 자패가 0개나 3개가 아니면 화료 불가
-            printf("화료불가. pae_count[%d]의 값이 %d임. (0 이나 3이 되어야 함.)\n", i, pae_count[i]);
+            DEBUG_LOG("화료불가. pae_count[%d]의 값이 %d임. (0 이나 3이 되어야 함.)\n", i, pae_count[i]);
             japa_keotsu_break = true;
             break;
         }
@@ -160,7 +167,7 @@ void HwaryoChecker::block_check(HwaryoInfo hwaryo_info)
     int num = c_index % 10;
     int pae_type = c_index/10;
 
-    printf("블록 체크중 %d\n", c_index);
+    DEBUG_LOG("블록 체크중 %d\n", c_index);
 
     //자패만 있는 경우 예외처리.
     if(c_index >= 30){
@@ -185,7 +192,7 @@ void HwaryoChecker::block_check(HwaryoInfo hwaryo_info)
         str += std::to_string(counts[pae_type*10 + j]);
         str += " ";
     }
-    printf("%s\n", str.c_str());
+    DEBUG_LOG("%s\n", str.c_str());
     // DebugLog.log(str);
 
 
@@ -197,7 +204,7 @@ void HwaryoChecker::block_check(HwaryoInfo hwaryo_info)
     //커쯔도 안되고 슌쯔도 안되는 경우 블록 불가
     if(!keotsu_possible && !syuntsu_possible){
         hwaryo_info.block_possible = true;
-        printf("(%d) - 블록 불가능 확인됨.\n", c_index);
+        DEBUG_LOG("(%d) - 블록 불가능 확인됨.\n", c_index);
         return ;
     }
 

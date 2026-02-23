@@ -1,6 +1,11 @@
 #include "YakuChecker.h"
 #include "../HwaryoInfo.h"
-
+#include "../hwaryo_config.h"
+#ifdef YAKU_TANYAO_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
 // 탕야오
 void YakuChecker::tangyao_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 {

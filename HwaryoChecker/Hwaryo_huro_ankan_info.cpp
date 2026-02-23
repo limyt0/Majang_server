@@ -1,29 +1,30 @@
 #include "HwaryoChecker.h"
 #include "GameData/Jaksadata.h"
-// #include "Jaksadata.h"
 #include <vector>
 #include "GameData/PeaAndBlock/HuroBlock.h"
 #include "GameData/PeaAndBlock/AnkanBlock.h"
-// #include <iostream>
-// #include "Consts_hwaryo.h"
-// #include "Yaku/YakuChecker.h"
-// #include "GameData.h"
-// #include "Enums.h"
+#include "hwaryo_config.h"
+#ifdef HWARYO_HURO_ANKEO_INFO_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
+
 void To_TsuBlock(std::vector<HwaryoInfo> * hwaryo_list, std::vector<int> block, bool huro);
 
 // HuroBlock 및 AnkanBlock을 TsuBlock으로 변환.
 void HwaryoChecker::HuroAnkan_To_TsuBlock(Jaksadata * jaksa)
 {
 
-    printf("후로블록을 TsuBlock으로 변환.\n");
+    DEBUG_LOG("후로블록을 TsuBlock으로 변환.\n");
 
     int huro_size = jaksa->hurolist.size();
-    printf("huro_size %d\n",huro_size);
+    DEBUG_LOG("huro_size %d\n",huro_size);
         
     // 후로블록을 TsuBlock으로 변환.
     for(int i=0;i<huro_size;i++)
     {
-        printf("a%d\n",i);
+        DEBUG_LOG("a%d\n",i);
         auto v = std::move(jaksa->hurolist[i]).get();
         To_TsuBlock(&hwaryo_list, v->tiles, true);
  
@@ -31,11 +32,11 @@ void HwaryoChecker::HuroAnkan_To_TsuBlock(Jaksadata * jaksa)
         // To_TsuBlock(&hwaryo_list, v.tiles, false);
  
 
-        printf("c%d\n",i);
+        DEBUG_LOG("c%d\n",i);
         
     }
 
-    printf("안깡블록을 TsuBlock으로 변환.\n");
+    DEBUG_LOG("안깡블록을 TsuBlock으로 변환.\n");
     // 안깡블록을 TsuBlock으로 변환.
     for(int i=0;i<jaksa->ankanList.size();i++)
     {
@@ -46,42 +47,42 @@ void HwaryoChecker::HuroAnkan_To_TsuBlock(Jaksadata * jaksa)
         // To_TsuBlock(&hwaryo_list, v.tiles, false);
     }
 
-    printf("후로 안깡 완료.\n");
+    DEBUG_LOG("후로 안깡 완료.\n");
 }
 
 void To_TsuBlock(std::vector<HwaryoInfo> * hwaryo_list, std::vector<int> block, bool huro)
 {
-    printf("To_TsuBlock1\n");
+    DEBUG_LOG("To_TsuBlock1\n");
     TsuBlock tsuBlock;
 
     int block_len = block.size();
     int min = 900;
     bool toi = false;//커쯔나 깡쯔
 
-    printf("To_TsuBlock2\n");
+    DEBUG_LOG("To_TsuBlock2\n");
     int block_size = block.size();
-    printf("Block size = %d\n", block_size);
+    DEBUG_LOG("Block size = %d\n", block_size);
 
-    if(block.size() > 4){printf("Block size error size is %d\n", block_size);}
+    if(block.size() > 4){DEBUG_LOG("Block size error size is %d\n", block_size);}
 
     for(int i=0;i < block_size;i++)
     {
-        printf("(%d)", i);
+        DEBUG_LOG("(%d)", i);
 
         int id = block[i];
 
-        printf("id= %d, ", id);
-        printf("min = %d, ", min);
+        DEBUG_LOG("id= %d, ", id);
+        DEBUG_LOG("min = %d, ", min);
 
-        if(id == min){toi = true;printf("toi true");}
-        else if(id < min){min = id;printf("toi false");}
+        if(id == min){toi = true;DEBUG_LOG("toi true");}
+        else if(id < min){min = id;DEBUG_LOG("toi false");}
 
-        printf("\n");
+        DEBUG_LOG("\n");
 
 
     }
 
-    printf("To_TsuBlock3\n");
+    DEBUG_LOG("To_TsuBlock3\n");
 
     tsuBlock.number = (min/10) % 10;
     tsuBlock.pae_type = min/100;
@@ -103,7 +104,7 @@ void To_TsuBlock(std::vector<HwaryoInfo> * hwaryo_list, std::vector<int> block, 
         tsuBlock.tsu_type = TsuType::Syuntsu;
         tsuBlock.huro = true;
     }
-    printf("To_TsuBlock4\n");
+    DEBUG_LOG("To_TsuBlock4\n");
 
     // 화료리스트에 업데이트
     for(int i=0;i<hwaryo_list->size();i++)

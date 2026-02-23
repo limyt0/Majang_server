@@ -1,5 +1,11 @@
 #include "YakuChecker.h"
 #include "../HwaryoInfo.h"
+#include "../hwaryo_config.h"
+#ifdef YAKU_PANSU_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
 // 판수 계산용. - 역만/2~6배 역만 계산.
 // 상위역 체크 및 역만 시 일반역 계산에서 제외하기 위한 처리.
 
@@ -13,7 +19,7 @@ void YakuChecker::yaku_su_update(std::vector<HwaryoInfo> *hwaryo_list)
     {
         HwaryoInfo * h = &(*hwaryo_list)[i];
         // h->scoreComponent.yakuman_su = 0;
-        printf("(yaku_su_update) yakuman---\n");
+        DEBUG_LOG("(yaku_su_update) yakuman---\n");
         // 역만
         if (h->yakumansate.guksa){h->scoreComponent.yakuman_su +=1;}
         if (h->yakumansate.cheonhwa){h->scoreComponent.yakuman_su +=1;}
@@ -35,7 +41,7 @@ void YakuChecker::yaku_su_update(std::vector<HwaryoInfo> *hwaryo_list)
         // 역만이 있는 경우 판수계산 안함.
         if(h->scoreComponent.yakuman_su > 0){continue;}
 
-        printf("(yaku_su_update) yaku---\n");
+        DEBUG_LOG("(yaku_su_update) yaku---\n");
     
         // 1판역
         if (h->yakustate.richi){h->scoreComponent.pansu +=1;}  //리치

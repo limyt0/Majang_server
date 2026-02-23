@@ -6,6 +6,12 @@
 #include "GameData/PeaAndBlock/HuroBlock.h"
 #include "GameData/PeaAndBlock/AnkanBlock.h"
 #include <vector>
+#include "../hwaryo_config.h"
+#ifdef YAKU_DORA_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
 
 // DoraCount Sum(DoraCount a, DoraCount b);
 void dora_count_from_vector(DoraCount * doraCount, GameData * game_data, std::vector<int> tiles);
@@ -21,16 +27,16 @@ void YakuChecker::dora_info_update(std::vector<HwaryoInfo> * hwaryo_list, Jaksad
    
     DoraCount doraCount;
 
-    printf("1");DoraCount_print(&doraCount);
+    DEBUG_LOG("1");DoraCount_print(&doraCount);
     // 마지막 화료패 한 장 체크
     dora_count_update_from_int(&doraCount, game_data, jaksa->lastTile);
     
-    printf("2");DoraCount_print(&doraCount);
+    DEBUG_LOG("2");DoraCount_print(&doraCount);
     // 손패 체크
     dora_count_from_vector(&doraCount, game_data, jaksa->sonTils);
     
 
-    printf("3");DoraCount_print(&doraCount);
+    DEBUG_LOG("3");DoraCount_print(&doraCount);
     // 후로블록 체크
     for(int i=0;i<jaksa->hurolist.size();i++)
     {
@@ -40,7 +46,7 @@ void YakuChecker::dora_info_update(std::vector<HwaryoInfo> * hwaryo_list, Jaksad
         // dora_count_from_vector(&doraCount, game_data, v.tiles);
     }
     
-    printf("4");DoraCount_print(&doraCount);
+    DEBUG_LOG("4");DoraCount_print(&doraCount);
     // 안깡블록 체크
     for(int i=0;i<jaksa->ankanList.size();i++)
     {
@@ -50,7 +56,7 @@ void YakuChecker::dora_info_update(std::vector<HwaryoInfo> * hwaryo_list, Jaksad
         // dora_count_from_vector(&doraCount, game_data, v.tiles);
     }
 
-    printf("5");DoraCount_print(&doraCount);
+    DEBUG_LOG("5");DoraCount_print(&doraCount);
     // 화료정보에 추가.
     dora_info_add(hwaryo_list, doraCount);
 
@@ -98,23 +104,23 @@ void dora_info_add(std::vector<HwaryoInfo> * hwaryo_list, DoraCount dora_count)
 
         HwaryoInfo * h = &(*hwaryo_list)[i];
 
-        printf("a.");
+        DEBUG_LOG("a.");
         DoraCount_print(&h->doraCount);
 
         h->doraCount.omote_dora = dora_count.omote_dora;
         h->doraCount.ura_dora = dora_count.ura_dora;
         h->doraCount.aka_dora = dora_count.aka_dora;
 
-        printf("b.");
+        DEBUG_LOG("b.");
         DoraCount_print(&h->doraCount);
     }
 }
 
 void DoraCount_print(DoraCount * doraCount)
 {
-    printf("(앞도라 %d)",doraCount->omote_dora);
-    printf("(뒷도라 %d)",doraCount->ura_dora);
-    printf("(적도라 %d)\n",doraCount->aka_dora);
+    DEBUG_LOG("(앞도라 %d)",doraCount->omote_dora);
+    DEBUG_LOG("(뒷도라 %d)",doraCount->ura_dora);
+    DEBUG_LOG("(적도라 %d)\n",doraCount->aka_dora);
 }
 // DoraCount Sum(DoraCount a, DoraCount b)
 // {

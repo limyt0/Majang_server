@@ -3,7 +3,12 @@
 #include "../Tsublock.h"
 #include <vector>
 #include "../Consts_hwaryo.h"
-// #include 
+#include "../hwaryo_config.h"
+#ifdef YAKU_GUKSA_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
 
 void YakuChecker::guksa(std::vector<HwaryoInfo> * hwaryo_list,  int * pae_count, int last_tile, int hwaryo_pae_type)
 {
@@ -25,7 +30,7 @@ void YakuChecker::guksa(std::vector<HwaryoInfo> * hwaryo_list,  int * pae_count,
 
     if(sum == 14 && guksa_possible)
     {   
-        // printf("(guksa) sum == 14\n");
+        // DEBUG_LOG("(guksa) sum == 14\n");
         TsuBlock tsuBlock;// = new TsuBlock();
         std::vector<TsuBlock> tsu_blocks;// = new std::vector<TsuBlock>();
         tsuBlock.tsu_type = TsuType::Guksa;
@@ -34,7 +39,7 @@ void YakuChecker::guksa(std::vector<HwaryoInfo> * hwaryo_list,  int * pae_count,
         HwaryoInfo h(tsu_blocks, pae_count);
         if (pae_count[last_tile / 10] == 2)
         {
-            printf("guksa 13 updating...\n");
+            DEBUG_LOG("guksa 13 updating...\n");
             h.yakumansate.guksa_13 = true;
             h.hwaryo_pae_type = hwaryo_pae_type;
             h.last_tile = last_tile;
@@ -46,7 +51,7 @@ void YakuChecker::guksa(std::vector<HwaryoInfo> * hwaryo_list,  int * pae_count,
         }
         else
         {
-            printf("guksa updating...\n");
+            DEBUG_LOG("guksa updating...\n");
             h.yakumansate.guksa = true;
             h.daegistate.Dangi = true;
             h.hwaryo_pae_type = hwaryo_pae_type;

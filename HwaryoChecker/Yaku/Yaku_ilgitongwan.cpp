@@ -1,5 +1,12 @@
 #include "YakuChecker.h"
 #include "../HwaryoInfo.h"
+#include "../hwaryo_config.h"
+#include "../hwaryo_config.h"
+#ifdef YAKU_ILGI_DEBUG
+    #define DEBUG_LOG(fmt, ...)
+#else
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
+#endif
 
 // 일기통관
 void YakuChecker::ilgitonggwan_info_update(std::vector<HwaryoInfo> * hwaryo_list)
