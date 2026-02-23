@@ -11,7 +11,8 @@ SRCS = test.cpp \
 	   $(wildcard GameData/*.cc) \
        $(wildcard GameData/PeaAndBlock/*.cpp) \
 	   $(wildcard HwaryoChecker/*.cpp) \
-	   $(wildcard HwaryoChecker/Yaku/*.cpp)
+	   $(wildcard HwaryoChecker/Yaku/*.cpp) \
+	   $(wildcard HwaryoChecker/Tenpai/*.cpp)
 
 OBJS = $(patsubst %.cpp,%.o,$(patsubst %.cc,%.o,$(SRCS)))
 TARGET = test
