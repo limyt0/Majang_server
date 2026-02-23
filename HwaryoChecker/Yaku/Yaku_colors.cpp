@@ -8,16 +8,22 @@
 // 혼일색 청일색 자일색.
 void YakuChecker::color_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 {
+    printf("color_info_update()\n");
     for(int i_=0;i_<hwaryo_list->size();i_++)
     {
+        printf("(i=%d)\n",  i_);
+
         HwaryoInfo * h = &(*hwaryo_list)[i_];
         bool type_exist[4] = {false, false, false, false};// 만통삭/자패
 
         for(int j_=0;j_<h->tsu_blocks.size();j_++)
         {
+            printf("(--) (i=%d, j=%d)\n",i_,  j_);
             TsuBlock b = h->tsu_blocks[j_];
             type_exist[b.pae_type] = true;
         }
+
+        printf("(i=%d) if condition...\n",  i_);
 
         if (!type_exist[0] && !type_exist[1] && !type_exist[2])
         {
@@ -38,7 +44,12 @@ void YakuChecker::color_info_update(std::vector<HwaryoInfo> * hwaryo_list)
             if(type_exist[PaeType::JaPae]){h->yakustate.hon_il = true;}
             else{h->yakustate.cheong_il = true;}
         }
+
+        printf("(i=%d) if condition...end\n",  i_);
+
     }
+    printf("color_info_update() function end\n");
+
 }
 
 // 구련보등 순정구련보등

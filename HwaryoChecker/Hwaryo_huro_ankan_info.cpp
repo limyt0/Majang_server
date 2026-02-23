@@ -24,17 +24,13 @@ void HwaryoChecker::HuroAnkan_To_TsuBlock(Jaksadata * jaksa)
     for(int i=0;i<huro_size;i++)
     {
         printf("a%d\n",i);
-        // break;
-        auto v = jaksa->hurolist[i].get();
-        // auto v = std::move(jaksa->hurolist[i]);
-
-        printf("b%d\n",i);
-        
-
+        auto v = std::move(jaksa->hurolist[i]).get();
         To_TsuBlock(&hwaryo_list, v->tiles, true);
+ 
         // auto v = jaksa->hurolist[i];
-        // To_TsuBlock(&hwaryo_list, v.tiles);
-    
+        // To_TsuBlock(&hwaryo_list, v.tiles, false);
+ 
+
         printf("c%d\n",i);
         
     }
@@ -45,8 +41,9 @@ void HwaryoChecker::HuroAnkan_To_TsuBlock(Jaksadata * jaksa)
     {
         auto v = std::move(jaksa->ankanList[i]).get();
         To_TsuBlock(&hwaryo_list, v->tiles, false);
+        
         // auto v = jaksa->ankanList[i];
-        // To_TsuBlock(&hwaryo_list, v.tiles);
+        // To_TsuBlock(&hwaryo_list, v.tiles, false);
     }
 
     printf("후로 안깡 완료.\n");
