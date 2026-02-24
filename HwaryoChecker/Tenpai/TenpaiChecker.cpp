@@ -57,6 +57,7 @@ TenpaiChecker::TenpaiChecker(GameData * gameData, Jaksadata * jaksa, int hwaryop
         {
             int dagipae = daegi_hubo[i];
             DEBUG_LOG("텐파이됨.\n");
+            tenpai = true;
             TenpaiInfo tenpai_info(&hwaryoChecker, dagipae);
             TenpaiList.push_back(tenpai_info);
             DEBUG_LOG("텐파이 업데이트\n");

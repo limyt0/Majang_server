@@ -20,12 +20,15 @@ class TenpaiChecker
     void daegi_huriten_update();
     void coupled_huriten_update();
     void guksa13_daegi_huriten_update();
+    void guryeon9_daegi_huriten_update();
+
 
     void print_huriten_array();
     
     public:
     bool hwapae_exist = false;
     bool guksa = false;
+    bool tenpai = false;
      
     // 대기패 후보.
     std::vector<int> daegi_hubo;

@@ -48,11 +48,13 @@ void TenpaiChecker::berim_huriten_update(Jaksadata * jaksa)
 // 후리텐 정보를 텐파이 대기패 정보에 추가.
 void TenpaiChecker::daegi_huriten_update()
 {
+    if(!tenpai){DEBUG_LOG("[HURITEN] 텐파이가 아니라서 후리텐 정보를 추가하지 않음.\n");;}
+
     // 국사 13면 후리텐 처리
     guksa13_daegi_huriten_update();
 
     //순정 구련보등 9면 대기 후리텐??
-
+    guryeon9_daegi_huriten_update();
 
     DEBUG_LOG("[HURITEN] 후리텐 정보를 텐파이 대기패 정보에 추가\n");
     for(int i=0;i<TenpaiList.size();i++)
@@ -72,17 +74,38 @@ void TenpaiChecker::coupled_huriten_update()
 
 }
 
+// 순정구련보등 9면 대기
+void TenpaiChecker::guryeon9_daegi_huriten_update()
+{
+
+    DEBUG_LOG("[HURITEN] 순정구련보등 9면대기 후리텐 체크\n");
+    if(TenpaiList[0].best->yakumansate.sun_guryeon){
+        int type = (TenpaiList[0].last_tile/100)*10;//만통삭 0 10 20
+        if(huriten[type+1] || huriten[type+2] || huriten[type+3] ||
+           huriten[type+4] || huriten[type+5] || huriten[type+6] ||
+           huriten[type+7] || huriten[type+8] || huriten[type+9])
+        {
+            print_huriten_array();
+            DEBUG_LOG("[HURITEN] 순정구련보등 9면대기 후리텐\n");
+            huriten[type+1] =true;huriten[type+2]=true;huriten[type+3]=true;
+            huriten[type+4] =true;huriten[type+5]=true;huriten[type+6]=true;
+            huriten[type+7] =true;huriten[type+8]=true;huriten[type+9]=true;
+            print_huriten_array();
+        }
+    }
+}
 
 
+// 국사 13면 대기 후리텐
 void TenpaiChecker::guksa13_daegi_huriten_update()
 {
-    DEBUG_LOG("[HURITEN] 국사무쌍 후리텐 체크\n");
-    if(!guksa)
-    {
-        DEBUG_LOG("[HURITEN] 국사무쌍 아님\n");
-        return;
-    }
-    DEBUG_LOG("[HURITEN] 국사무쌍 후리텐\n");
+    DEBUG_LOG("[HURITEN] 국사무쌍 13면대기 후리텐 체크\n");
+    // if(!guksa)
+    // {
+    //     DEBUG_LOG("[HURITEN] 국사무쌍 아님\n");
+    //     return;
+    // }
+    // DEBUG_LOG("[HURITEN] 국사무쌍 후리텐\n");
 
     // 13면 대기인 경우만 하나라도 후리텐이면 나머지도 후리텐.
     if(TenpaiList[0].best->yakumansate.guksa_13)
