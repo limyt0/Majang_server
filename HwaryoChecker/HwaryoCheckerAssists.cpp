@@ -8,7 +8,7 @@
 #ifdef HWARYO_CHECK_SONPAE_DEBUG
     #define DEBUG_LOG(fmt, ...)
 #else
-    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)      
+    #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)
 #endif
 
 void HwaryoChecker::pae_count_update(int id)
@@ -94,17 +94,26 @@ void HwaryoChecker::japae_meori_update(int pae_type)
 
 void HwaryoChecker::print_blocks()
 {
+
+#ifdef HWARYO_CHECK_SONPAE_DEBUG//
+#else
     for(int i=0;i<tsu_blocks.size();i++){
         tsu_blocks[i].print_contents();
     }
+#endif
+
 }
 
 void HwaryoChecker::print_tsu_blocks(std::vector<TsuBlock> b)
 {
+#ifdef HWARYO_CHECK_SONPAE_DEBUG//
+#else
     for(int i=0;i<b.size();i++)
     {
         b[i].print_contents();
     }
+#endif
+
 }
 
 // 자패 커쯔 체크.
@@ -175,7 +184,12 @@ void HwaryoChecker::block_check(HwaryoInfo hwaryo_info)
         {
             hwaryo_info.block_possible = true;
             hwaryo_list.push_back(hwaryo_info);
+
+#ifdef HWARYO_CHECK_SONPAE_DEBUG
+#else
             hwaryo_info.print_info(true, false, false, false, false);
+#endif
+
             return;
         }    
         
@@ -224,7 +238,10 @@ void HwaryoChecker::block_check(HwaryoInfo hwaryo_info)
         {
             k_hwaryo_info.block_possible = true;
             hwaryo_list.push_back(k_hwaryo_info);
+#ifdef HWARYO_CHECK_SONPAE_DEBUG
+#else
             k_hwaryo_info.print_info(true, false, false, false, false);
+#endif
             return ;
         }
 
@@ -251,7 +268,10 @@ void HwaryoChecker::block_check(HwaryoInfo hwaryo_info)
         {
             s_hwaryo_info.block_possible = true;
             hwaryo_list.push_back(s_hwaryo_info);
+#ifdef HWARYO_CHECK_SONPAE_DEBUG
+#else
             s_hwaryo_info.print_info(true, false, false, false, false);
+#endif
             return ;
         }
 

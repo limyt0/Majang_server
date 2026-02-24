@@ -7,8 +7,14 @@
 
 #ifdef HWARYO_CHECK_SONPAE_DEBUG
     #define DEBUG_LOG(fmt, ...)
+    #define DEBUG_BLOCKS()
+    #define DEBUG_TSU_BLOCKS(X)
+    // #define DEBUG_CONTENTS()
 #else
     #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)   
+    #define DEBUG_BLOCKS() print_blocks()
+    #define DEBUG_TSU_BLOCKS(X) print_tsu_blocks(X)
+    // #define DEBUG_CONTENTS() print_contents()
 #endif
 
 // 순수 손패만으로 화료 형태를 체크하기 위한 함수.
@@ -63,16 +69,17 @@ void HwaryoChecker::Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type){
     int meori_type = get_meori_type();
 
     // 머리 유형에 따라 분기.
-    if(meori_type == PaeType::None && !chitoi){printf("머리 없음!\n") ;return;}
+    if(meori_type == PaeType::None && !chitoi){DEBUG_LOG("머리 없음!\n") ;return;}
     else if(meori_type == PaeType::JaPae)
     { // 자패 머리인 경우. 머리 후보가 1개만 있는 것이 보장됨
         japae_meori_update(meori_type);
         DEBUG_LOG("자패 머리 업데이트됨.\n");
-        print_blocks();
+        DEBUG_BLOCKS();
 
         japae_keotsu_update();
         DEBUG_LOG("자패 커쯔 업데이트됨.\n");
-        print_blocks();
+        DEBUG_BLOCKS();
+
 
         // 커쯔가 안되는 경우가 치또이쯔일 수도 있음.
         // 자패 커쯔 체크 중에 화료 불가능한 경우
@@ -96,7 +103,7 @@ void HwaryoChecker::Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type){
         // 자패 머리를 'tsu_blocks'에 업데이트(나중에 머리 별로 따로 복사해줘야함.)
         japae_keotsu_update();
         DEBUG_LOG("자패 커쯔 업데이트됨.\n");
-        print_blocks();
+        DEBUG_BLOCKS();
 
         // // 머리후보의 숫자 후보들를 반환.
         std::vector<int> meori_hubo = get_supae_meorihubo(meori_type);
@@ -122,7 +129,7 @@ void HwaryoChecker::Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type){
             }
             
             DEBUG_LOG("su_tsuBlocks------------------start\n");
-            print_tsu_blocks(su_tsuBlocks);
+            DEBUG_TSU_BLOCKS(su_tsuBlocks);
             DEBUG_LOG("su_tsuBlocks------------------end\n");
 
             // pae_count에 머리 업데이트 
@@ -134,12 +141,17 @@ void HwaryoChecker::Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type){
             DEBUG_LOG("->%d\n", pae_count_su[meori_type*10 + meori_hubo_su]);
 
             DEBUG_LOG("수패 머리 업데이트됨.");
+#ifdef HWARYO_CHECK_SONPAE_DEBUG
+#else
             tsuBlock_su.print_contents();
+#endif
 
             japae_keotsu_update();
             DEBUG_LOG("자패 커쯔 업데이트됨\n");
+#ifdef HWARYO_CHECK_SONPAE_DEBUG
+#else
             tsuBlock_su.print_contents();
-
+#endif
 
             // 커쯔가 안되는 경우가 치또이쯔일 수도 있음.
             // 자패 커쯔 체크 중에 화료 불가능한 경우
@@ -154,6 +166,6 @@ void HwaryoChecker::Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type){
         
     }
 
-    // printf("last tile ------ %d\n", last_tile);
+    // DEBUG_LOG("last tile ------ %d\n", last_tile);
 
 }

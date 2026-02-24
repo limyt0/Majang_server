@@ -24,6 +24,7 @@ HwaryoInfo::~HwaryoInfo()
 
 void HwaryoInfo::print_info(bool block, bool hwaryo_tile, bool daegi, bool yaku, bool dora)
 {
+// #ifdef HWARYO_INFO_DEBUG
     if(block)
     {
         for(int i=0;i<tsu_blocks.size();i++)
@@ -74,5 +75,7 @@ void HwaryoInfo::print_info(bool block, bool hwaryo_tile, bool daegi, bool yaku,
     {
         // YakuChecker.print_dora(this);
     }
+// #else
+// #endif
 }
 

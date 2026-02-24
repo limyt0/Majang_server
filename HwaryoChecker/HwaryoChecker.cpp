@@ -16,17 +16,17 @@
 
 HwaryoChecker::HwaryoChecker(GameData * game_data, Jaksadata * jaksa, int hwaryopae_type){
 
-    // DEBUG_LOG("화료체크 시작\n");
+    DEBUG_LOG("화료체크 시작\n");
 
     // 손패에서 화료 형태를 체크.
     Hwaryo_check_sonpae(jaksa, hwaryopae_type);
 
-    // DEBUG_LOG("손패 화료 형태 체크 완료\n");
+    DEBUG_LOG("손패 화료 형태 체크 완료\n");
  
     // 쯔모패, 대기 정보 업데이트
     YakuChecker::info_update(&hwaryo_list, jaksa->lastTile, hwaryopae_type);
 
-    // DEBUG_LOG("쯔모패, 대기 정보 업데이트 완료\n");
+    DEBUG_LOG("쯔모패, 대기 정보 업데이트 완료\n");
     // for(int i=0;i<hwaryo_list.size();i++)
     // {
     //     hwaryo_list[i].print_info();
