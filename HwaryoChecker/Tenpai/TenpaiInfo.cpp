@@ -1,5 +1,6 @@
 #include "TenpaiInfo.h"
 #include "../HwaryoInfo.h"
+#include "../HwaryoChecker.h"
 #include "../hwaryo_config.h"
 #ifdef TENPAI_INFO_DEBUG
     #define DEBUG_LOG(fmt, ...)
@@ -7,48 +8,65 @@
     #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)    
 #endif
 
-// 기본 생성자 : 역없음 텐파이에서 사용.
-TenpaiInfo::TenpaiInfo()
-{
-    last_tile = 0;    // 대기패.
-    huriten = false; // 후리텐여부.
-    NoYaku = true; // 역없음여부.
-    
-    // 해석가능한 역 중에서 판수가 가장 높은 역 정보 저장
-    // HwaryoInfo hwaryo_info;
-    yakuman_su = 0; // 0 역만 아님 | 1 역만 | 2 더블역만 | 3 트리플 역만 ...
-    pansu = 0; // 판수
-    // 여러 역 상태.
-    // YakuState yakustate;
-    // // 역만 상태.
-    // YakumanState yakumansate;
-}
 
 // 역이 있는 텐파이의 경우 화료 정보 추가
-TenpaiInfo::TenpaiInfo(HwaryoInfo * hwaryo_info)
+TenpaiInfo::TenpaiInfo(HwaryoChecker * hwaryoChecekr, int LastTile)
 {
-    last_tile = hwaryo_info->last_tile;// 대기패.
-    DEBUG_LOG("[tenpai_info] yakuman_su = %d\n", last_tile);
-    huriten = false; // 후리텐여부.
-    NoYaku = false; // 역없음여부.
-    
-    // 해석가능한 역 중에서 판수가 가장 높은 역 정보 저장
-    // HwaryoInfo hwaryo_info;
+    last_tile = LastTile;//대기패.
+    int best_yakuman_su = 0;int i_ym = 0;
+    int best_pansu = 0;int i_y = 0;
 
-    // 0 역만 아님 | 1 역만 | 2 더블역만 | 3 트리플 역만 ...
-    yakuman_su = hwaryo_info->scoreComponent.yakuman_su;
-    DEBUG_LOG("[tenpai_info] yakuman_su = %d\n", yakuman_su);
+    // 블록 형태 경우의 수 별로 추가
+    for(int i=0;i< hwaryoChecekr->hwaryo_list.size();i++)
+    {
+        HwaryoInfo * h = &hwaryoChecekr->hwaryo_list[i];
+        
+        // 블록 형태 정보
+        TenpaiBlock_list t;
+        for(int j=0;j < h->tsu_blocks.size();j++)
+        {
+            t.tsu_blocks.push_back(h->tsu_blocks[j]);
+        }
+        // 대기 정보.(양면, 사보, 단기, 간짱, 변짱)
+        t.daegistate = h->daegistate;
+        
+        // n배 역만
+        t.yakuman_su = h->scoreComponent.yakuman_su;
+        if(t.yakuman_su > best_yakuman_su)
+        {
+            best_yakuman_su = t.yakuman_su;
+            i_ym = i;
+        }
+        
+        // 판수.
+        t.pansu = h->scoreComponent.pansu;
+        if(t.pansu > 0){t.pansu += h->scoreComponent.dora_pansu;}
+        if(t.pansu > best_pansu)
+        {
+            best_pansu = t.pansu;
+            i_y = i;
+        }
+        
+        // 역 정보
+        t.yakustate = h->yakustate;
+        t.yakumansate = h->yakumansate;
 
-    // 판수
-    pansu =  hwaryo_info->scoreComponent.pansu;
-    pansu +=  hwaryo_info->scoreComponent.dora_pansu;
-    DEBUG_LOG("[tenpai_info] pansu = %d\n", pansu);
-    
-    // 여러 역 상태.
-    yakustate = hwaryo_info->yakustate;
-    
-    // 역만 상태.
-    yakumansate = hwaryo_info->yakumansate;
+        tenpaiBlock_list.push_back(t);
+    }
+
+    if(best_yakuman_su > 0)
+    {   // 역만이 있는 경우.
+        best = &tenpaiBlock_list[i_ym];
+    }
+    else
+    {   // 역만이 아닌 경우
+        best = &tenpaiBlock_list[i_y];
+        if(best_pansu == 0)
+        {
+            NoYaku = true;
+        }
+    }
+
 }
 
 TenpaiInfo::~TenpaiInfo(){}
