@@ -19,6 +19,9 @@ class TenpaiChecker
     void berim_huriten_update(Jaksadata * jaksa);
     void daegi_huriten_update();
     void coupled_huriten_update();
+    void guksa13_daegi_huriten_update();
+
+    void print_huriten_array();
     
     public:
     bool hwapae_exist = false;
