@@ -28,9 +28,9 @@ TenpaiInfo::TenpaiInfo(HwaryoChecker * hwaryoChecekr, int LastTile)
         //     t.tsu_blocks.push_back(h->tsu_blocks[j]);
         // }
 
-        // 대기 정보.(양면, 사보만)
-        yang = yang || h->daegistate.Yang;
-        syabo = syabo || h->daegistate.Syabo;
+        // // 대기 정보.(양면, 사보만)
+        // yang = yang || h->daegistate.Yang;
+        // syabo = syabo || h->daegistate.Syabo;
         
         // n배 역만
         if(yakuman_su < h->scoreComponent.yakuman_su)

@@ -10,15 +10,15 @@
 
 void TenpaiChecker::print_daegi_list()
 {
+
     DEBUG_LOG("텐파이 대기패 : ");
+    if(!tenpai){DEBUG_LOG("(텐파이 아님)");}
+
+    if(huriten){DEBUG_LOG("(후리텐)");}
+
     for(int i=0;i < TenpaiList.size();i++)
     {
         DEBUG_LOG("%d(", TenpaiList[i].last_tile);
-        if(TenpaiList[i].huriten)
-        {
-            DEBUG_LOG("후리텐/");
-        }
-
         if(TenpaiList[i].NoYaku)
         {
             DEBUG_LOG("역없음");

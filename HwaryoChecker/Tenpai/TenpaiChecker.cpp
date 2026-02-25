@@ -18,18 +18,18 @@ TenpaiChecker::TenpaiChecker(GameData * gameData, Jaksadata * jaksa, int hwaryop
     DEBUG_LOG("[Tenpaichecker] 손패만으로 텐파이 여부를 체크하고 대기패 후보를 저장.\n");
     // 손패만으로 텐파이 여부를 체크하고 대기패 후보를 저장.
     Tenpai_sonpae_daegihubo_check(jaksa);
-    print_huriten_array();///TODO
+    print_huri_array();///TODO
 
 
     DEBUG_LOG("[Tenpaichecker] 패 종류별 후리텐 여부 false로 초기화.\n");
     // 패 종류별 후리텐 여부 false로 초기화
-    huriten_init();
-    print_huriten_array();///TODO
+    huri_init();
+    print_huri_array();///TODO
 
     DEBUG_LOG("[Tenpaichecker] 버림패 기반으로 패종류별 후리텐 정보 업데이트.\n");
     // 버림패 기반으로 패종류별 후리텐 정보 업데이트
-    berim_huriten_update(jaksa);
-    print_huriten_array();
+    berim_huri_update(jaksa);
+    print_huri_array();
     // int hwaryopae_type = 2;// 1론 2쯔모
 
     DEBUG_LOG("--------텐파이 체크!!-----------\n");
@@ -40,7 +40,7 @@ TenpaiChecker::TenpaiChecker(GameData * gameData, Jaksadata * jaksa, int hwaryop
         jaksa->lastTile = daegi_hubo[i];
     }
     DEBUG_LOG("\n");
-    print_huriten_array();
+    print_huri_array();
 
     int last_tile_saved = jaksa->lastTile;
     for(int i=0;i<daegi_hubo.size();i++)
@@ -66,10 +66,10 @@ TenpaiChecker::TenpaiChecker(GameData * gameData, Jaksadata * jaksa, int hwaryop
         DEBUG_LOG("텐파이체크(%d) 끝-------------(대기 후보 :%d)\n", i, daegi_hubo[i]);
     }
 
-    print_huriten_array();
+    print_huri_array();
     jaksa->lastTile = last_tile_saved;
 
-    DEBUG_LOG("[텐파이체커] 대기패 후리텐 업데이트\n");
+    DEBUG_LOG("[텐파이체커] 후리텐 여부 업데이트\n");
     daegi_huriten_update();
 
     DEBUG_LOG("[텐파이체커] 대기패 리스트\n");

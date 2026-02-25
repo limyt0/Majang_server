@@ -11,11 +11,11 @@ class TenpaiInfo
     public:
 
     int last_tile = 0;    // 대기패.
-    bool huriten = false; // 후리텐여부.
+    // bool huriten = false; // 후리텐여부.
     bool NoYaku = false; // 역없음여부.
 
-    bool yang = false; // 양면대기 여부 - 후리텐 체크용.
-    bool syabo = false; // 샤보대기 여부 - 후리텐 체크용.
+    // bool yang = false; // 양면대기 여부 - 후리텐 체크용.
+    // bool syabo = false; // 샤보대기 여부 - 후리텐 체크용.
 
     int yakuman_su = 0; // 0 역만 아님 | 1 역만 | 2 더블역만 | 3 트리플 역만 ...
     int pansu = 0; // 판수
