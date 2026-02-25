@@ -53,7 +53,7 @@ void TenpaiChecker::daegi_huriten_update()
     // 국사 13면 후리텐 처리
     guksa13_daegi_huriten_update();
 
-    //순정 구련보등 9면 대기 후리텐??
+    //순정 구련보등 9면 대기 후리텐
     guryeon9_daegi_huriten_update();
 
     DEBUG_LOG("[HURITEN] 후리텐 정보를 텐파이 대기패 정보에 추가\n");
@@ -79,7 +79,7 @@ void TenpaiChecker::guryeon9_daegi_huriten_update()
 {
 
     DEBUG_LOG("[HURITEN] 순정구련보등 9면대기 후리텐 체크\n");
-    if(TenpaiList[0].best->yakumansate.sun_guryeon){
+    if(TenpaiList[0].yakumansate.sun_guryeon){
         int type = (TenpaiList[0].last_tile/100)*10;//만통삭 0 10 20
         if(huriten[type+1] || huriten[type+2] || huriten[type+3] ||
            huriten[type+4] || huriten[type+5] || huriten[type+6] ||
@@ -108,7 +108,7 @@ void TenpaiChecker::guksa13_daegi_huriten_update()
     // DEBUG_LOG("[HURITEN] 국사무쌍 후리텐\n");
 
     // 13면 대기인 경우만 하나라도 후리텐이면 나머지도 후리텐.
-    if(TenpaiList[0].best->yakumansate.guksa_13)
+    if(TenpaiList[0].yakumansate.guksa_13)
     {
         DEBUG_LOG("[HURITEN] 국사무쌍 13면 후리텐\n");
         print_huriten_array();

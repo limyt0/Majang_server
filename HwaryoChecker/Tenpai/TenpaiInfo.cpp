@@ -22,49 +22,52 @@ TenpaiInfo::TenpaiInfo(HwaryoChecker * hwaryoChecekr, int LastTile)
         HwaryoInfo * h = &hwaryoChecekr->hwaryo_list[i];
         
         // 블록 형태 정보
-        TenpaiBlock_list t;
-        for(int j=0;j < h->tsu_blocks.size();j++)
-        {
-            t.tsu_blocks.push_back(h->tsu_blocks[j]);
-        }
-        // 대기 정보.(양면, 사보, 단기, 간짱, 변짱)
-        t.daegistate = h->daegistate;
+        // TenpaiBlock_list t;
+        // for(int j=0;j < h->tsu_blocks.size();j++)
+        // {
+        //     t.tsu_blocks.push_back(h->tsu_blocks[j]);
+        // }
+
+        // 대기 정보.(양면, 사보만)
+        yang = yang || h->daegistate.Yang;
+        syabo = syabo || h->daegistate.Syabo;
         
         // n배 역만
-        t.yakuman_su = h->scoreComponent.yakuman_su;
-        if(t.yakuman_su > best_yakuman_su)
+        if(yakuman_su < h->scoreComponent.yakuman_su)
         {
-            best_yakuman_su = t.yakuman_su;
+            yakuman_su = h->scoreComponent.yakuman_su;
             i_ym = i;
         }
         
         // 판수.
-        t.pansu = h->scoreComponent.pansu;
-        if(t.pansu > 0){t.pansu += h->scoreComponent.dora_pansu;}
-        if(t.pansu > best_pansu)
-        {
-            best_pansu = t.pansu;
-            i_y = i;
+        if(h->scoreComponent.pansu > 0){
+            int h_total_pansu = h->scoreComponent.pansu;
+            h_total_pansu += h->scoreComponent.dora_pansu;
+            if(pansu < h_total_pansu)
+            {
+                pansu = h_total_pansu;
+                i_y = i;
+            }
         }
         
         // 역 정보
-        t.yakustate = h->yakustate;
-        t.yakumansate = h->yakumansate;
 
-        tenpaiBlock_list.push_back(t);
+
+        // tenpaiBlock_list.push_back(t);
     }
 
-    if(best_yakuman_su > 0)
-    {   // 역만이 있는 경우.
-        best = &tenpaiBlock_list[i_ym];
+    if(yakuman_su > 0)
+    {   
+        // 역만이 있는 경우.
+        HwaryoInfo * h = &hwaryoChecekr->hwaryo_list[i_ym];
+        yakumansate = h->yakumansate;
     }
     else
-    {   // 역만이 아닌 경우
-        best = &tenpaiBlock_list[i_y];
-        if(best_pansu == 0)
-        {
-            NoYaku = true;
-        }
+    {   
+        // 역만이 아닌 경우
+        HwaryoInfo * h = &hwaryoChecekr->hwaryo_list[i_y];
+        if(pansu == 0){NoYaku = true;}
+        else{yakustate = h->yakustate;}
     }
 
 }

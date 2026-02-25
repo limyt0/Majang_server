@@ -25,13 +25,13 @@ void TenpaiChecker::print_daegi_list()
         }
         else
         {
-            if(TenpaiList[i].best->yakuman_su > 0)
+            if(TenpaiList[i].yakuman_su > 0)
             {
-                DEBUG_LOG("역만%d", TenpaiList[i].best->yakuman_su);
+                DEBUG_LOG("역만%d", TenpaiList[i].yakuman_su);
             }
             else
             {
-                DEBUG_LOG("%d판", TenpaiList[i].best->pansu);
+                DEBUG_LOG("%d판", TenpaiList[i].pansu);
             }
         }
         DEBUG_LOG(") ");
