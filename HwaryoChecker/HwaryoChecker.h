@@ -21,11 +21,11 @@ class HwaryoChecker
     bool japa_keotsu_break = false;
     bool chitoi = false;
 
-    HwaryoChecker(GameData * game_data, Jaksadata * jaksa, int hwaryopae_type);
+    HwaryoChecker(GameData * game_data, Jaksadata * jaksa, int hwaryopae_type, int last_tile);
     ~HwaryoChecker();
 
     // 손패에서 화료형태가 나오는지 체크
-    void Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type);
+    void Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type, int last_tile);
 
     // 손패 화료 형태 체크 이후 후로/안깡 블록을 추가
     void HuroAnkan_To_TsuBlock(Jaksadata * jaksa);

@@ -36,6 +36,7 @@ void YakuChecker::LastTile_update(std::vector<HwaryoInfo> * hwaryo_list, int Las
     DEBUG_LOG("LastTile_update()\n");
     DEBUG_LOG("hwaryo_list->size() = %d\n", hwaryo_list->size());
     DEBUG_LOG("LastTile = %d", LastTile);
+    // last_tile = LastTile;
     for(int i=0;i < hwaryo_list->size();i++)
     {
         DEBUG_LOG("LastTile = %d, hwaryo_list->size() = %d\n", LastTile, hwaryo_list->size());

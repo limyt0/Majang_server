@@ -6,7 +6,8 @@ class Jaksadata;
 class YakuChecker
 {
     private:
-    
+    // static int last_tile;
+
     static void LastTile_update(std::vector<HwaryoInfo> * hwaryo_list, int LastTile);
     static void Daegi_info_update(std::vector<HwaryoInfo> * hwaryo_list, int LastTile);
     static void hwaryopae_type_update(std::vector<HwaryoInfo> * hwaryo_list, int type);
@@ -81,7 +82,7 @@ class YakuChecker
     static void chitoitsu_checker(std::vector<HwaryoInfo> *, int *, bool *);
 
     // 도라
-    static void dora_info_update(std::vector<HwaryoInfo> *, Jaksadata *, GameData *);
+    static void dora_info_update(std::vector<HwaryoInfo> *, Jaksadata *, GameData *, int );
 
     // 판수 계산
     static void yaku_su_update(std::vector<HwaryoInfo> *hwaryo_list);

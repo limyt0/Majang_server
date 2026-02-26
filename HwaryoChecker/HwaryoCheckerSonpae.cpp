@@ -22,11 +22,11 @@
 // 후로를 뺀 손패 형태가 (2)/(3 2)/(3 3 2)/(3 3 3 2)인 경우에도 손패만으로 체크 가능.
 // 화료 형태가 갖춰진 목록을 hwaryo_list 변수에 저장함. (여러 가지로 해석될수 있는 경우 전부 다)
 // 멘젠으로만 가능한 국사무쌍, 구련보등, 치또이쯔도 여기서 미리 체크 (핑후는 풍패 정보때문에 따로 체크)
-void HwaryoChecker::Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type){
+void HwaryoChecker::Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type, int last_tile){
     
     sonTil = &jaksa->sonTils[0];
 
-    int last_tile = jaksa->lastTile;
+    // int last_tile = jaksa->lastTile;
 
     // 손패 갯수 -> 값이 1, 4, 7, 10, 13 만 가능해야 함.
     int sonTil_len = jaksa->sonTils.size();

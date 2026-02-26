@@ -45,22 +45,22 @@ TenpaiChecker::TenpaiChecker(GameData * gameData, Jaksadata * jaksa, int hwaryop
     int last_tile_saved = jaksa->lastTile;
     for(int i=0;i<daegi_hubo.size();i++)
     {
-        jaksa->lastTile = daegi_hubo[i];
+        // jaksa->lastTile = daegi_hubo[i];
         DEBUG_LOG("텐파이체크(%d) 시작-----------(대기 후보 :%d)\n", i, daegi_hubo[i]);
-        HwaryoChecker hwaryoChecker(gameData, jaksa, hwaryopae_type);
+        HwaryoChecker hwaryoChecker(gameData, jaksa, hwaryopae_type, daegi_hubo[i]);
 
         if(hwaryoChecker.hwaryo_list.size()  == 0)
         {
-            DEBUG_LOG("(텐파이 아님.)\n");
+            DEBUG_LOG("(대기패 아님.)\n");
         }
         else
         {
             int dagipae = daegi_hubo[i];
-            DEBUG_LOG("텐파이됨.\n");
+            DEBUG_LOG("대기패됨.\n");
             tenpai = true;
             TenpaiInfo tenpai_info(&hwaryoChecker, dagipae);
             TenpaiList.push_back(tenpai_info);
-            DEBUG_LOG("텐파이 업데이트\n");
+            DEBUG_LOG("대기패 업데이트\n");
             
         }
         DEBUG_LOG("텐파이체크(%d) 끝-------------(대기 후보 :%d)\n", i, daegi_hubo[i]);

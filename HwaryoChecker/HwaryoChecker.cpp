@@ -14,19 +14,19 @@
 #endif
 
 
-HwaryoChecker::HwaryoChecker(GameData * game_data, Jaksadata * jaksa, int hwaryopae_type){
+HwaryoChecker::HwaryoChecker(GameData * game_data, Jaksadata * jaksa, int hwaryopae_type, int last_tile){
 
     DEBUG_LOG("화료체크 시작\n");
 
     // 손패에서 화료 형태를 체크.
-    Hwaryo_check_sonpae(jaksa, hwaryopae_type);
+    Hwaryo_check_sonpae(jaksa, hwaryopae_type, last_tile);
 
     DEBUG_LOG("손패 화료 형태 체크 완료\n");
  
-    // 쯔모패, 대기 정보 업데이트
-    YakuChecker::info_update(&hwaryo_list, jaksa->lastTile, hwaryopae_type);
+    // 마지막패, 대기 정보 업데이트
+    YakuChecker::info_update(&hwaryo_list, last_tile, hwaryopae_type);
 
-    DEBUG_LOG("쯔모패, 대기 정보 업데이트 완료\n");
+    DEBUG_LOG("마지막패, 대기 정보 업데이트 완료\n");
     // for(int i=0;i<hwaryo_list.size();i++)
     // {
     //     hwaryo_list[i].print_info();
@@ -41,7 +41,7 @@ HwaryoChecker::HwaryoChecker(GameData * game_data, Jaksadata * jaksa, int hwaryo
         YakuChecker::yaku_update(&hwaryo_list, jaksa, game_data);
 
         // 도라, 뒷도라, 적도라 정보를 화료 리스트에 업데이트.
-        YakuChecker::dora_info_update(&hwaryo_list, jaksa, game_data);
+        YakuChecker::dora_info_update(&hwaryo_list, jaksa, game_data, last_tile);
     }
 
     // 역만 및 판수 업데이트 - 국사무쌍, 구련보등 포함.

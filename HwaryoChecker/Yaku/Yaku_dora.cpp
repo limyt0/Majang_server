@@ -22,14 +22,14 @@ void DoraCount_print(DoraCount * doraCount);
 
 // 앞도라, 뒷도라, 적도라 정보를 화료 리스트에 업데이트.
 // 손패 후로 안깡 모두 체크
-void YakuChecker::dora_info_update(std::vector<HwaryoInfo> * hwaryo_list, Jaksadata * jaksa, GameData * game_data)
+void YakuChecker::dora_info_update(std::vector<HwaryoInfo> * hwaryo_list, Jaksadata * jaksa, GameData * game_data, int last_tile)
 {
    
     DoraCount doraCount;
 
     DEBUG_LOG("1");DoraCount_print(&doraCount);
     // 마지막 화료패 한 장 체크
-    dora_count_update_from_int(&doraCount, game_data, jaksa->lastTile);
+    dora_count_update_from_int(&doraCount, game_data, last_tile);
     
     DEBUG_LOG("2");DoraCount_print(&doraCount);
     // 손패 체크
