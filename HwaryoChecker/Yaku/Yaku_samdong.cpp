@@ -10,7 +10,7 @@
  // 삼색 동순
 void YakuChecker::samdongsun_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 {
-    for(int i_=0;i_<hwaryo_list->size();i_++)
+    for(std::size_t i_=0;i_<hwaryo_list->size();i_++)
     {
         HwaryoInfo * h = &(*hwaryo_list)[i_];
         
@@ -25,7 +25,7 @@ void YakuChecker::samdongsun_info_update(std::vector<HwaryoInfo> * hwaryo_list)
         int syuns[4]; // 4개 블록 중 menzen_syn_count 갯수만큼만 사용.
 
         int index = 0;
-        for(int j=0;j<h->tsu_blocks.size();j++)
+        for(std::size_t j=0;j<h->tsu_blocks.size();j++)
         {
 
             TsuBlock b = h->tsu_blocks[j];
@@ -90,7 +90,7 @@ void YakuChecker::samdongsun_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 // 삼색 동각
 void YakuChecker::samdonggak_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 {
-    for(int i_=0;i_<hwaryo_list->size();i_++)
+    for(std::size_t i_=0;i_<hwaryo_list->size();i_++)
     {
         HwaryoInfo * h = &(*hwaryo_list)[i_];
         
@@ -105,7 +105,7 @@ void YakuChecker::samdonggak_info_update(std::vector<HwaryoInfo> * hwaryo_list)
         // 커쯔(깡쯔)의 패 id/10
         int k[4]; // 4개의 블록 중 k_len 갯수까지만 사용.
         int index = 0;
-        for(int j=0;j < h->tsu_blocks.size();j++)
+        for(std::size_t j=0;j < h->tsu_blocks.size();j++)
         {
             TsuBlock b = h->tsu_blocks[j];
             // 자패인 경우는 넘어감.

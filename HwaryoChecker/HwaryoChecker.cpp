@@ -52,7 +52,7 @@ HwaryoChecker::HwaryoChecker(GameData * game_data, Jaksadata * jaksa, int hwaryo
     {   
         
         DEBUG_LOG("화료성공.!!\n");
-        for(int i=0;i<hwaryo_list.size();i++)
+        for(std::size_t i=0;i<hwaryo_list.size();i++)
         {
             count++;
             DEBUG_LOG("화료 %d ----------------- start\n", count);

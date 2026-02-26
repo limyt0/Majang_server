@@ -34,7 +34,7 @@ TenpaiChecker::TenpaiChecker(GameData * gameData, Jaksadata * jaksa, int hwaryop
 
     DEBUG_LOG("--------텐파이 체크!!-----------\n");
     DEBUG_LOG("대기패 후보 :");
-    for(int i=0;i<daegi_hubo.size();i++)
+    for(std::size_t i=0;i<daegi_hubo.size();i++)
     {
         DEBUG_LOG(" %d",daegi_hubo[i]);
         jaksa->lastTile = daegi_hubo[i];
@@ -43,7 +43,7 @@ TenpaiChecker::TenpaiChecker(GameData * gameData, Jaksadata * jaksa, int hwaryop
     print_huri_array();
 
     int last_tile_saved = jaksa->lastTile;
-    for(int i=0;i<daegi_hubo.size();i++)
+    for(std::size_t i=0;i<daegi_hubo.size();i++)
     {
         // jaksa->lastTile = daegi_hubo[i];
         DEBUG_LOG("텐파이체크(%d) 시작-----------(대기 후보 :%d)\n", i, daegi_hubo[i]);

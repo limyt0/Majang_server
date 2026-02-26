@@ -15,7 +15,7 @@ void YakuChecker::yaku_su_update(std::vector<HwaryoInfo> *hwaryo_list)
     // 1. n배 역만 정보 업데이트.
     //     (0 역만 아님 | 1 역만 | 2 더블역만 | 3 트리플 역만)
     // 2. 판수 업데이트
-    for(int i=0;i<hwaryo_list->size();i++)
+    for(std::size_t i=0;i<hwaryo_list->size();i++)
     {
         HwaryoInfo * h = &(*hwaryo_list)[i];
         // h->scoreComponent.yakuman_su = 0;

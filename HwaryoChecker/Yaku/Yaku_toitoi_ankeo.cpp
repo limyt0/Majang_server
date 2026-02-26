@@ -13,7 +13,7 @@
 // 산깡즈, 스깡즈. - 깡쯔만 가능.
 void YakuChecker::toi_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 {
-    for(int i_=0;i_<hwaryo_list->size();i_++)
+    for(std::size_t i_=0;i_<hwaryo_list->size();i_++)
     {
         HwaryoInfo * h = &(*hwaryo_list)[i_];
 

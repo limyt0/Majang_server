@@ -10,7 +10,7 @@
 // 찬타 준찬타 혼노두 청노두
 void YakuChecker::chantanodu_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 {
-    for(int i_=0;i_<hwaryo_list->size();i_++)
+    for(std::size_t i_=0;i_<hwaryo_list->size();i_++)
     {
         HwaryoInfo * h = &(*hwaryo_list)[i_];
 
@@ -19,7 +19,7 @@ void YakuChecker::chantanodu_info_update(std::vector<HwaryoInfo> * hwaryo_list)
         int su_nodu_b_count = 0; // 999 111 99 11
         bool chanta_fail = false; // 나머지 경우.
         
-        for(int j_=0;j_<h->tsu_blocks.size();j_++)
+        for(std::size_t j_=0;j_<h->tsu_blocks.size();j_++)
         {   
             TsuBlock b = h->tsu_blocks[j_];
             

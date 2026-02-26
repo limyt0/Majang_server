@@ -107,7 +107,7 @@ void HwaryoChecker::Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type, i
 
         // // 머리후보의 숫자 후보들를 반환.
         std::vector<int> meori_hubo = get_supae_meorihubo(meori_type);
-        for(int i=0;i<meori_hubo.size();i++)
+        for(std::size_t i=0;i<meori_hubo.size();i++)
         {
             
             int meori_hubo_su = meori_hubo[i];
@@ -123,7 +123,7 @@ void HwaryoChecker::Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type, i
             su_tsuBlocks.push_back(tsuBlock_su);
 
             // tsu_block에 자패 커쯔 업데이트 ('tsu_blocks'에 저장된 것을 복사)
-            for (int i=0;i<tsu_blocks.size();i++)
+            for (std::size_t i=0;i<tsu_blocks.size();i++)
             {
                 su_tsuBlocks.push_back(tsu_blocks[i]);
             }

@@ -10,7 +10,7 @@
 // 핑후
 void YakuChecker::pinghu_info_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wind, int table_wind)
 {
-    for(int i=0;i<hwaryo_list->size();i++)
+    for(std::size_t i=0;i<hwaryo_list->size();i++)
     {
         HwaryoInfo * h = &(*hwaryo_list)[i];
         
@@ -23,7 +23,7 @@ void YakuChecker::pinghu_info_update(std::vector<HwaryoInfo> * hwaryo_list, int 
         // 양면대기가 아닌 경우 핑후 불가.
         if(!h->daegistate.Yang){h->yakustate.pinghu = false;continue;}
 
-        for(int j=0;j<h->tsu_blocks.size();j++)
+        for(std::size_t j=0;j<h->tsu_blocks.size();j++)
         {
             TsuBlock b = h->tsu_blocks[j];
             if(b.tsu_type == TsuType::Meori)

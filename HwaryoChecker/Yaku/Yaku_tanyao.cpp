@@ -9,10 +9,10 @@
 // 탕야오
 void YakuChecker::tangyao_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 {
-        for(int i=0;i<hwaryo_list->size();i++)
+        for(std::size_t i=0;i<hwaryo_list->size();i++)
         {
             HwaryoInfo * h = &(*hwaryo_list)[i];
-            for(int j=0;j<h->tsu_blocks.size();j++)
+            for(std::size_t j=0;j<h->tsu_blocks.size();j++)
             {
                 TsuBlock b = h->tsu_blocks[j];
                 // 자패가 하나라도 있으면 탕야오 불가

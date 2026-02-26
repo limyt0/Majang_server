@@ -38,7 +38,7 @@ void YakuChecker::dora_info_update(std::vector<HwaryoInfo> * hwaryo_list, Jaksad
 
     DEBUG_LOG("3");DoraCount_print(&doraCount);
     // 후로블록 체크
-    for(int i=0;i<jaksa->hurolist.size();i++)
+    for(std::size_t i=0;i<jaksa->hurolist.size();i++)
     {
         auto v = std::move(jaksa->hurolist[i]).get();
         dora_count_from_vector(&doraCount, game_data, v->tiles);
@@ -48,7 +48,7 @@ void YakuChecker::dora_info_update(std::vector<HwaryoInfo> * hwaryo_list, Jaksad
     
     DEBUG_LOG("4");DoraCount_print(&doraCount);
     // 안깡블록 체크
-    for(int i=0;i<jaksa->ankanList.size();i++)
+    for(std::size_t i=0;i<jaksa->ankanList.size();i++)
     {
         auto v = std::move(jaksa->ankanList[i]).get();
         dora_count_from_vector(&doraCount, game_data, v->tiles);
@@ -64,7 +64,7 @@ void YakuChecker::dora_info_update(std::vector<HwaryoInfo> * hwaryo_list, Jaksad
 
 void dora_count_from_vector(DoraCount * doraCount, GameData * game_data, std::vector<int> tiles)
 {
-    for(int i = 0; i < tiles.size(); i++)
+    for(std::size_t i = 0; i < tiles.size(); i++)
     {
         int target = tiles[i];
         dora_count_update_from_int(doraCount, game_data, target);
@@ -85,7 +85,7 @@ void dora_count_update_from_int(DoraCount * doraCount, GameData * game_data, int
 int counting_dora(std::vector<int> dora, int target)
 {
     int result = 0;
-    for(int i=0;i<dora.size();i++)
+    for(std::size_t i=0;i<dora.size();i++)
     {
         if(target/10 == dora[i] / 10)
         {
@@ -99,7 +99,7 @@ int counting_dora(std::vector<int> dora, int target)
 
 void dora_info_add(std::vector<HwaryoInfo> * hwaryo_list, DoraCount dora_count)
 {
-    for(int i=0;i<hwaryo_list->size();i++)
+    for(std::size_t i=0;i<hwaryo_list->size();i++)
     {
 
         HwaryoInfo * h = &(*hwaryo_list)[i];

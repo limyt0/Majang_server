@@ -11,7 +11,7 @@
 // 일기통관
 void YakuChecker::ilgitonggwan_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 {
-    for(int i=0;i<hwaryo_list->size();i++)
+    for(std::size_t i=0;i<hwaryo_list->size();i++)
     {
         HwaryoInfo * h = &(*hwaryo_list)[i];
 
@@ -26,7 +26,7 @@ void YakuChecker::ilgitonggwan_info_update(std::vector<HwaryoInfo> * hwaryo_list
         bool man[3] = {false, false, false};
         bool tong[3] = {false, false, false};
         bool sak[3] = {false, false, false};
-        for(int j=0;j<h->tsu_blocks.size();j++)
+        for(std::size_t j=0;j<h->tsu_blocks.size();j++)
         {   
             TsuBlock b = h->tsu_blocks[j];
             // 슌쯔 블록만 체크.

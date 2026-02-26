@@ -13,13 +13,13 @@
 void YakuChecker::dragon_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 {
     // (350 백)(360 발)(370 중)
-    for(int i=0;i<hwaryo_list->size();i++)
+    for(std::size_t i=0;i<hwaryo_list->size();i++)
     {
         // 삼원패 머리
         bool dragon_meori[3] = {false, false, false};
 
         HwaryoInfo * h = &(*hwaryo_list)[i];
-        for(int j=0;j<h->tsu_blocks.size();j++)
+        for(std::size_t j=0;j<h->tsu_blocks.size();j++)
         {   
             TsuBlock b = h->tsu_blocks[j];
             // 자패 중에서, 

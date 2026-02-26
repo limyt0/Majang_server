@@ -38,7 +38,7 @@ void HwaryoChecker::HuroAnkan_To_TsuBlock(Jaksadata * jaksa)
 
     DEBUG_LOG("안깡블록을 TsuBlock으로 변환.\n");
     // 안깡블록을 TsuBlock으로 변환.
-    for(int i=0;i<jaksa->ankanList.size();i++)
+    for(std::size_t i=0;i<jaksa->ankanList.size();i++)
     {
         auto v = std::move(jaksa->ankanList[i]).get();
         To_TsuBlock(&hwaryo_list, v->tiles, false);
@@ -107,7 +107,7 @@ void To_TsuBlock(std::vector<HwaryoInfo> * hwaryo_list, std::vector<int> block, 
     DEBUG_LOG("To_TsuBlock4\n");
 
     // 화료리스트에 업데이트
-    for(int i=0;i<hwaryo_list->size();i++)
+    for(std::size_t i=0;i<hwaryo_list->size();i++)
     {
         (*hwaryo_list)[i].tsu_blocks.push_back(tsuBlock);
     }

@@ -37,7 +37,7 @@ void YakuChecker::LastTile_update(std::vector<HwaryoInfo> * hwaryo_list, int Las
     DEBUG_LOG("hwaryo_list->size() = %d\n", hwaryo_list->size());
     DEBUG_LOG("LastTile = %d", LastTile);
     // last_tile = LastTile;
-    for(int i=0;i < hwaryo_list->size();i++)
+    for(std::size_t i=0;i < hwaryo_list->size();i++)
     {
         DEBUG_LOG("LastTile = %d, hwaryo_list->size() = %d\n", LastTile, hwaryo_list->size());
         (*hwaryo_list)[i].last_tile = LastTile;
@@ -49,7 +49,7 @@ void YakuChecker::LastTile_update(std::vector<HwaryoInfo> * hwaryo_list, int Las
 // 론,쯔모 여부 및 타입 업데이트 - 창깡, 영상개화, 해저로월, 하저로어 포함.
 void YakuChecker::hwaryopae_type_update(std::vector<HwaryoInfo> * hwaryo_list, int type)
 {
-    for(int i=0;i<hwaryo_list->size();i++)
+    for(std::size_t i=0;i<hwaryo_list->size();i++)
     {
         (*hwaryo_list)[i].hwaryo_pae_type = type;
     }
@@ -63,10 +63,10 @@ void YakuChecker::Daegi_info_update(std::vector<HwaryoInfo> * hwaryo_list, int L
     int LastTile_type = LastTile /100;
     int LastTile_num = (LastTile / 10 ) % 10;
 
-    for(int i=0;i<hwaryo_list->size();i++)
+    for(std::size_t i=0;i<hwaryo_list->size();i++)
     {
         HwaryoInfo * h = &((*hwaryo_list)[i]);
-        for(int j=0;j<h->tsu_blocks.size();j++)
+        for(std::size_t j=0;j<h->tsu_blocks.size();j++)
         {
             TsuBlock b = h->tsu_blocks[j];
             if(b.pae_type == LastTile_type)
@@ -105,10 +105,10 @@ void YakuChecker::Daegi_info_update(std::vector<HwaryoInfo> * hwaryo_list, int L
 // 후로 카운트 업데이트, 슌쯔 수, 커쯔 깡쯔 후로 여부 구분해서 카운트 업데이트
 void YakuChecker::bcounts_update(std::vector<HwaryoInfo> * hwaryo_list)
 {
-    for(int i=0;i<hwaryo_list->size();i++)
+    for(std::size_t i=0;i<hwaryo_list->size();i++)
     {
         HwaryoInfo * h = &((*hwaryo_list)[i]);
-        for(int j=0;j<h->tsu_blocks.size();j++)
+        for(std::size_t j=0;j<h->tsu_blocks.size();j++)
         {   
             TsuBlock b = h->tsu_blocks[j];
             

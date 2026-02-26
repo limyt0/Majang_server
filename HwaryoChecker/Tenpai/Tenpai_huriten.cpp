@@ -25,7 +25,7 @@ void TenpaiChecker::berim_huri_update(Jaksadata * jaksa)
 {
     auto berims = std::move(jaksa->berims).get();
     
-    for(int i=0;i < berims->berimBeas.size();i++)
+    for(std::size_t i=0;i < berims->berimBeas.size();i++)
     {
         // 버린 패.
         int index = berims->berimBeas[i]/10;
@@ -48,7 +48,7 @@ void TenpaiChecker::berim_huri_update(Jaksadata * jaksa)
 // 대기패 중에 버린패가 있는지를 확인하고 후리텐 여부 업데이트.
 void TenpaiChecker::daegi_huriten_update()
 {
-    for(int i=0;i<TenpaiList.size();i++)
+    for(std::size_t i=0;i<TenpaiList.size();i++)
     {
         if(huri[TenpaiList[i].last_tile/10])
         {

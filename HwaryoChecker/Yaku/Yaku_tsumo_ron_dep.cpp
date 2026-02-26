@@ -13,7 +13,7 @@
 void YakuChecker::tsumo_ron_type_depended_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 {
     // 영상개화, 창깡, 해저로월, 하저로어, 천화, 지화
-    for(int i_=0;i_<hwaryo_list->size();i_++)
+    for(std::size_t i_=0;i_<hwaryo_list->size();i_++)
     {
         HwaryoInfo * h = &(*hwaryo_list)[i_];
         if(h->hwaryo_pae_type == HwaryoPaeType::NormalRon){break;}
@@ -48,7 +48,7 @@ void YakuChecker::tsumo_ron_type_depended_info_update(std::vector<HwaryoInfo> * 
 // 멘젠 쯔모
 void YakuChecker::menzen_tsumo_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 {
-    for(int i_=0;i_<hwaryo_list->size();i_++)
+    for(std::size_t i_=0;i_<hwaryo_list->size();i_++)
     {
         HwaryoInfo * h = &(*hwaryo_list)[i_];
         if (HwaryoPaeType::is_ron(h->hwaryo_pae_type))

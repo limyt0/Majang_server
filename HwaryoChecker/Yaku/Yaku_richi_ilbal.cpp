@@ -13,7 +13,7 @@
 
 void YakuChecker::rich_ilbal_info_update(std::vector<HwaryoInfo> * hwaryo_list, int richi_type, bool is_ilbal)
 {
-    for(int i_=0;i_<hwaryo_list->size();i_++)
+    for(std::size_t i_=0;i_<hwaryo_list->size();i_++)
     {
         HwaryoInfo * h = &(*hwaryo_list)[i_];
         if(richi_type == RichiType::Richied)

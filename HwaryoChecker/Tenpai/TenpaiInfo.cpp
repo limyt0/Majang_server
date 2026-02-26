@@ -13,11 +13,13 @@
 TenpaiInfo::TenpaiInfo(HwaryoChecker * hwaryoChecekr, int LastTile)
 {
     last_tile = LastTile;//대기패.
-    int best_yakuman_su = 0;int i_ym = 0;
-    int best_pansu = 0;int i_y = 0;
+    // int best_yakuman_su = 0;
+    int i_ym = 0;
+    // int best_pansu = 0;
+    int i_y = 0;
 
     // 블록 형태 경우의 수 별로 추가
-    for(int i=0;i< hwaryoChecekr->hwaryo_list.size();i++)
+    for(std::size_t i=0;i< hwaryoChecekr->hwaryo_list.size();i++)
     {
         HwaryoInfo * h = &hwaryoChecekr->hwaryo_list[i];
         

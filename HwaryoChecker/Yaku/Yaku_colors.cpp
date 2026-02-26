@@ -15,14 +15,14 @@
 void YakuChecker::color_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 {
     DEBUG_LOG("color_info_update()\n");
-    for(int i_=0;i_<hwaryo_list->size();i_++)
+    for(std::size_t i_=0;i_<hwaryo_list->size();i_++)
     {
         DEBUG_LOG("(i=%d)\n",  i_);
 
         HwaryoInfo * h = &(*hwaryo_list)[i_];
         bool type_exist[4] = {false, false, false, false};// 만통삭/자패
 
-        for(int j_=0;j_<h->tsu_blocks.size();j_++)
+        for(std::size_t j_=0;j_<h->tsu_blocks.size();j_++)
         {
             DEBUG_LOG("(--) (i=%d, j=%d)\n",i_,  j_);
             TsuBlock b = h->tsu_blocks[j_];
@@ -141,7 +141,7 @@ void YakuChecker::guryeon(std::vector<HwaryoInfo> * hwaryo_list, int* pae_count_
 void YakuChecker::nok_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 {
 
-    for(int i_=0;i_<hwaryo_list->size();i_++)
+    for(std::size_t i_=0;i_<hwaryo_list->size();i_++)
     {
         HwaryoInfo * h = &(*hwaryo_list)[i_];
 
@@ -151,7 +151,7 @@ void YakuChecker::nok_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 
         bool nok_possible = true;
         
-        for(int j_=0;j_<h->tsu_blocks.size();j_++)
+        for(std::size_t j_=0;j_<h->tsu_blocks.size();j_++)
         {
 
             TsuBlock b = h->tsu_blocks[j_];

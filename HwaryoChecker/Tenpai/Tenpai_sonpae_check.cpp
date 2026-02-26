@@ -110,7 +110,7 @@ void TenpaiChecker::Tenpai_sonpae_daegihubo_check(Jaksadata * jaksa)
     // std::string hubo_string = "";
     // foreach(int d in daegi_hubo)
     DEBUG_LOG("대기 후보 - ");
-    for(int i=0;i< daegi_hubo.size();i++)
+    for(std::size_t i=0;i< daegi_hubo.size();i++)
     {
         // hubo_string += $" {d}";
         DEBUG_LOG(" %d", daegi_hubo[i]);

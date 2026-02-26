@@ -12,10 +12,10 @@
 // 자풍 장풍 체크 // 동 남 서 북 1 2 3 4로 가정.
 void YakuChecker::wind_info_update(std::vector<HwaryoInfo> * hwaryo_list, int seat_wind, int table_wind)
 {
-    for(int i=0;i<hwaryo_list->size();i++)
+    for(std::size_t i=0;i<hwaryo_list->size();i++)
     {
         HwaryoInfo * h = &(*hwaryo_list)[i];
-        for(int j=0;j<h->tsu_blocks.size();j++)
+        for(std::size_t j=0;j<h->tsu_blocks.size();j++)
         {   
             TsuBlock b = h->tsu_blocks[j];
             // 자패 중에서

@@ -27,7 +27,7 @@ void HwaryoInfo::print_info(bool block, bool hwaryo_tile, bool daegi, bool yaku,
 // #ifdef HWARYO_INFO_DEBUG
     if(block)
     {
-        for(int i=0;i<tsu_blocks.size();i++)
+        for(std::size_t i=0;i<tsu_blocks.size();i++)
         {
             tsu_blocks[i].print_contents();
         }

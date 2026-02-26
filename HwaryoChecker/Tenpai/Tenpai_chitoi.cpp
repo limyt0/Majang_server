@@ -31,7 +31,7 @@ void TenpaiChecker::chitoi_check()
         // 이미 대기후보에 있으면 추가하지 않음.
         bool need_add = true;
 
-        for(int i=0;i<daegi_hubo.size();i++)
+        for(std::size_t i=0;i<daegi_hubo.size();i++)
         {
             if(daegi_hubo[i]/10 == daegi_index){need_add = false;}
         }

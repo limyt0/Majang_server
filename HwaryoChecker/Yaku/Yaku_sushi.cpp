@@ -10,12 +10,12 @@
 void YakuChecker::sushi_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 {
 
-    for(int i_=0;i_<hwaryo_list->size();i_++)
+    for(std::size_t i_=0;i_<hwaryo_list->size();i_++)
     {
         int _count = 0; //동남서북 다 있는지
         int men_count = 0;//동남서북 멘쯔 카운트
         HwaryoInfo * h = &(*hwaryo_list)[i_];
-        for(int j_=0;j_<h->tsu_blocks.size();j_++)
+        for(std::size_t j_=0;j_<h->tsu_blocks.size();j_++)
         {
             TsuBlock b = h->tsu_blocks[j_];
             if(b.pae_type == PaeType::JaPae)

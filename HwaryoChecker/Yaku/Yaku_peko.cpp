@@ -10,7 +10,7 @@
 // 이페코 량페코
 void YakuChecker::peko_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 {
-    for(int i=0;i<hwaryo_list->size();i++)
+    for(std::size_t i=0;i<hwaryo_list->size();i++)
     {
         HwaryoInfo * h = &(*hwaryo_list)[i];
         int menzen_syn_count = h->bCounts.syun - h->bCounts.huro_syun;
@@ -26,7 +26,7 @@ void YakuChecker::peko_info_update(std::vector<HwaryoInfo> * hwaryo_list)
 
         int pekko_count = 0;
         int index = 0;
-        for(int j=0;j<h->tsu_blocks.size();j++)
+        for(std::size_t j=0;j<h->tsu_blocks.size();j++)
         {   
             TsuBlock b = h->tsu_blocks[j];
             // 후로된 블록은 체크안함.

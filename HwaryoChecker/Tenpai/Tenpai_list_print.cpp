@@ -16,7 +16,7 @@ void TenpaiChecker::print_daegi_list()
 
     if(huriten){DEBUG_LOG("(후리텐)");}
 
-    for(int i=0;i < TenpaiList.size();i++)
+    for(std::size_t i=0;i < TenpaiList.size();i++)
     {
         DEBUG_LOG("%d(", TenpaiList[i].last_tile);
         if(TenpaiList[i].NoYaku)
