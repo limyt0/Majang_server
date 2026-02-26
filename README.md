@@ -11,6 +11,7 @@
 ```bash
 sudo apt install protobuf-compiler
 ```
+### TODO
  - [ ] TODO : Make를 bash로 바꾸기.
  - [x] TODO : 작사의 last tile 로직 변경.
  - [ ] TODO : 텐파이 체크에서 뒷도라뜰수 있음.- 로직 수정 필요.(화료시점에서만 해야됨.)
