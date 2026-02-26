@@ -26,17 +26,16 @@ void YakuChecker::dora_info_update(std::vector<HwaryoInfo> * hwaryo_list, Jaksad
 {
    
     DoraCount doraCount;
-
     DEBUG_LOG("1");DoraCount_print(&doraCount);
+
     // 마지막 화료패 한 장 체크
     dora_count_update_from_int(&doraCount, game_data, last_tile);
-    
     DEBUG_LOG("2");DoraCount_print(&doraCount);
+
     // 손패 체크
     dora_count_from_vector(&doraCount, game_data, jaksa->sonTils);
-    
-
     DEBUG_LOG("3");DoraCount_print(&doraCount);
+
     // 후로블록 체크
     for(std::size_t i=0;i<jaksa->hurolist.size();i++)
     {
@@ -45,8 +44,8 @@ void YakuChecker::dora_info_update(std::vector<HwaryoInfo> * hwaryo_list, Jaksad
         // auto v = jaksa->hurolist[i];
         // dora_count_from_vector(&doraCount, game_data, v.tiles);
     }
-    
     DEBUG_LOG("4");DoraCount_print(&doraCount);
+    
     // 안깡블록 체크
     for(std::size_t i=0;i<jaksa->ankanList.size();i++)
     {
@@ -55,8 +54,12 @@ void YakuChecker::dora_info_update(std::vector<HwaryoInfo> * hwaryo_list, Jaksad
         // auto v = jaksa->ankanList[i];
         // dora_count_from_vector(&doraCount, game_data, v.tiles);
     }
-
     DEBUG_LOG("5");DoraCount_print(&doraCount);
+    
+    // 빼기리스트 체크
+    dora_count_from_vector(&doraCount, game_data, jaksa->nukilist);
+    DEBUG_LOG("6");DoraCount_print(&doraCount);
+    
     // 화료정보에 추가.
     dora_info_add(hwaryo_list, doraCount);
 

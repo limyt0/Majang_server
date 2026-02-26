@@ -45,6 +45,7 @@ TenpaiInfo::TenpaiInfo(HwaryoChecker * hwaryoChecekr, int LastTile)
         if(h->scoreComponent.pansu > 0){
             int h_total_pansu = h->scoreComponent.pansu;
             h_total_pansu += h->scoreComponent.dora_pansu;
+            h_total_pansu += h->scoreComponent.nuki_pansu;
             if(pansu < h_total_pansu)
             {
                 pansu = h_total_pansu;
