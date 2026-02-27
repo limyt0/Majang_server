@@ -15,7 +15,7 @@ class HwaryoInfo
     int pae_count[38];
     bool block_possible = false;
 
-    // 쯔모패 대기 상태.
+    // 마지막 패 대기 상태.
     Daegistate daegistate;
     int last_tile = 0;
     int hwaryo_pae_type = 0;
@@ -33,7 +33,10 @@ class HwaryoInfo
     // n배 역만상태, 판수, 부수, 오야여부
     ScoreComponent scoreComponent;
 
-    HwaryoInfo(std::vector<TsuBlock> tsu_blocks_, int * pae_count_);
+    // 부수계산
+    void Busu(int seat_wind, int table_wind);
+
+    HwaryoInfo(std::vector<TsuBlock> tsu_blocks_, int * pae_count_, int hwaryo_pae_type_);
     ~HwaryoInfo();
     void print_info(bool block, bool hwaryo_tile, bool daegi, bool yaku, bool dora);
     

@@ -111,7 +111,7 @@ void YakuChecker::guryeon(std::vector<HwaryoInfo> * hwaryo_list, int* pae_count_
     std::vector<TsuBlock> tsu_blocks;
     tsuBlock.tsu_type = TsuType::Guryeon;
     tsu_blocks.push_back(tsuBlock);
-    HwaryoInfo h(tsu_blocks, pae_count);
+    HwaryoInfo h(tsu_blocks, pae_count, 0);// 0도 괜찮음. 값이 영향 안줌.
     if (sun_guryeon)
     {
         h.yakumansate.sun_guryeon = true;

@@ -225,7 +225,7 @@ void HwaryoChecker::block_check(HwaryoInfo hwaryo_info)
 
     if (keotsu_possible)
     {   
-        HwaryoInfo k_hwaryo_info(hwaryo_info.tsu_blocks, hwaryo_info.pae_count);
+        HwaryoInfo k_hwaryo_info(hwaryo_info.tsu_blocks, hwaryo_info.pae_count, hwaryo_info.hwaryo_pae_type);
         // 커쯔 패 업데이트
         k_hwaryo_info.pae_count[c_index] = 0;
         TsuBlock keotsu_block;
@@ -253,7 +253,7 @@ void HwaryoChecker::block_check(HwaryoInfo hwaryo_info)
 
     if (syuntsu_possible)
     {
-        HwaryoInfo s_hwaryo_info(hwaryo_info.tsu_blocks, hwaryo_info.pae_count);
+        HwaryoInfo s_hwaryo_info(hwaryo_info.tsu_blocks, hwaryo_info.pae_count, hwaryo_info.hwaryo_pae_type);
         // 슌쯔 패 업데이트
         s_hwaryo_info.pae_count[c_index] -= 1;
         s_hwaryo_info.pae_count[c_index + 1] -= 1;

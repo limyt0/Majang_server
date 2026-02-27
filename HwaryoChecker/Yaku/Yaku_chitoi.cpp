@@ -39,7 +39,7 @@ void YakuChecker::chitoitsu_checker(std::vector<HwaryoInfo> * hwaryo_list, int *
     
     if (meori_count == 7)
     {
-        HwaryoInfo HwaryoInfo(tsu_blocks, pae_count);
+        HwaryoInfo HwaryoInfo(tsu_blocks, pae_count, 0);// 화료패타입 0 -> 나중에 업데이트됨.
         HwaryoInfo.yakustate.chitoitsu = true;
         hwaryo_list->push_back(HwaryoInfo);
         *chitoi = true;

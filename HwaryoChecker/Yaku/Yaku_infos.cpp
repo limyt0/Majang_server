@@ -55,7 +55,7 @@ void YakuChecker::hwaryopae_type_update(std::vector<HwaryoInfo> * hwaryo_list, i
     }
 }
 
-
+int daegi_state_sum(Daegistate * daegistate);
 // 쯔모/론 패가 있는 블록을 찾아서 대기 타입 정보 업데이트.
 // 대기타입이 여러가지로 해석될 수 있으면 블록별로 저장.
 void YakuChecker::Daegi_info_update(std::vector<HwaryoInfo> * hwaryo_list, int LastTile)
@@ -98,9 +98,116 @@ void YakuChecker::Daegi_info_update(std::vector<HwaryoInfo> * hwaryo_list, int L
                     }
                 }
             }
-        }// end of loop 
+        }// end of loop
     }// end of loop
+
+
+    // 같은 패에 대한 대기 타입이 여러가지인 경우 해석을 분리(부수 계산에 필요하지만, 핑후 계산 전에 해야함.).
+    std::vector<HwaryoInfo> h_other_daegi;// 다른 대기타입 해석을 저장할 변수
+    for(std::size_t i=0;i<hwaryo_list->size();i++)
+    {
+        HwaryoInfo * h = &((*hwaryo_list)[i]);
+
+        // 대기타입이 몇종류로 해석될 수 있는지
+        int daegi_type_count = daegi_state_sum(&h->daegistate);
+        if(daegi_type_count <= 1){continue;} // 대기 해석 2개이상인 경우만 처리
+
+        // 양면 대기
+        if(h->daegistate.Yang){
+            h->daegistate.Yang = false;
+            HwaryoInfo h_other_daegi_0(h->tsu_blocks, h->pae_count, h->hwaryo_pae_type);
+            h_other_daegi_0.last_tile = h->last_tile;
+            h_other_daegi_0.daegistate.Yang = true;
+            h_other_daegi_0.daegistate.Syabo = false;
+            h_other_daegi_0.daegistate.Gan = false;
+            h_other_daegi_0.daegistate.Byeon = false;
+            h_other_daegi_0.daegistate.Dangi = false;
+            h_other_daegi.push_back(h_other_daegi_0);
+        }
+        daegi_type_count = daegi_state_sum(&h->daegistate);
+        if(daegi_type_count <= 1){continue;} // 대기 해석 2개이상인 경우만 처리
+
+        // 샤보대기
+        if(h->daegistate.Syabo)
+        {   h->daegistate.Syabo = false;
+            HwaryoInfo h_other_daegi_0(h->tsu_blocks, h->pae_count, h->hwaryo_pae_type);
+            h_other_daegi_0.last_tile = h->last_tile;
+            h_other_daegi_0.daegistate.Yang = false;
+            h_other_daegi_0.daegistate.Syabo = true;
+            h_other_daegi_0.daegistate.Gan = false;
+            h_other_daegi_0.daegistate.Byeon = false;
+            h_other_daegi_0.daegistate.Dangi = false;
+            h_other_daegi.push_back(h_other_daegi_0);
+        }
+        daegi_type_count = daegi_state_sum(&h->daegistate);
+        if(daegi_type_count <= 1){continue;} // 대기 해석 2개이상인 경우만 처리
+
+        // 간짱대기
+        if(h->daegistate.Gan)
+        {   h->daegistate.Gan = false;
+            HwaryoInfo h_other_daegi_0(h->tsu_blocks, h->pae_count, h->hwaryo_pae_type);
+            h_other_daegi_0.last_tile = h->last_tile;
+            h_other_daegi_0.daegistate.Yang = false;
+            h_other_daegi_0.daegistate.Syabo = false;
+            h_other_daegi_0.daegistate.Gan = true;
+            h_other_daegi_0.daegistate.Byeon = false;
+            h_other_daegi_0.daegistate.Dangi = false;
+            h_other_daegi.push_back(h_other_daegi_0);
+        }
+        daegi_type_count = daegi_state_sum(&h->daegistate);
+        if(daegi_type_count <= 1){continue;} // 대기 해석 2개이상인 경우만 처리
+
+        // 변짱 대기
+        if(h->daegistate.Byeon)
+        {   h->daegistate.Byeon = false;
+            HwaryoInfo h_other_daegi_0(h->tsu_blocks, h->pae_count, h->hwaryo_pae_type);
+            h_other_daegi_0.last_tile = h->last_tile;
+            h_other_daegi_0.daegistate.Yang = false;
+            h_other_daegi_0.daegistate.Syabo = false;
+            h_other_daegi_0.daegistate.Gan = false;
+            h_other_daegi_0.daegistate.Byeon = true;
+            h_other_daegi_0.daegistate.Dangi = false;
+            h_other_daegi.push_back(h_other_daegi_0);
+            
+        }
+        // 여기까지 오면 대기 해석 1개만 남음.
+        // daegi_type_count = daegi_state_sum(&h->daegistate);
+        // if(daegi_type_count <= 1){continue;} // 대기 해석 2개이상인 경우만 처리
+
+        // // 단기 대기
+        // if(h->daegistate.Dangi)
+        // {   h->daegistate.Dangi = false;
+        //     HwaryoInfo h_other_daegi_0(h->tsu_blocks, h->pae_count, h->hwaryo_pae_type);
+        //     h_other_daegi_0.last_tile = h->last_tile;
+        //     h_other_daegi_0.daegistate.Yang = false;
+        //     h_other_daegi_0.daegistate.Syabo = false;
+        //     h_other_daegi_0.daegistate.Gan = false;
+        //     h_other_daegi_0.daegistate.Byeon = false;
+        //     h_other_daegi_0.daegistate.Dangi = true;
+        //     h_other_daegi.push_back(h_other_daegi_0);
+        // }
+        
+    }//end of loop
+
+    // 화료 리스트에 추가.
+    for(std::size_t i=0;i<h_other_daegi.size();i++)
+    {
+        hwaryo_list->push_back(h_other_daegi[i]);
+    }
+
+
 }//end of function
+
+int daegi_state_sum(Daegistate * daegistate){
+    int daegi_type_num =0;
+    if(daegistate->Yang){daegi_type_num++;}
+    if(daegistate->Syabo){daegi_type_num++;}
+    if(daegistate->Gan){daegi_type_num++;}
+    if(daegistate->Byeon){daegi_type_num++;}
+    if(daegistate->Dangi){daegi_type_num++;}
+    return daegi_type_num;
+}
+
 
 // 후로 카운트 업데이트, 슌쯔 수, 커쯔 깡쯔 후로 여부 구분해서 카운트 업데이트
 void YakuChecker::bcounts_update(std::vector<HwaryoInfo> * hwaryo_list)

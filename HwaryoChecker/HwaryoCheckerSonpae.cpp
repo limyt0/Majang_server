@@ -88,7 +88,7 @@ void HwaryoChecker::Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type, i
         {
             int ja_pae_count[38];
             for(int i=0;i<38;i++){ja_pae_count[i] = pae_count[i];}
-            HwaryoInfo hwaryoInfo(tsu_blocks, ja_pae_count);
+            HwaryoInfo hwaryoInfo(tsu_blocks, ja_pae_count, hwaryopae_type);
             block_check(hwaryoInfo);
 
         }
@@ -158,7 +158,7 @@ void HwaryoChecker::Hwaryo_check_sonpae(Jaksadata * jaksa, int hwaryopae_type, i
             if (japa_keotsu_break){DEBUG_LOG("자패 커쯔 체크 도중 화료 불가 확인되었음.\n");}
             else
             {
-                HwaryoInfo hwaryoInfo(su_tsuBlocks, pae_count_su);
+                HwaryoInfo hwaryoInfo(su_tsuBlocks, pae_count_su, hwaryopae_type);
                 block_check(hwaryoInfo);
             }
             DEBUG_LOG("손패 블록 체크 완료.\n");

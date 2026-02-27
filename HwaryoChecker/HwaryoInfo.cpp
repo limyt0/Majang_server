@@ -8,12 +8,13 @@
     #define DEBUG_LOG(fmt, ...) std::printf(fmt, ##__VA_ARGS__)   
 #endif
 
-HwaryoInfo::HwaryoInfo(std::vector<TsuBlock> tsu_blocks_, int * pae_count_)
+HwaryoInfo::HwaryoInfo(std::vector<TsuBlock> tsu_blocks_, int * pae_count_, int hwaryo_pae_type_)
 {
     tsu_blocks = tsu_blocks_;
     for(int i=0;i<38;i++){
         pae_count[i] = pae_count_[i];
     }
+    hwaryo_pae_type = hwaryo_pae_type_;
 
 }
 
