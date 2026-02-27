@@ -61,6 +61,11 @@ HwaryoChecker::HwaryoChecker(GameData * game_data, Jaksadata * jaksa, int hwaryo
             DEBUG_LOG("화료 %d ----------------- start\n", count);
             // printf("hwaryo pae : {HwaryoPaeType.int_to_str(hwaryoInfo.hwaryo_pae_type)}");
             hwaryo_list[i].print_info(true, true, true, true, true);
+            
+            int seat_wind = jaksa->baram + 1;
+            int table_wind = game_data->nowTableBaram + 1;
+            hwaryo_list[i].Busu(seat_wind, table_wind);//부수계산.!!
+            DEBUG_LOG("부수 %d 부\n", hwaryo_list[i].scoreComponent.busu);
             DEBUG_LOG("화료 %d ----------------- end\n", count);
         }
 
