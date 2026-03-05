@@ -51,7 +51,7 @@ void TsuBlock::print_contents()
 
         if(tsu_type == TsuType::Meori){str += "("+pae_type_str+"패)  ("+n+n+")   - 머리";}
         else if(tsu_type == TsuType::Keotsu){str += "("+pae_type_str+"패)  ("+n+n+n+")  - 커쯔";}
-        else if(tsu_type == TsuType::Kangtsu){str += "("+pae_type_str+"패) ("+n+n+n+n+")  - 깡쯔";}
+        else if(tsu_type == TsuType::Kangtsu){str += "("+pae_type_str+"패)  ("+n+n+n+n+") - 깡쯔";}
         else if(tsu_type == TsuType::Syuntsu){str += "("+pae_type_str+"패)  ("+n+std::to_string(number+1)+std::to_string(number+2)+")  - 슌쯔";}
         else if(tsu_type == TsuType::Guksa){str += "(국사무쌍)";}
         else if(tsu_type == TsuType::Guryeon){str += "(구련보등)";}

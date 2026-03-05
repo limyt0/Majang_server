@@ -145,12 +145,12 @@ void HwaryoInfo::Busu(int seat_wind, int table_wind){
                 if(yogu)
                 {// 요구패 안깡 32부
                     scoreComponent.busu += 32;
-                    DEBUG_LOG("요구패 밍깡 +32부\n");
+                    DEBUG_LOG("요구패 안깡 +32부\n");
                 }               
                 else
-                {// 중장패 밍깡 16부
+                {// 중장패 안깡 16부
                     scoreComponent.busu += 16;
-                    DEBUG_LOG("중장패 밍깡 +16부\n");
+                    DEBUG_LOG("중장패 안깡 +16부\n");
                 }
             }
         }// end of condition
