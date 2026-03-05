@@ -66,7 +66,9 @@ void YakuChecker::toi_info_update(std::vector<HwaryoInfo> * hwaryo_list)
             }
 
         }
-        else if(h->bCounts.kang== 3)
+        
+        // 깡은 마지막 화료패로 만들수가 없어서 이렇게 체크해도 됨.
+        if(h->bCounts.kang== 3)
         {
             h->yakustate.san_kangz = true;
         }
@@ -74,8 +76,11 @@ void YakuChecker::toi_info_update(std::vector<HwaryoInfo> * hwaryo_list)
         {
             h->yakumansate.su_kangz = true;
         }
-        else if(toi_count == 4)
-        {   // 상위역이 아닌 경우, 또이또이 체크
+
+        // 또이또이 체크
+        // 또이또이는 다른 역과 겹쳐서 적용가능.
+        if(toi_count == 4)
+        { 
             h->yakustate.toitoi = true;
         }
 
